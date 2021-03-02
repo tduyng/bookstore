@@ -1,34 +1,37 @@
-import { HookNextFunction, Schema, Document } from 'mongoose';
+import { HookNextFunction, Document } from 'mongoose';
 import argon2 from 'argon2';
-
-export class User extends Document {
-	_id: string;
-	email?: string;
-	name: string;
-	googleId?: string;
-	permalink: string;
-	thumbnail?: string;
-	cart: any[];
-	role: Roles;
-}
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export enum Roles {
 	USER = 'User',
 	ADMIN = 'Admin',
 }
 
-export const UserSchema = new Schema(
-	{
-		email: { type: String, unique: true },
-		name: String,
-		password: String,
-		cart: { type: Array, default: [] },
-		thumbnail: String,
-		googleId: { type: String, required: false },
-		role: { type: String, enum: Object.values(Roles), default: Roles.USER },
-	},
-	{ timestamps: true },
-);
+@Schema({ timestamps: true })
+export class User extends Document {
+	@Prop({ unique: true })
+	email: string;
+
+	@Prop({ type: String, select: false })
+	password: string;
+
+	@Prop()
+	name: string;
+
+	@Prop({ required: false })
+	googleId?: string;
+
+	@Prop({ required: false })
+	thumbnail?: string;
+
+	@Prop({ type: Array, default: [] })
+	cart: any[];
+
+	@Prop({ type: String, enum: Object.values(Roles), default: Roles.USER })
+	role: Roles;
+}
+
+export const UserSchema = SchemaFactory.createForClass(User);
 
 // Hook before insert or update
 UserSchema.pre('save', encryptPassword);

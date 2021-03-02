@@ -1,32 +1,33 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { randomBytes } from 'crypto';
-import { Document, HookNextFunction, Schema } from 'mongoose';
+import { Document, HookNextFunction } from 'mongoose';
 import slugify from 'slugify';
 
+@Schema({ timestamps: true })
 export class Book extends Document {
-	_id: string;
+	@Prop()
 	title: string;
+
+	@Prop()
 	author: string;
+
+	@Prop({ type: Number })
 	price: number;
+
+	@Prop({ type: Number })
 	old_price: number;
+
+	@Prop()
 	imgURL: string;
+
+	@Prop()
 	genre: string;
+
+	@Prop()
 	slug: string;
 }
 
-export const BookSchema = new Schema(
-	{
-		title: String,
-		author: String,
-		price: Number,
-		old_price: Number,
-		imgURL: String,
-		genre: String,
-		slug: String,
-	},
-	{
-		timestamps: true,
-	},
-);
+export const BookSchema = SchemaFactory.createForClass(Book);
 
 // Hook before insert or update
 BookSchema.pre('save', updateSlug);

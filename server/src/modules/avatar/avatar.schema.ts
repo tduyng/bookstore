@@ -1,15 +1,16 @@
 import { User } from '@modules/user/user.schema';
-import { Document, Schema } from 'mongoose';
-
+import { Document, Types } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+@Schema()
 export class Avatar extends Document {
-	_id: string;
+	@Prop({ type: Buffer, required: true })
 	data: Buffer;
+
+	@Prop({ type: String, required: true })
 	key: string;
+
+	@Prop({ type: Types.ObjectId, required: true, ref: 'User' })
 	owner: User['_id'];
 }
 
-export const AvatarSchema = new Schema({
-	data: { type: Buffer, required: true },
-	owner: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
-	key: { type: String, required: true },
-});
+export const AvatarSchema = SchemaFactory.createForClass(Avatar);
