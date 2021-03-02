@@ -6,7 +6,7 @@
 import scrapy
 
 
-class CrawlerItem(scrapy.Item):
+class BookItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     genre = scrapy.Field()
@@ -15,5 +15,15 @@ class CrawlerItem(scrapy.Item):
     price = scrapy.Field()
     old_price = scrapy.Field()
     imgURL = scrapy.Field()
+
+    pass
+
+
+class PhoneItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    User = scrapy.Field()
+    Comment = scrapy.Field()
+    Time = scrapy.Field()
 
     pass
