@@ -9,6 +9,7 @@ import compression from 'compression';
 import RateLimit from 'express-rate-limit';
 import cors from 'cors';
 import csurf from 'csurf';
+import { setupSwagger } from './common/config/swagger.config';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -42,8 +43,9 @@ async function bootstrap() {
 	}
 
 	app.setGlobalPrefix('api');
+	setupSwagger(app);
 	await app.listen(3000, () => {
-		console.log(`Server is running at http://localhost:${port}`);
+		console.log(`Server is running at http://localhost:${port}/api/docs/`);
 	});
 }
 bootstrap();
