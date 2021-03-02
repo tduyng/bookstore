@@ -5,7 +5,7 @@ export class Avatar extends Document {
 	_id: string;
 	data: Buffer;
 	key: string;
-	owner: string;
+	owner: User['_id'];
 }
 
 export const AvatarSchema = new Schema({

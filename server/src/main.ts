@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import express from 'express';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -12,6 +12,7 @@ import csurf from 'csurf';
 import { setupSwagger } from './common/config/swagger.config';
 import session from 'express-session';
 import { sessionConfig } from './common/config/session.config';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -46,6 +47,10 @@ async function bootstrap() {
 
 	// Session
 	app.use(session(sessionConfig()));
+
+	// Handle errors
+	app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }));
+	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
 	app.setGlobalPrefix('api');
 	setupSwagger(app);

@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { envConfig } from './common/config/env.config';
 
 @Module({
-	imports: [ConfigModule.forRoot({ isGlobal: true })],
+	imports: [
+		MongooseModule.forRootAsync({
+			useFactory: () => ({
+				uri: envConfig().mongodbUri,
+				useNewUrlParser: true,
+				useFindAndModify: false,
+				useCreateIndex: true,
+			}),
+		}),
+	],
 	controllers: [AppController],
 	providers: [AppService],
 })
