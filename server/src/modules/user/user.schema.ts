@@ -1,6 +1,7 @@
 import { HookNextFunction, Document } from 'mongoose';
 import argon2 from 'argon2';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import slugify from 'slugify';
 
 export enum Roles {
 	USER = 'User',
@@ -16,7 +17,7 @@ export class User extends Document {
 	password: string;
 
 	@Prop()
-	name: string;
+	username: string;
 
 	@Prop({ required: false })
 	googleId?: string;
@@ -35,6 +36,7 @@ export const UserSchema = SchemaFactory.createForClass(User);
 
 // Hook before insert or update
 UserSchema.pre('save', encryptPassword);
+UserSchema.pre('save', updateUsername);
 UserSchema.pre('save', validateEmail);
 
 /* Helper methods */
@@ -59,6 +61,17 @@ function validateEmail(this: User, next: HookNextFunction) {
 		if (isEmail) return next();
 
 		return next(new Error('Invalid email address'));
+	} catch (error) {
+		return next(error);
+	}
+}
+
+/* Helper methods */
+async function updateUsername(this: User, next: HookNextFunction) {
+	try {
+		if (!this.isModified('username')) return next();
+		this.username = slugify(this.username, { lower: true });
+		return next();
 	} catch (error) {
 		return next(error);
 	}
