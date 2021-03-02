@@ -3,6 +3,7 @@ from scrapy import Spider
 from scrapy.selector import Selector
 from crawler.items import BookItem
 import json
+import time
 
 
 class BooksSpider(Spider):
@@ -26,8 +27,9 @@ class BooksSpider(Spider):
             yield scrapy.Request(url=url, callback=self.parse, headers=headers)
 
     def parse(self, response):
-        # books = Selector(response).xpath('//ul[@id="products_grid"]/li')
-        books = Selector(response).xpath('//div[@class="mb-category-products"]/div')
+        time.sleep(20)
+
+        books = Selector(response).xpath('//ul[@id="products_grid"]/li')
 
         genre = response.url.split("/")[4].split(".")[0]
 
@@ -45,7 +47,7 @@ class BooksSpider(Spider):
             item["old_price"] = (
                 book.xpath('p[@class="old-price"]/span[@class="price"]/text()').extract_first().split(" ")[0]
             )
-            item["imageURL"] = book.xpath('span[@class="product-image"]/img/@src').extract_first()
+            item["imgURL"] = book.xpath('span[@class="product-image"]/img/@src').extract_first()
 
             self.logger.info("Item crawled %s", item)
 
@@ -63,7 +65,7 @@ class BooksSpider(Spider):
                         "author": item["author"],
                         "price": item["price"],
                         "old_price": item["old_price"],
-                        "imageURL": item["imageURL"],
+                        "imgURL": item["imgURL"],
                     }
                 )
                 file.seek(0)
