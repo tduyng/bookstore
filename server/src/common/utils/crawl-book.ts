@@ -46,21 +46,14 @@ export const crawlBooks = async (genre: string) => {
 	const page = await browser.newPage();
 	const books = [];
 	let links = [];
-	// for (let p = 1; p <= 3; p++) {
-	// 	// const link = await bookScrape(
-	// 	// 	page,
-	// 	// 	`https://www.fahasa.com/sach-trong-nuoc/tam-ly-ky-nang-song/tam-ly.html?order=num_orders&limit=48&p=${p}`,
-	// 	// );
-	// 	const link = await bookScrape(
-	// 		page,
-	// 		`https://www.fahasa.com/foreigncategory/fiction/fantasy.html?order=num_orders&limit=24&p=${p}`,
-	// 	);
-	// 	links = links.concat(link);
-	// }
-	links = await bookScrape(
-		page,
-		`https://www.fahasa.com/foreigncategory/fiction/fantasy.html?order=num_orders&limit=48&p=${1}`,
-	);
+	for (let p = 1; p <= 3; p++) {
+		const link = await bookScrape(
+			page,
+			`https://www.fahasa.com/foreigncategory/fiction/fantasy.html?order=num_orders&limit=24&p=${p}`,
+		);
+		links = links.concat(link);
+	}
+
 	for (const link in links) {
 		const book = await getBook(page, links[link], genre);
 		books.push(book);
