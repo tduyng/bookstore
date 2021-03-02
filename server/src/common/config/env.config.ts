@@ -24,5 +24,9 @@ export const envConfig = () => {
 		serverUrl: process.env.SERVER_URL || `http://localhost:${port}`,
 		clientUrl: process.env.CLIENT_URL || `http://localhost:3000`,
 		mongodbUri: process.env.MONGODB_URI,
+		jwtSecret: process.env.JWT_SECRET,
+		jwtExpiredTime: parseInt(process.env.JWT_EXPIRED_TIME),
+		jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
+		jwtRefreshExpiredTime: parseInt(process.env.JWT_REFRESH_EXPIRED_TIME),
 	};
 };

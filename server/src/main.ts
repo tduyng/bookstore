@@ -10,6 +10,8 @@ import RateLimit from 'express-rate-limit';
 import cors from 'cors';
 import csurf from 'csurf';
 import { setupSwagger } from './common/config/swagger.config';
+import session from 'express-session';
+import { sessionConfig } from './common/config/session.config';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -41,6 +43,9 @@ async function bootstrap() {
 				}),
 			);
 	}
+
+	// Session
+	app.use(session(sessionConfig()));
 
 	app.setGlobalPrefix('api');
 	setupSwagger(app);
