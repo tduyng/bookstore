@@ -30,7 +30,6 @@
     "class-validator": "^0.13.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.11.18",
-    "puppeteer": "^8.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
