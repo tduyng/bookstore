@@ -3,6 +3,7 @@ import { InjectConnection } from '@nestjs/mongoose';
 import { ApiTags } from '@nestjs/swagger';
 import { Connection } from 'mongoose';
 import { AppService } from './app.service';
+import express from 'express';
 
 @Controller()
 @ApiTags('Root')
@@ -18,7 +19,7 @@ export class AppController {
 	}
 
 	@Get('/health')
-	healthCheck(@Response() res) {
+	healthCheck(@Response() res?: express.Response) {
 		if (this.connection.readyState === 1) {
 			res.status(HttpStatus.OK).json({ db: { status: 'up' } });
 		} else {
