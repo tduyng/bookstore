@@ -29,6 +29,9 @@ export class Book extends Document {
 
 export const BookSchema = SchemaFactory.createForClass(Book);
 
+// Create indexes
+BookSchema.index({ author: 'text', title: 'text', genre: 'text' });
+
 // Hook before insert or update
 BookSchema.pre('save', updateSlug);
 

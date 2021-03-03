@@ -1,0 +1,17 @@
+{
+  "books": [{
+    "genre": "art-photography",
+    "title": "Leonardo da Vinci",
+    "author": "",
+    "price": "326.400",
+    "old_price": "384.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_181884.jpg"
+  }, {
+    "genre": "art-photography",
+    "title": "Leonardo da Vinci",
+    "author": "",
+    "price": "326.400",
+    "old_price": "384.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_181884.jpg"
+  }]
+}
