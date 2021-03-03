@@ -1,9 +1,7 @@
 import scrapy
 from scrapy import Spider
-from scrapy.selector import Selector
 from crawler.items import BookItem
 import json
-import time
 import glob, os
 
 
