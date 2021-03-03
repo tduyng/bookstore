@@ -27,3 +27,10 @@ class PhoneItem(scrapy.Item):
     Time = scrapy.Field()
 
     pass
+
+
+class WebsosanhItem(scrapy.Item):
+    name = scrapy.Field()
+    price = scrapy.Field()
+    image = scrapy.Field()
+    pass

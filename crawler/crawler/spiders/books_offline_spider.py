@@ -12,25 +12,27 @@ class BooksOfflineSpider(Spider):
 
     def start_requests(self):
         self.logger.info("Start crawling ............")
-        # self.logger.info("Current directory...... %s", os.getcwd())
-        # self.logger.info("Current directory 2...... %s", os.path.dirname(__file__))
-        # htmlDir = os.getcwd() + "/crawler/html"
-        # self.logger.info(f"html dir {htmlDir}")
         absoluteDir = os.getcwd()
+
+        # Change current dir to html/
         os.chdir("./crawler/html")
         urls = []
         for file in glob.glob("*.html"):
             urls.append("file://" + absoluteDir + "/crawler/html/" + file)
         # Delete old contents of json files
         open("data.json", "w").close()
+        open("data.csv", "w").close()
 
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
 
-        books = Selector(response).xpath('//ul[@id="products_grid"]/li')
-        genre = Selector(response).xpath('//link[@rel="canonical"]/@href').get().split("/")[-1].replace(".html", "")
+        books = response.xpath('//ul[@id="products_grid"]/li')
+        genre = response.xpath('//link[@rel="canonical"]/@href').get()
+
+        if genre:
+            genre.split("/")[-1].replace(".html", "")
 
         if len(books) < 1:
             self.logger.info("--------------------html empty ")
