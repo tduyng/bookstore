@@ -6,6 +6,7 @@ import { PayloadUserForJwtToken } from 'src/common/types';
 import { RegisterUserDto } from '../dto';
 import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
+import { EmailService } from '@modules/email/email.service';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
 		@InjectModel(User.name) private userModel: Model<User>,
 		private jwtService: JwtService,
 		private passwordService: PasswordService,
+		private emailService: EmailService,
 	) {}
 
 	public async register(input: RegisterUserDto): Promise<{ token: string }> {
@@ -23,7 +25,7 @@ export class AuthService {
 		const emailToken = this.jwtService.sign(payload);
 
 		return {
-			token: 'some',
+			token: emailToken,
 		};
 	}
 

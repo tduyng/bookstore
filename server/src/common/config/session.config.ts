@@ -14,7 +14,7 @@ export function sessionConfig(): session.SessionOptions {
 		cookie: {
 			httpOnly: true,
 			secure: __prod__,
-			maxAge: env.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
+			maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
 			sameSite: 'lax', // csrf
 			domain: __prod__ ? '.codeponder.com' : undefined,
 		},

@@ -10,13 +10,18 @@ import RateLimit from 'express-rate-limit';
 import cors from 'cors';
 import csurf from 'csurf';
 import { setupSwagger } from './common/config/swagger.config';
-import session from 'express-session';
 import { sessionConfig } from './common/config/session.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import session from 'express-session';
 
 async function bootstrap() {
-	const app = await NestFactory.create<NestExpressApplication>(AppModule);
 	const env = envConfig();
+	const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+		logger:
+			env.mode === 'development'
+				? ['log', 'debug', 'error', 'verbose', 'warn']
+				: ['error', 'warn'],
+	});
 	const port = env.port;
 
 	app.set('trust proxy', 1);
@@ -30,6 +35,10 @@ async function bootstrap() {
 	);
 
 	app.use(cookieParser());
+
+	if (env.mode !== 'production') {
+		setupSwagger(app);
+	}
 
 	if (env.mode === 'production') {
 		app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -46,14 +55,14 @@ async function bootstrap() {
 	}
 
 	// Session
-	app.use(session(sessionConfig()));
+	const sessionOptions = sessionConfig();
+	app.use(session(sessionOptions));
 
 	// Handle errors
 	app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }));
 	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
 	app.setGlobalPrefix('api');
-	setupSwagger(app);
 	await app.listen(3000, () => {
 		console.log(`Server is running at http://localhost:${port}/api/docs/`);
 	});

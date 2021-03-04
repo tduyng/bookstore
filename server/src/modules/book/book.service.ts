@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { FilterQuery, Model } from 'mongoose';
 import { Book } from './book.schema';
 
 @Injectable()
 export class BookService {
 	constructor(@InjectModel(Book.name) private bookModel: Model<Book>) {}
+
+	public async findOne(filter: FilterQuery<Book>) {
+		return this.bookModel.findOne(filter);
+	}
 
 	// get books/genre/:genre
 	// get books/search/:key

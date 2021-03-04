@@ -3,6 +3,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import sendGridTransport from 'nodemailer-sendgrid-transport';
+import { EmailService } from './email.service';
 
 @Module({
 	imports: [
@@ -26,5 +27,7 @@ import sendGridTransport from 'nodemailer-sendgrid-transport';
 			},
 		}),
 	],
+	providers: [EmailService],
+	exports: [EmailService],
 })
-export class EmailProviderModule {}
+export class EmailModule {}

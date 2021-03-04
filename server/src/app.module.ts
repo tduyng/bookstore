@@ -1,3 +1,6 @@
+import { AuthModule } from '@modules/auth/services/auth.module';
+import { EmailModule } from '@modules/email/email.module';
+import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from 'src/app/app.controller';
@@ -14,6 +17,9 @@ import { envConfig } from './common/config/env.config';
 				useCreateIndex: true,
 			}),
 		}),
+		EmailModule,
+		UserModule,
+		AuthModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
