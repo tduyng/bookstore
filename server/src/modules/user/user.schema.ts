@@ -3,9 +3,9 @@ import argon2 from 'argon2';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import slugify from 'slugify';
 
-export enum Roles {
-	USER = 'User',
-	ADMIN = 'Admin',
+export enum RoleType {
+	USER = 'USER',
+	ADMIN = 'ADMIN',
 }
 
 @Schema({ timestamps: true })
@@ -23,13 +23,16 @@ export class User extends Document {
 	googleId?: string;
 
 	@Prop({ required: false })
+	facebookId?: string;
+
+	@Prop({ required: false })
 	thumbnail?: string;
 
 	@Prop({ type: Array, default: [] })
 	cart: any[];
 
-	@Prop({ type: String, enum: Object.values(Roles), default: Roles.USER })
-	role: Roles;
+	@Prop({ type: String, enum: Object.values(RoleType), default: RoleType.USER })
+	role: RoleType;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
