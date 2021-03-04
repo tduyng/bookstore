@@ -10,5 +10,10 @@ declare namespace NodeJS {
 		readonly JWT_EXPIRED_TIME: string;
 		readonly JWT_REFRESH_SECRET: string;
 		readonly JWT_REFRESH_EXPIRED_TIME: string;
+		readonly SENDGRID_API_KEY: string;
+		readonly EMAIL_HOST: string;
+		readonly EMAIL_PORT: string;
+		readonly EMAIL_AUTH_USER: string;
+		readonly EMAIL_AUTH_PASSWORD: string;
 	}
 }

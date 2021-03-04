@@ -21,9 +21,11 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^1.5.1",
     "@nestjs/common": "^7.5.1",
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.5.1",
+    "@nestjs/jwt": "^7.2.0",
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
@@ -32,6 +34,7 @@
     "class-validator": "^0.13.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.11.18",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-google": "^0.3.0",
