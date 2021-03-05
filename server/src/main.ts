@@ -37,10 +37,6 @@ async function bootstrap() {
 
 	app.use(cookieParser());
 
-	if (env.mode !== 'production') {
-		setupSwagger(app);
-	}
-
 	if (env.mode === 'production') {
 		app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 		app
@@ -68,6 +64,9 @@ async function bootstrap() {
 	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
 	app.setGlobalPrefix('api');
+	if (env.mode !== 'production') {
+		setupSwagger(app);
+	}
 	await app.listen(port, () => {
 		console.log(`Server is running at http://localhost:${port}/api/docs/`);
 	});
