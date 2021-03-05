@@ -1,4 +1,4 @@
-import { RoleType, User } from '@modules/user/user.schema';
+import { RoleType, User } from '@modules/user/schemas/user.schema';
 import { Request, Response } from 'express';
 
 export interface HttpContext {
@@ -19,4 +19,12 @@ export interface UserFromRequest extends Partial<User> {
 	role?: RoleType;
 	email?: string;
 	username?: string;
+	password?: string;
+	thumbnail?: string;
+}
+export interface SessionAuthToken {
+	authToken?: {
+		accessToken: string;
+		refreshToken: string;
+	};
 }

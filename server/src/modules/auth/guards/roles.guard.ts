@@ -1,4 +1,4 @@
-import { RoleType } from '@modules/user/user.schema';
+import { RoleType } from '@modules/user/schemas/user.schema';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';

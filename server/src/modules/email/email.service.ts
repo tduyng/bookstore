@@ -9,8 +9,8 @@ export class EmailService {
 		this._env = envConfig();
 	}
 
-	public sendWelcome(toEmail: string) {
-		return this.mailer.sendMail({
+	public async sendWelcome(toEmail: string): Promise<void> {
+		await this.mailer.sendMail({
 			template: 'welcome',
 			from: this._env.email.emailSender,
 			to: toEmail,
@@ -21,9 +21,9 @@ export class EmailService {
 		});
 	}
 
-	public sendResetPassword(toEmail: string, token: string) {
+	public async sendResetPassword(toEmail: string, token: string): Promise<void> {
 		const tokenUrl = `${this._env.serverUrl}/reset-password/${token}`;
-		return this.mailer.sendMail({
+		await this.mailer.sendMail({
 			template: 'reset-password',
 			from: this._env.email.emailSender,
 			to: toEmail,
@@ -34,13 +34,13 @@ export class EmailService {
 		});
 	}
 
-	public sendEmailConfirmation(toEmail: string, token: string) {
-		const tokenUrl = `${this._env.serverUrl}/active/${token}`;
-		return this.mailer.sendMail({
+	public async sendEmailConfirmation(toEmail: string, token: string): Promise<void> {
+		const tokenUrl = `${this._env.serverUrl}/activate/${token}`;
+		await this.mailer.sendMail({
 			template: 'email-confirmation',
 			from: this._env.email.emailSender,
 			to: toEmail,
-			subject: '🔑 Confirmation you email registration',
+			subject: 'Confirmation you email registration',
 			context: {
 				tokenUrl,
 			},

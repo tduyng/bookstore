@@ -13,6 +13,7 @@ import { setupSwagger } from './common/config/swagger.config';
 import { sessionConfig } from './common/config/session.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import session from 'express-session';
+import passport from 'passport';
 
 async function bootstrap() {
 	const env = envConfig();
@@ -58,12 +59,16 @@ async function bootstrap() {
 	const sessionOptions = sessionConfig();
 	app.use(session(sessionOptions));
 
+	// Init passport
+	app.use(passport.initialize());
+	app.use(passport.session());
+
 	// Handle errors
 	app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }));
 	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
 	app.setGlobalPrefix('api');
-	await app.listen(3000, () => {
+	await app.listen(port, () => {
 		console.log(`Server is running at http://localhost:${port}/api/docs/`);
 	});
 }

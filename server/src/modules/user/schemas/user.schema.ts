@@ -33,6 +33,9 @@ export class User extends Document {
 
 	@Prop({ type: String, enum: Object.values(RoleType), default: RoleType.USER })
 	role: RoleType;
+
+	@Prop({ type: String, select: false, required: false })
+	currentHashedRefreshToken?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

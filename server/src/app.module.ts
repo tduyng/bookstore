@@ -1,4 +1,5 @@
 import { AuthModule } from '@modules/auth/services/auth.module';
+import { BookModule } from '@modules/book/book.module';
 import { EmailModule } from '@modules/email/email.module';
 import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
@@ -20,6 +21,7 @@ import { envConfig } from './common/config/env.config';
 		EmailModule,
 		UserModule,
 		AuthModule,
+		BookModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

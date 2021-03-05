@@ -11,6 +11,10 @@ export class BookService {
 		return this.bookModel.findOne(filter);
 	}
 
+	public async findById(id: string) {
+		return this.bookModel.findById(id);
+	}
+
 	// get books/genre/:genre
 	// get books/search/:key
 	// get books/query/:key

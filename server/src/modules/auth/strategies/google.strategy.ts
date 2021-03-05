@@ -1,4 +1,4 @@
-import { User } from '@modules/user/user.schema';
+import { User } from '@modules/user/schemas/user.schema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PassportStrategy } from '@nestjs/passport';

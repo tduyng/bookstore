@@ -4,7 +4,7 @@ import {
 	ValidationArguments,
 	ValidatorConstraintInterface,
 } from 'class-validator';
-import { emailRegex, User } from '../user.schema';
+import { emailRegex, User } from '../schemas/user.schema';
 import { UserService } from '../user.service';
 
 @ValidatorConstraint({ name: 'user', async: true })
