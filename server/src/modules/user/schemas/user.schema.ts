@@ -40,7 +40,7 @@ export class User extends Document {
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-// Hook before insert or update
+// Hook before insert or save
 UserSchema.pre('save', encryptPassword);
 UserSchema.pre('save', updateUsername);
 UserSchema.pre('save', validateEmail);

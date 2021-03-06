@@ -7,7 +7,7 @@ import {
 	PayloadUserForJwtToken,
 	SessionAuthToken,
 } from 'src/common/types';
-import { ChangePasswordDto, LoginUserDto, RegisterUserDto } from '../dto';
+import { LoginUserDto, RegisterUserDto, ResetPasswordDto } from '../dto';
 import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
 import { EmailService } from 'src/providers/email/email.service';
@@ -27,15 +27,11 @@ export class AuthService {
 		const isEmail = emailRegex.test(usernameOrEmail);
 		let user: User;
 		if (isEmail) {
-			user = await this.userModel
-				.findOne({ email: usernameOrEmail })
-				.select('+password')
-				.lean();
+			user = await this.userModel.findOne({ email: usernameOrEmail }).select('+password');
 		} else {
 			user = await this.userModel
 				.findOne({ username: usernameOrEmail })
-				.select('+password')
-				.lean();
+				.select('+password');
 		}
 
 		if (!user) return null;
@@ -83,30 +79,26 @@ export class AuthService {
 		};
 	}
 
-	public async resetPassword(input: ChangePasswordDto) {
-		const { token, oldPassword, newPassword } = input;
+	public async resetPassword(input: ResetPasswordDto) {
+		const { token, newPassword } = input;
 		const decoded: DataStoredFromToken = await this.jwtService.verifyAsync(token);
 		if (!decoded) {
 			throw new UnauthorizedException('Token invalid or missing');
 		}
 		const { user } = decoded;
-		const realUser: User = await this.userModel
+		const realUser = await this.userModel
 			.findOne({ email: user.email })
-			.select('+password')
-			.lean();
+			.select('+password');
 		if (!realUser) {
 			throw new UnauthorizedException(`Can not find user with token given`);
 		}
-		const isMatch = await this.passwordService.verify(realUser.password, oldPassword);
-		if (!isMatch) {
-			throw new BadRequestException('Old password not match current password');
-		}
-		if (oldPassword !== newPassword) {
-			throw new BadRequestException('Old password and newPassword must be match');
-		}
-		user.password = newPassword;
-		await user.save();
-		return user;
+
+		const hash = await this.passwordService.hash(newPassword);
+
+		const updated = await this.userModel
+			.findByIdAndUpdate(realUser.id, { password: hash })
+			.lean();
+		return updated;
 	}
 
 	public async generateAuthToken(

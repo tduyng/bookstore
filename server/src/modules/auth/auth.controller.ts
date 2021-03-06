@@ -17,10 +17,10 @@ import { AuthService } from './services/auth.service';
 import { UserService } from '@modules/user/user.service';
 import { UserFromRequest } from 'src/common/types';
 import {
-	ChangePasswordDto,
 	LoginUserDto,
 	RegisterUserDto,
 	RequestForgotPasswordInput,
+	ResetPasswordDto,
 } from './dto';
 import { SESSION_AUTH_KEY } from 'src/common/config/session.config';
 
@@ -107,15 +107,10 @@ export class AuthController {
 		}
 	}
 
-	@Get('reset-password')
-	public async resetPassword(
-		@Query('token') token: string,
-		@Body() inputWithoutToken: ChangePasswordDto,
-		@Req() req: Request,
-	) {
-		inputWithoutToken.token = token;
+	@Post('reset-password')
+	public async resetPassword(@Body() input: ResetPasswordDto, @Req() req: Request) {
 		try {
-			const user = await this.authService.resetPassword(inputWithoutToken);
+			const user = await this.authService.resetPassword(input);
 			await this.logout(req);
 			return user;
 		} catch (error) {

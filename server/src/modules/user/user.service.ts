@@ -9,12 +9,12 @@ export class UserService {
 	constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
 	public async findOne(where: UserWhereUniqueInput): Promise<User> {
-		const user: User = await this.userModel.findOne(where).lean();
+		const user: User = await this.userModel.findOne(where);
 		return user;
 	}
 
 	public async findById(_id: string): Promise<User> {
-		const user: User = await this.userModel.findById(_id).lean();
+		const user: User = await this.userModel.findById(_id);
 		return user;
 	}
 
