@@ -77,7 +77,22 @@ export class AvatarController {
 
 	@Delete('/:key')
 	public async deleteByKey(@Param('key') key: string) {
-		await this.avatarModel.findOneAndDelete({ key }).lean();
-		return { deleted: key };
+		try {
+			const image = await this.avatarModel.findOne({ key }).lean();
+			if (!image) {
+				throw new BadRequestException(`Image not found with key: ${key}`);
+			}
+			const session = await this.avatarModel.startSession();
+			session.startTransaction();
+			await this.avatarModel.findOneAndDelete({ key }).lean();
+			await this.userModel
+				.findOneAndUpdate({ id: image?.owner }, { thumbnail: '' })
+				.lean();
+			await session.commitTransaction();
+			session.endSession();
+			return { deleted: true, key, error: null };
+		} catch (error) {
+			return { deleted: false, key: key, error: error.message };
+		}
 	}
 }

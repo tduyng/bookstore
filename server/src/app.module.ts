@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from 'src/app/app.controller';
 import { AppService } from 'src/app/app.service';
 import { envConfig } from './common/config/env.config';
+import { AvatarModule } from '@modules/avatar/avartar.module';
 
 @Module({
 	imports: [
@@ -22,6 +23,7 @@ import { envConfig } from './common/config/env.config';
 		UserModule,
 		AuthModule,
 		BookModule,
+		AvatarModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
