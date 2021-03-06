@@ -1,6 +1,8 @@
-import { MailerService } from '@nestjs-modules/mailer';
+import { MailerService, ISendMailOptions } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { EnvConfig, envConfig } from 'src/common/config/env.config';
+
+type MailOptions = ISendMailOptions & { template?: string };
 
 @Injectable()
 export class EmailService {
@@ -9,41 +11,42 @@ export class EmailService {
 		this._env = envConfig();
 	}
 
+	send(options: MailOptions) {
+		return this.mailer.sendMail(options);
+	}
+
 	public async sendWelcome(toEmail: string): Promise<void> {
-		await this.mailer.sendMail({
+		await this.send({
 			template: 'welcome',
-			from: this._env.email.emailSender,
 			to: toEmail,
 			subject: '🥳🎉 Welcome to the Bookstore',
 			context: {
 				siteUrl: this._env.clientUrl,
 			},
-		});
+		}).then();
 	}
 
 	public async sendResetPassword(toEmail: string, token: string): Promise<void> {
-		const tokenUrl = `${this._env.serverUrl}/reset-password/${token}`;
-		await this.mailer.sendMail({
+		const tokenUrl = `${this._env.serverUrl}/api/auth/reset-password?token=${token}`;
+		await this.send({
 			template: 'reset-password',
-			from: this._env.email.emailSender,
 			to: toEmail,
 			subject: '🔑 Request to recover your password',
 			context: {
 				tokenUrl,
 			},
-		});
+		}).then();
 	}
 
 	public async sendEmailConfirmation(toEmail: string, token: string): Promise<void> {
-		const tokenUrl = `${this._env.serverUrl}/activate/${token}`;
-		await this.mailer.sendMail({
+		const tokenUrl = `${this._env.serverUrl}/api/auth/activate?token=${token}`;
+		await this.send({
 			template: 'email-confirmation',
-			from: this._env.email.emailSender,
 			to: toEmail,
 			subject: 'Confirmation you email registration',
 			context: {
 				tokenUrl,
 			},
-		});
+		}).then();
 	}
 }

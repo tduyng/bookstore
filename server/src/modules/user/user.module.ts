@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { UserController } from './user.controller';
 import { Avatar, AvatarSchema } from './schemas/avatar.schema';
+import { UserExitsValidator } from './decorators';
 
 @Module({
 	imports: [
@@ -13,7 +14,7 @@ import { Avatar, AvatarSchema } from './schemas/avatar.schema';
 		]),
 	],
 	controllers: [UserController],
-	providers: [UserService],
-	exports: [UserService],
+	providers: [UserService, UserExitsValidator],
+	exports: [UserService, UserExitsValidator],
 })
 export class UserModule {}

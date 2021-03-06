@@ -21,7 +21,7 @@ export const envConfig = (): EnvConfig => {
 	return {
 		mode,
 		port,
-		serverUrl: process.env.SERVER_URL || `http://localhost:${port}`,
+		serverUrl: process.env.SERVER_URL || `http://localhost:5025`,
 		clientUrl: process.env.CLIENT_URL || `http://localhost:3000`,
 		mongodbUri: process.env.MONGODB_URI,
 		jwt: {

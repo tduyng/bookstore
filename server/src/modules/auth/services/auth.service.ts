@@ -1,4 +1,4 @@
-import { User } from '@modules/user/schemas/user.schema';
+import { emailRegex, User } from '@modules/user/schemas/user.schema';
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -10,7 +10,7 @@ import {
 import { ChangePasswordDto, LoginUserDto, RegisterUserDto } from '../dto';
 import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
-import { EmailService } from '@modules/email/email.service';
+import { EmailService } from 'src/providers/email/email.service';
 import { envConfig } from 'src/common/config/env.config';
 
 @Injectable()
@@ -23,9 +23,23 @@ export class AuthService {
 	) {}
 
 	public async validateUser(input: LoginUserDto): Promise<User> {
-		const user = await this.userModel.findOne({ email: input.email }).select('+password');
+		const { usernameOrEmail, password } = input;
+		const isEmail = emailRegex.test(usernameOrEmail);
+		let user: User;
+		if (isEmail) {
+			user = await this.userModel
+				.findOne({ email: usernameOrEmail })
+				.select('+password')
+				.lean();
+		} else {
+			user = await this.userModel
+				.findOne({ username: usernameOrEmail })
+				.select('+password')
+				.lean();
+		}
+
 		if (!user) return null;
-		const isMatch = await this.passwordService.verify(user.password, input.password);
+		const isMatch = await this.passwordService.verify(user.password, password);
 		if (!isMatch) return null;
 		return user;
 	}
@@ -45,7 +59,7 @@ export class AuthService {
 
 	public async activateAccount(token: string): Promise<User> {
 		const decoded: DataStoredFromToken = await this.jwtService.verifyAsync(token);
-		if (!decoded || decoded.user) return null;
+		if (!decoded || !decoded.user) return null;
 		const { user } = decoded;
 		const newUser = await this.userModel.create(user);
 		await this.emailService.sendWelcome(newUser.email);
@@ -76,9 +90,10 @@ export class AuthService {
 			throw new UnauthorizedException('Token invalid or missing');
 		}
 		const { user } = decoded;
-		const realUser = await this.userModel
+		const realUser: User = await this.userModel
 			.findOne({ email: user.email })
-			.select('+password');
+			.select('+password')
+			.lean();
 		if (!realUser) {
 			throw new UnauthorizedException(`Can not find user with token given`);
 		}
@@ -114,9 +129,11 @@ export class AuthService {
 
 	public async resetCurrentHashedRefreshToken(id: string, refreshToken: string) {
 		const currentHashedRefreshToken = await this.passwordService.hash(refreshToken);
-		const user = await this.userModel.findByIdAndUpdate(id, {
-			currentHashedRefreshToken,
-		});
+		const user: User = await this.userModel
+			.findByIdAndUpdate(id, {
+				currentHashedRefreshToken,
+			})
+			.lean();
 		return user;
 	}
 

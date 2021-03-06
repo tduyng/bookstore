@@ -1,19 +1,20 @@
-import { UserExitsValidator } from '@modules/user/decorators/';
+// import { UserExitsValidator } from '@modules/user/decorators/';
 import {
 	IsEmail,
 	IsOptional,
 	IsString,
 	Matches,
 	MinLength,
-	Validate,
+	// Validate,
 } from 'class-validator';
 
 export class RegisterUserDto {
 	@Matches(/[a-zA-Z0-9_-]{2,20}/)
+	// @Validate(UserExitsValidator)
 	username: string;
 
 	@IsEmail()
-	@Validate(UserExitsValidator)
+	// @Validate(UserExitsValidator)
 	email: string;
 
 	@IsString()

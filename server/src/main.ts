@@ -60,7 +60,7 @@ async function bootstrap() {
 	app.use(passport.session());
 
 	// Handle errors
-	app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }));
+	app.useGlobalPipes(new ValidationPipe());
 	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
 	app.setGlobalPrefix('api');

@@ -15,11 +15,11 @@ import { EmailService } from './email.service';
 				},
 			}),
 			defaults: {
-				from: `"Bookstore" <${process.env.EMAIL_AUTH_USER}>`,
+				from: `"No Reply" <noreply@nestjs.com>`,
 			},
 			preview: process.env.NODE_ENV === 'development',
 			template: {
-				dir: process.cwd() + '/src/modules/mail/templates',
+				dir: process.cwd() + '/src/providers/email/templates',
 				adapter: new HandlebarsAdapter(),
 				options: {
 					strict: true,

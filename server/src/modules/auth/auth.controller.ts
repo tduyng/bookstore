@@ -4,16 +4,16 @@ import {
 	Controller,
 	Delete,
 	Get,
-	Param,
 	Post,
 	Req,
+	Query,
 	UnauthorizedException,
 	UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuth, JwtRefreshTokenGuard } from '../guards';
+import { JwtAuth, JwtRefreshTokenGuard } from './guards';
 import { Request } from 'express';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { UserService } from '@modules/user/user.service';
 import { UserFromRequest } from 'src/common/types';
 import {
@@ -21,7 +21,7 @@ import {
 	LoginUserDto,
 	RegisterUserDto,
 	RequestForgotPasswordInput,
-} from '../dto';
+} from './dto';
 import { SESSION_AUTH_KEY } from 'src/common/config/session.config';
 
 @Controller('auth')
@@ -35,9 +35,6 @@ export class AuthController {
 		const userFromRequest: UserFromRequest = req.user;
 
 		const user = await this.userService.findOne({ email: userFromRequest.email });
-		if (!user) {
-			throw new UnauthorizedException();
-		}
 		return user;
 	}
 
@@ -51,7 +48,7 @@ export class AuthController {
 			user.id,
 			authToken.refreshToken,
 		);
-		req.user = user;
+
 		req.session.authToken = authToken;
 		return { authToken };
 	}
@@ -61,8 +58,8 @@ export class AuthController {
 		return await this.authService.register(input);
 	}
 
-	@Get('activate/:token')
-	public async activeAccount(@Param('token') token: string, @Req() req: Request) {
+	@Get('activate')
+	public async activeAccount(@Query('token') token: string, @Req() req: Request) {
 		const user = await this.authService.activateAccount(token);
 		if (!user) {
 			throw new BadRequestException('Token invalid or missing');
@@ -110,9 +107,9 @@ export class AuthController {
 		}
 	}
 
-	@Get('reset-password/:token')
+	@Get('reset-password')
 	public async resetPassword(
-		@Param('token') token: string,
+		@Query('token') token: string,
 		@Body() inputWithoutToken: ChangePasswordDto,
 		@Req() req: Request,
 	) {
