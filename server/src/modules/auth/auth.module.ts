@@ -1,7 +1,6 @@
 import { EmailModule } from 'src/providers/email/email.module';
 import { User, UserSchema } from '@modules/user/schemas/user.schema';
 import { UserModule } from '@modules/user/user.module';
-import { UserService } from '@modules/user/user.service';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
@@ -22,17 +21,11 @@ import { PasswordService } from './services/password.service';
 		JwtModule.register({
 			secret: process.env.JWT_SECRET,
 		}),
+		UserModule,
 		EmailModule,
 		MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-		UserModule,
 	],
 	controllers: [AuthController],
-	providers: [
-		AuthService,
-		PasswordService,
-		UserService,
-		JwtStrategy,
-		JwtRefreshTokenStrategy,
-	],
+	providers: [AuthService, PasswordService, JwtStrategy, JwtRefreshTokenStrategy],
 })
 export class AuthModule {}

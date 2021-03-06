@@ -14,6 +14,7 @@ import { sessionConfig } from './common/config/session.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import session from 'express-session';
 import passport from 'passport';
+import { useContainer } from 'class-validator';
 
 async function bootstrap() {
 	const env = envConfig();
@@ -62,6 +63,9 @@ async function bootstrap() {
 	// Handle errors
 	app.useGlobalPipes(new ValidationPipe());
 	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+
+	// Allow inject dependency injection in  validator
+	useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
 	app.setGlobalPrefix('api');
 	if (env.mode !== 'production') {

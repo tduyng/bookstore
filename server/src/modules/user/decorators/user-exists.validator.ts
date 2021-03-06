@@ -12,9 +12,6 @@ import { UserService } from '../user.service';
 export class UserExitsValidator implements ValidatorConstraintInterface {
 	constructor(private readonly userService: UserService) {}
 
-	/**
-	 * Method should return true, if name is not taken
-	 */
 	public async validate(usernameOrEmail: string, _args: ValidationArguments) {
 		const isEmail = emailRegex.test(usernameOrEmail);
 

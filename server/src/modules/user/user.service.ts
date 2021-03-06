@@ -9,11 +9,13 @@ export class UserService {
 	constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
 	public async findOne(where: UserWhereUniqueInput): Promise<User> {
-		return this.userModel.findOne(where);
+		const user: User = await this.userModel.findOne(where).lean();
+		return user;
 	}
 
 	public async findById(_id: string): Promise<User> {
-		return this.userModel.findById(_id);
+		const user: User = await this.userModel.findById(_id).lean();
+		return user;
 	}
 
 	// post upload

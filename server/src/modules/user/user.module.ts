@@ -15,6 +15,6 @@ import { UserExitsValidator } from './decorators';
 	],
 	controllers: [UserController],
 	providers: [UserService, UserExitsValidator],
-	exports: [UserService, UserExitsValidator],
+	exports: [UserService],
 })
 export class UserModule {}
