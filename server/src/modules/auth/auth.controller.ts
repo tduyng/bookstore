@@ -45,10 +45,10 @@ export class AuthController {
 
 		const { authToken } = await this.authService.generateAuthToken({ user });
 		await this.authService.resetCurrentHashedRefreshToken(
-			user.id,
+			user._id,
 			authToken.refreshToken,
 		);
-
+		req.user = user;
 		req.session.authToken = authToken;
 		return { authToken };
 	}
@@ -59,14 +59,14 @@ export class AuthController {
 	}
 
 	@Get('activate')
-	public async activeAccount(@Query('token') token: string, @Req() req: Request) {
+	public async activate(@Query('token') token: string, @Req() req: Request) {
 		const user = await this.authService.activateAccount(token);
 		if (!user) {
 			throw new BadRequestException('Token invalid or missing');
 		}
 		const { authToken } = await this.authService.generateAuthToken({ user });
 		await this.authService.resetCurrentHashedRefreshToken(
-			user.id,
+			user._id,
 			authToken.refreshToken,
 		);
 		req.user = user;

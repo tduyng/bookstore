@@ -1,4 +1,3 @@
-import { emailRegex, User } from '@modules/user/schemas/user.schema';
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -12,6 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
 import { EmailService } from 'src/providers/email/email.service';
 import { envConfig } from 'src/common/config/env.config';
+import { emailRegex, User } from '@modules/user/user.schema';
 
 @Injectable()
 export class AuthService {
@@ -22,16 +22,20 @@ export class AuthService {
 		private passwordService: PasswordService,
 	) {}
 
-	public async validateUser(input: LoginUserDto): Promise<User> {
+	public async validateUser(input: LoginUserDto): Promise<User | null> {
 		const { usernameOrEmail, password } = input;
 		const isEmail = emailRegex.test(usernameOrEmail);
 		let user: User;
 		if (isEmail) {
-			user = await this.userModel.findOne({ email: usernameOrEmail }).select('+password');
+			user = (await this.userModel
+				.findOne({ email: usernameOrEmail })
+				.select('+password')
+				.lean()) as User;
 		} else {
-			user = await this.userModel
+			user = (await this.userModel
 				.findOne({ username: usernameOrEmail })
-				.select('+password');
+				.select('+password')
+				.lean()) as User;
 		}
 
 		if (!user) return null;
@@ -63,7 +67,7 @@ export class AuthService {
 	}
 
 	public async forgotPassword(email: string) {
-		const user = await this.userModel.findOne({ email });
+		const user = await this.userModel.findOne({ email }).lean();
 		if (!user) {
 			throw new BadRequestException(`Not user found with email: ${email}`);
 		}
@@ -88,7 +92,8 @@ export class AuthService {
 		const { user } = decoded;
 		const realUser = await this.userModel
 			.findOne({ email: user.email })
-			.select('+password');
+			.select('+password')
+			.lean();
 		if (!realUser) {
 			throw new UnauthorizedException(`Can not find user with token given`);
 		}
@@ -96,7 +101,7 @@ export class AuthService {
 		const hash = await this.passwordService.hash(newPassword);
 
 		const updated = await this.userModel
-			.findByIdAndUpdate(realUser.id, { password: hash })
+			.findByIdAndUpdate(realUser._id, { password: hash })
 			.lean();
 		return updated;
 	}

@@ -1,5 +1,5 @@
 import { EmailModule } from 'src/providers/email/email.module';
-import { User, UserSchema } from '@modules/user/schemas/user.schema';
+import { User, UserSchema } from '@modules/user/user.schema';
 import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';

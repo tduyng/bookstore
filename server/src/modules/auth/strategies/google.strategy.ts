@@ -1,4 +1,4 @@
-import { User } from '@modules/user/schemas/user.schema';
+import { User } from '@modules/user/user.schema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PassportStrategy } from '@nestjs/passport';
@@ -27,9 +27,9 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 		const { email } = profile._json;
 		let existingUser = null;
 		if (email) {
-			existingUser = await this.userModel.findOne({ email });
+			existingUser = await this.userModel.findOne({ email }).lean();
 		} else {
-			existingUser = await this.userModel.findOne({ googleId: profile.id });
+			existingUser = await this.userModel.findOne({ googleId: profile.id }).lean();
 		}
 		if (existingUser) {
 			return done(null, existingUser);

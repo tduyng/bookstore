@@ -1,4 +1,4 @@
-import { User } from '@modules/user/schemas/user.schema';
+import { User } from '@modules/user/user.schema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PassportStrategy } from '@nestjs/passport';
@@ -27,9 +27,9 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
 		const { email } = profile._json;
 		let existingUser = null;
 		if (email) {
-			existingUser = await this.userModel.findOne({ email });
+			existingUser = await this.userModel.findOne({ email }).lean();
 		} else {
-			existingUser = await this.userModel.findOne({ facebookId: profile.id });
+			existingUser = await this.userModel.findOne({ facebookId: profile.id }).lean();
 		}
 		if (existingUser) {
 			return done(null, existingUser);
@@ -41,7 +41,7 @@ export class FacebookStrategy extends PassportStrategy(Strategy, 'facebook') {
 				email: profile._json.email || '',
 				thumbnail: profile.photos[0].value || '',
 			};
-			const newUser = await this.userModel.create(input);
+			const newUser: User = await this.userModel.create(input);
 
 			done(null, newUser);
 		} catch (err) {

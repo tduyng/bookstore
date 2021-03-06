@@ -8,11 +8,11 @@ export class BookService {
 	constructor(@InjectModel(Book.name) private bookModel: Model<Book>) {}
 
 	public async findOne(filter: FilterQuery<Book>) {
-		return this.bookModel.findOne(filter);
+		return this.bookModel.findOne(filter).lean();
 	}
 
 	public async findById(id: string) {
-		return this.bookModel.findById(id);
+		return this.bookModel.findById(id).lean();
 	}
 
 	// get books/genre/:genre

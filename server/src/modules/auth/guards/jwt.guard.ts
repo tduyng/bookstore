@@ -1,4 +1,4 @@
-import { RoleType } from '@modules/user/schemas/user.schema';
+import { RoleType } from '@modules/user/user.schema';
 import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { RolesGuard } from './roles.guard';

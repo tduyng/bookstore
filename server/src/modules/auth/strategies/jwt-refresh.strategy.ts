@@ -1,4 +1,4 @@
-import { User } from '@modules/user/schemas/user.schema';
+import { User } from '@modules/user/user.schema';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { PassportStrategy } from '@nestjs/passport';
@@ -27,10 +27,11 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(
 			passReqToCallback: true,
 		});
 	}
-	async validate(req: Request, payload: PayloadUserForJwtToken) {
-		const user = await this.userModel
+	async validate(req: Request, payload: PayloadUserForJwtToken): Promise<User> {
+		const user: User = await this.userModel
 			.findOne({ email: payload.user.email })
-			.select('+currentHashedRefreshToken');
+			.select('+currentHashedRefreshToken')
+			.lean();
 		if (!user) throw new UnauthorizedException('User not found');
 		const refreshToken = req?.session?.authToken?.refreshToken;
 		const isRefreshTokenMatching = await this.passwordService.verify(
