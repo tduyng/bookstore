@@ -8,7 +8,7 @@ export function sessionConfig(): session.SessionOptions {
 	// In-memory storage
 	return {
 		name: SESSION_AUTH_KEY,
-		secret: 'some_strong_secret',
+		secret: env.sessionSecret,
 		resave: false,
 		saveUninitialized: false,
 		cookie: {

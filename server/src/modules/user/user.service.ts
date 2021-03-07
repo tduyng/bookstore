@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserWhereUniqueInput } from './dto';
+import { CartItemDto } from './dto/cart-item.dto';
+import { CartItem } from './types/user.types';
 import { User } from './user.schema';
 
 @Injectable()
@@ -18,11 +20,53 @@ export class UserService {
 		return user;
 	}
 
-	// post upload
-	// get avatar/:name
-	// post purchase
-	// post updateCart
-	// deleteCart
+	public async updateCartItem(userId: string, cartItemDto: CartItemDto) {
+		const user: User = await this.userModel
+			.findOneAndUpdate(
+				{
+					_id: userId,
+					'cart._id': cartItemDto._id,
+				},
+				{
+					$set: { 'cart.$.total': cartItemDto.total },
+				},
+				{ new: true },
+			)
+			.lean();
+		return user;
+	}
 
-	// sub: avatar: --> findOneAndUpdate, findOne
+	public async addItemToCart(userId: string, cartItem: CartItem, isExists = false) {
+		let user: User;
+		if (isExists) {
+			user = await this.userModel
+				.findOneAndUpdate(
+					{
+						_id: userId,
+						'cart._id': cartItem._id,
+					},
+					{
+						$inc: { 'cart.$.total': cartItem.total },
+					},
+					{ new: true },
+				)
+				.lean();
+		} else {
+			user = await this.userModel.findOneAndUpdate(
+				{
+					_id: userId,
+				},
+				{ $push: { cart: cartItem } },
+				{ new: true },
+			);
+		}
+		return user;
+	}
+
+	public async removeCartItem(userId: string, _id: string) {
+		const user = await this.userModel
+			.findByIdAndUpdate(userId, { $pull: { cart: { _id } } }, { new: true })
+			.lean();
+		return user;
+	}
 }

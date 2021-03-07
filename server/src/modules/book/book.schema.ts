@@ -14,8 +14,8 @@ export class Book extends Document {
 	@Prop({ type: Number })
 	price: number;
 
-	@Prop({ type: Number })
-	old_price: number;
+	@Prop({ type: Number, required: false })
+	old_price?: number;
 
 	@Prop()
 	imgURL: string;

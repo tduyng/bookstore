@@ -22,6 +22,7 @@ export interface UserFromRequest extends Partial<User> {
 	username?: string;
 	password?: string;
 	thumbnail?: string;
+	cart?: any[];
 }
 export interface SessionAuthToken {
 	authToken?: {

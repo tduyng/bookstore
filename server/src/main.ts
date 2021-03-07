@@ -36,7 +36,7 @@ async function bootstrap() {
 		}),
 	);
 
-	app.use(cookieParser());
+	app.use(cookieParser(env.cookieSecret));
 
 	if (env.mode === 'production') {
 		app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -50,6 +50,10 @@ async function bootstrap() {
 					max: 100, // limit each IP to 100 requests per windowMs
 				}),
 			);
+
+		// Disable console.log() in production
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
+		console.log = function () {};
 	}
 
 	// Session

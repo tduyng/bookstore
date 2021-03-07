@@ -24,6 +24,8 @@ export const envConfig = (): EnvConfig => {
 		serverUrl: process.env.SERVER_URL || `http://localhost:5025`,
 		clientUrl: process.env.CLIENT_URL || `http://localhost:3000`,
 		mongodbUri: process.env.MONGODB_URI,
+		sessionSecret: process.env.SESSION_SECRET,
+		cookieSecret: process.env.COOKIE_SECRET,
 		jwt: {
 			jwtSecret: process.env.JWT_SECRET,
 			jwtExpiredTime: parseInt(process.env.JWT_EXPIRED_TIME),
@@ -42,6 +44,8 @@ export interface EnvConfig {
 	serverUrl: string;
 	clientUrl: string;
 	mongodbUri: string;
+	sessionSecret: string;
+	cookieSecret: string;
 	jwt: {
 		jwtSecret: string;
 		jwtExpiredTime: number;

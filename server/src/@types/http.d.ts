@@ -5,6 +5,7 @@ declare namespace Express {
 				accessToken: string;
 				refreshToken: string;
 			};
+			cart?: string; // stringify of array
 			destroy: () => void;
 			res: Response;
 		};

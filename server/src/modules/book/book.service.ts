@@ -10,11 +10,13 @@ export class BookService {
 	constructor(@InjectModel(Book.name) private bookModel: Model<Book>) {}
 
 	public async findOne(filter: FilterQuery<Book>) {
-		return this.bookModel.findOne(filter).lean();
+		const book: Book = await this.bookModel.findOne(filter).lean();
+		return book;
 	}
 
 	public async findById(id: string) {
-		return this.bookModel.findById(id).lean();
+		const book: Book = await this.bookModel.findById(id).lean();
+		return book;
 	}
 
 	// get books/genre/:genre
