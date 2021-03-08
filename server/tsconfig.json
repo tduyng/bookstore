@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "esNext",
     "typeRoots": ["./node_modules/@types", "src/@types"],
+    "types": ["jest", "node"],
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
     "sourceMap": true,
     "incremental": true,
-
     "importHelpers": true,
     "strict": true,
     "noImplicitAny": false,
