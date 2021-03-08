@@ -52,13 +52,15 @@ export class UserService {
 				)
 				.lean();
 		} else {
-			user = await this.userModel.findOneAndUpdate(
-				{
-					_id: userId,
-				},
-				{ $push: { cart: cartItem } },
-				{ new: true },
-			);
+			user = await this.userModel
+				.findOneAndUpdate(
+					{
+						_id: userId,
+					},
+					{ $push: { cart: cartItem } },
+					{ new: true },
+				)
+				.lean();
 		}
 		return user;
 	}

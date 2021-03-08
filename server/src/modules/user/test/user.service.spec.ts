@@ -30,6 +30,7 @@ describe('UserService', () => {
 		findOne: jest.fn(),
 		findById: jest.fn(),
 		findOneAndUpdate: jest.fn(),
+		findByIdAndUpdate: jest.fn(),
 	});
 
 	beforeAll(async () => {
@@ -95,7 +96,7 @@ describe('UserService', () => {
 
 	describe('removeCartItem', () => {
 		it('Should remove item successfully', async () => {
-			userModel.findOneAndUpdate.mockImplementationOnce(() => ({
+			userModel.findByIdAndUpdate.mockImplementationOnce(() => ({
 				lean: jest.fn().mockReturnValue(oneUser),
 			}));
 			const result = await userService.removeCartItem('some-id', 'book-id');

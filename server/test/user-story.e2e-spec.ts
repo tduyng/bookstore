@@ -79,5 +79,23 @@ describe('UserStory (User-Auth-Book) (e2e)', () => {
 			const data = await agent.get(`/books/book/${oneBook?.id}`).expect(200);
 			expect(data.body.title).toEqual(oneBook.title);
 		});
+
+		it('(GET) /books/genre/:genre', async () => {
+			const data = await agent.get(`/books/genre/${oneBook?.genre}`).expect(200);
+			expect(data.body.count).toBeDefined();
+			expect(data.body.books).toBeDefined();
+		});
+
+		it('(GET) /books/genre/:genre', async () => {
+			const data = await agent.get(`/books/genre/${oneBook?.genre}`).expect(200);
+			expect(data.body.count).toBeDefined();
+			expect(data.body.books).toBeDefined();
+		});
+
+		it('(GET) /books/genre/:text', async () => {
+			const data = await agent.get(`/books/search/book`).expect(200);
+			expect(data.body.count).toBeDefined();
+			expect(data.body.books).toBeDefined();
+		});
 	});
 });

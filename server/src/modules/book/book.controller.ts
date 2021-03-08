@@ -29,14 +29,14 @@ export class BookController {
 		return await this.bookService.findManyByGenre(genre, pagination);
 	}
 
-	@Get('search/:text')
-	public async searchBooks(@Param('text') text: string) {
+	@Get('search')
+	public async searchBooks(@Query('text') text: string) {
 		return await this.bookService.searchBooks(text);
 	}
 
-	@Get('query/:text')
+	@Get('query')
 	public async queryBooks(
-		@Param('text') text: string,
+		@Query('text') text: string,
 		@Query('limit') limit?: number,
 		@Query('p') p?: number,
 	) {
