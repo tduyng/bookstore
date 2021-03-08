@@ -1,5 +1,5 @@
 import { BookService } from '@modules/book/book.service';
-import { Controller, HttpException, Post, Req } from '@nestjs/common';
+import { Body, Controller, HttpException, Post, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { UserFromRequest } from 'src/common/types';
@@ -13,13 +13,18 @@ export class UserController {
 	constructor(private userService: UserService, private bookService: BookService) {}
 
 	@Post('update-cart-item')
-	public async updateAmountCartItem(cartItem: CartItemDto, @Req() req: Request) {
-		const { _id } = cartItem;
+	public async updateAmountCartItem(@Body() cartItem: CartItemDto, @Req() req: Request) {
+		const { bookId } = cartItem;
 		const user: UserFromRequest = req.user;
 		try {
-			const cartCookie = req.session?.cart;
-			const cart: CartItem[] = JSON.parse(cartCookie) || [];
-			cart.map((item) => (item._id == _id ? { ...item, total: cartItem.total } : item));
+			const cartCookies = req.session?.cart;
+			let cart: CartItem[] = [];
+			if (cartCookies) cart = JSON.parse(cartCookies);
+
+			cart = cart.map((item) =>
+				item._id == bookId ? { ...item, total: cartItem.total } : item,
+			);
+
 			req.session.cart = JSON.stringify(cart);
 			// if logged in, update cart of user
 			if (user) {
@@ -32,27 +37,32 @@ export class UserController {
 	}
 
 	@Post('remove-cart-item')
-	public async removeFromCart(_id: string, @Req() req: Request) {
+	public async removeFromCart(@Body() cartItemDto: CartItemDto, @Req() req: Request) {
 		const user: UserFromRequest = req.user;
+		const { bookId } = cartItemDto;
+		const cartCookies = req.session?.cart;
+		let cart: CartItem[] = [];
+		if (cartCookies) cart = JSON.parse(cartCookies);
 
-		const cartCookie = req.session?.cart;
-		const cart: CartItem[] = JSON.parse(cartCookie) || [];
-		const updatedCart = cart.filter((item) => item._id != _id);
+		const updatedCart = cart.filter((item) => item._id != bookId);
 		req.session.cart = JSON.stringify(updatedCart);
 		if (user) {
-			await this.userService.removeCartItem(user._id, _id);
+			await this.userService.removeCartItem(user._id, bookId);
 		}
 		return updatedCart;
 	}
 
 	@Post('purchase')
-	public async addToCart(bookId: string, @Req() req: Request) {
+	public async addToCart(@Body() cartItemDto: CartItemDto, @Req() req: Request) {
 		const cartCookies = req.session?.cart;
-		const cart: CartItem[] = JSON.parse(cartCookies) || [];
+		const { bookId } = cartItemDto;
+		let cart: CartItem[] = [];
+		if (cartCookies) cart = JSON.parse(cartCookies);
+
 		const indexItem = cart.findIndex((item) => item._id == bookId);
 		const user: UserFromRequest = req.user;
 		if (indexItem >= 0) {
-			cart.map((item) =>
+			cart = cart.map((item) =>
 				item._id == bookId ? { ...item, total: item.total + 1 } : item,
 			);
 			if (user) {

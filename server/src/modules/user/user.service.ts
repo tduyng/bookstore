@@ -25,7 +25,7 @@ export class UserService {
 			.findOneAndUpdate(
 				{
 					_id: userId,
-					'cart._id': cartItemDto._id,
+					'cart._id': cartItemDto.bookId,
 				},
 				{
 					$set: { 'cart.$.total': cartItemDto.total },

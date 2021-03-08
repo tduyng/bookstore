@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { PassportStrategy } from '@nestjs/passport';
 import { Model } from 'mongoose';
 import { Profile, Strategy } from 'passport-facebook';
-import { envConfig, EnvConfig } from 'src/common/config/env.config';
+import { envConfig } from 'src/common/config/env.config';
 import { RegisterUserDto } from '../dto';
 
 @Injectable()

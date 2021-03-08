@@ -2,7 +2,11 @@ import dotenv from 'dotenv';
 
 export const envConfig = (): EnvConfig => {
 	const mode = process.env.NODE_ENV;
-	dotenv.config({ path: `.env.${mode}` });
+	if (!mode || mode === 'development') {
+		dotenv.config();
+	} else {
+		dotenv.config({ path: `.env.${mode}` });
+	}
 
 	const port = parseInt(process.env.PORT) || 5025;
 
