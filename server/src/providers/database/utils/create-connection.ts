@@ -1,13 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose, { Connection } from 'mongoose';
 import { Logger } from '@nestjs/common';
-import { Db } from 'mongodb';
-import dotenv from 'dotenv';
+import { envConfig } from 'src/common/config/env.config';
 
-export const createConnection = async (): Promise<Db> => {
-	dotenv.config();
-	console.log('mongo uri', process.env.MONGODB_URI);
+export const createConnection = async (): Promise<Connection> => {
+	const env = envConfig();
 
-	const mongoClient = await mongoose.connect(process.env.MONGODB_URI, {
+	const mongoClient = await mongoose.connect(env.mongodbUri, {
 		useCreateIndex: true,
 		useUnifiedTopology: true,
 		useFindAndModify: false,
@@ -15,5 +13,5 @@ export const createConnection = async (): Promise<Db> => {
 	});
 
 	Logger.log('Database connected');
-	return mongoClient.connection.db;
+	return mongoClient.connection;
 };

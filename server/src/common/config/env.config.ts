@@ -2,19 +2,7 @@ import dotenv from 'dotenv';
 
 export const envConfig = (): EnvConfig => {
 	const mode = process.env.NODE_ENV;
-	switch (mode) {
-		case 'development':
-			dotenv.config();
-			break;
-		case 'test':
-			dotenv.config({ path: '.env.test' });
-			break;
-		case 'production':
-			dotenv.config({ path: '.env.production' });
-			break;
-		default:
-			break;
-	}
+	dotenv.config({ path: `.env.${mode}` });
 
 	const port = parseInt(process.env.PORT) || 5025;
 
@@ -33,7 +21,14 @@ export const envConfig = (): EnvConfig => {
 			jwtRefreshExpiredTime: parseInt(process.env.JWT_REFRESH_EXPIRED_TIME),
 		},
 		email: {
+			sendgridApiKey: process.env.SENDGRID_API_KEY,
 			emailSender: process.env.EMAIL_AUTH_USER,
+		},
+		auth: {
+			facebookAppId: process.env.FB_APP_ID,
+			facebookAppSecret: process.env.FB_APP_SECRET,
+			googleAppId: process.env.GOOGLE_APP_ID,
+			googleAppSecret: process.env.GOOGLE_APP_SECRET,
 		},
 	};
 };
@@ -52,7 +47,14 @@ export interface EnvConfig {
 		jwtRefreshSecret: string;
 		jwtRefreshExpiredTime: number;
 	};
+	auth?: {
+		facebookAppId: string;
+		facebookAppSecret: string;
+		googleAppId: string;
+		googleAppSecret: string;
+	};
 	email: {
+		sendgridApiKey: string;
 		emailSender: string;
 	};
 }

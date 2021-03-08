@@ -35,5 +35,5 @@
       "@modules/*": ["src/modules/*"],
     }
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }

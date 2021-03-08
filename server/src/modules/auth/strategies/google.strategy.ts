@@ -4,14 +4,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { PassportStrategy } from '@nestjs/passport';
 import { Model } from 'mongoose';
 import { Profile, Strategy } from 'passport-facebook';
+import { envConfig } from 'src/common/config/env.config';
 import { RegisterUserDto } from '../dto';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 	constructor(@InjectModel(User.name) private userModel: Model<User>) {
 		super({
-			clientId: process.env.GOOGLE_APP_ID,
-			clientSecret: process.env.GOOGLE_APP_SECRET,
+			clientId: envConfig().auth.googleAppId,
+			clientSecret: envConfig().auth.googleAppSecret,
 			callbackURL: '/auth/google/callback',
 			scope: 'email',
 			profileFields: ['emails', 'displayName', 'photos'],

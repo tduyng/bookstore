@@ -24,8 +24,8 @@ async function uploadData() {
 			title,
 			author,
 			genre,
-			price,
-			old_price,
+			price: price * 1000,
+			old_price: old_price * 1000,
 			imgURL,
 		});
 	}

@@ -16,5 +16,9 @@ declare namespace NodeJS {
 		readonly EMAIL_AUTH_USER: string;
 		readonly EMAIL_AUTH_PASSWORD: string;
 		readonly COOKIE_SECRET: string;
+		readonly FB_APP_ID: string;
+		readonly FB_APP_SECRET: string;
+		readonly GOOGLE_APP_ID: string;
+		readonly GOOGLE_APP_SECRET: string;
 	}
 }
