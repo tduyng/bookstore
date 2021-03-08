@@ -1,0 +1,215 @@
+.sale {
+  grid-column: 1 / 5;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1vw;
+
+  &__img {
+    background: url("../../img/img-sale.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    @include tablet(810px) {
+      grid-column: 1 / 3;
+      height: 40vw;
+    }
+    @include mobile {
+      height: 50vw;
+    }
+    &--content {
+      padding: 2vw 3vw;
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      align-items: center;
+      &__para {
+        text-transform: uppercase;
+        color: color(color-green);
+        font-size: calc(0.3rem + 0.8vw);
+        @include small-tablet {
+          font-size: calc(1rem + 1.2vw);
+        }
+      }
+      &__title {
+        font-size: calc(1rem + 1.2vw);
+        font-weight: 300;
+        text-transform: uppercase;
+        margin: 1.5vw 0;
+        text-align: center;
+        @include small-tablet {
+          font-size: calc(1.3rem + 1.5vw);
+        }
+      }
+      &__link {
+        text-decoration: none;
+        color: white;
+        text-transform: uppercase;
+        padding: 0.7vw 1vw;
+        font-weight: bold;
+        font-size: calc(0.2rem + 0.7vw);
+        background-color: color(color-green);
+        @include small-tablet {
+          font-size: calc(0.7rem + 0.8vw);
+          padding: 1vw 1.2vw;
+        }
+      }
+    }
+  }
+  &__img::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: color(color-green);
+    opacity: 0.3;
+    transform: scale3d(0, 0, 0);
+    transition: all 0.3s ease-in-out;
+  }
+  &__img:hover::after {
+    transform: scale3d(1, 1, 1);
+  }
+  &__feature {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1vw;
+    @include tablet(810px) {
+      grid-column: 1 / 3;
+    }
+    @include mobile {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    &--content {
+      background-color: white;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 2vw;
+      position: relative;
+      z-index: 1;
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &--content::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: color(color-green);
+      transform: scale3d(0, 0, 0);
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+    }
+    &--content:hover {
+      @for $i from 1 through 4 {
+        .content-#{$i}__para,
+        .content-#{$i}__title {
+          color: white;
+        }
+      }
+    }
+    &--content:hover::after {
+      transform: scale3d(1, 1, 1);
+    }
+    .content-1 {
+      @include mobile {
+        .content-1__title {
+          font-size: 2.8rem;
+        }
+        .content-1__para {
+          font-size: 1.5rem;
+        }
+      }
+      &__title {
+        font-weight: 400;
+        font-size: calc(1rem + 1vw);
+        margin-bottom: 3vw;
+      }
+      &__para {
+        color: color(color-green);
+        font-size: calc(0.4rem + 0.8vw);
+      }
+    }
+    .content-2 {
+      @include mobile {
+        .content-2__title {
+          font-size: 2.7rem;
+        }
+        .content-2__para {
+          font-size: 1.5rem;
+        }
+      }
+      &__title {
+        font-weight: 400;
+        font-size: calc(1rem + 1vw);
+      }
+      &__para {
+        color: color(color-green);
+        font-size: calc(0.4rem + 0.8vw);
+        margin-bottom: 2vw;
+      }
+    }
+    .content-3 {
+      @include mobile {
+        .content-3__title {
+          font-size: 2.7rem;
+        }
+        .content-3__para {
+          font-size: 1.5rem;
+        }
+      }
+      &__title {
+        font-weight: 400;
+        font-size: calc(1rem + 1vw);
+        margin-bottom: 3vw;
+      }
+      &__para {
+        color: color(color-green);
+        font-size: calc(0.4rem + 0.8vw);
+      }
+    }
+    .content-4 {
+      @include mobile {
+        .content-4__title {
+          font-size: 4.5rem;
+        }
+        .content-4__para {
+          font-size: 1.5rem;
+          margin-bottom: 2rem;
+        }
+        .content-4__link {
+          font-size: 1.2rem;
+          padding: 0.7rem;
+        }
+      }
+      color: white;
+      background-color: #fd6c6c;
+      &__title {
+        font-weight: 400;
+        font-size: calc(1.5rem + 1.8vw);
+        margin-bottom: 2vw;
+      }
+      &__para {
+        font-size: calc(0.4rem + 0.8vw);
+        margin-bottom: 1.5vw;
+      }
+      &__link {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        padding: 0.8vw;
+        font-size: calc(0.4rem + 0.6vw);
+        background-color: white;
+      }
+    }
+  }
+}

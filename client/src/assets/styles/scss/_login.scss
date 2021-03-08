@@ -1,0 +1,98 @@
+.auth {
+  padding: 3vh 3vw !important;
+  border-radius: 1.5rem;
+
+  .auth-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vw;
+
+    .auth__links {
+      cursor: pointer;
+      p {
+        font-size: calc(1rem + 0.7vw);
+        text-align: center;
+      }
+    }
+    .auth__links.active {
+      border-bottom: 2px solid color(color-green);
+      color: color(color-green);
+    }
+    // Login Form
+    .auth__form {
+      grid-column: 1 / -1;
+      &--input {
+        margin: 1.2vw 0;
+        label {
+          display: block;
+          font-size: calc(0.7rem + 0.6vw);
+          margin-bottom: 0.3rem;
+        }
+        input {
+          width: 100%;
+          font-size: calc(0.8rem + 0.6vw);
+          padding: 1rem;
+        }
+      }
+      &--button {
+        outline: none;
+        border: none;
+        border-radius: 1rem;
+        color: white;
+        cursor: pointer;
+        padding: 0.7vw 1vw;
+        font-size: calc(1rem + 0.6vw);
+        background-color: color(color-green);
+      }
+      &--reset {
+        font-size: calc(0.7rem + 0.5vw);
+        margin-top: 0.5rem;
+      }
+      &--error {
+        color: red;
+        margin-bottom: 1rem;
+        font-size: calc(0.7rem + 0.5vw);
+        overflow-wrap: break-word;
+      }
+      &--success {
+        color: green;
+        margin-bottom: 1rem;
+        font-size: calc(0.8rem + 0.6vw);
+        width: 100%;
+        word-break: break-all;
+      }
+    }
+
+    .oauth {
+      margin: 1rem 0;
+      font-size: calc(0.8rem + 0.6vw);
+      padding: 0.8rem 1.2rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+    }
+    .auth__facebook {
+      background-color: #0e8ef1;
+      .fa-facebook {
+        display: block;
+        text-align: center;
+        margin-top: 0.5rem;
+        font-size: calc(1rem + 1vw);
+        color: white;
+      }
+    }
+    .auth__google {
+      background-color: #cf4332;
+      .fa-google {
+        display: block;
+        text-align: center;
+        margin-top: 0.5rem;
+        font-size: calc(1rem + 1vw);
+        color: white;
+      }
+    }
+  }
+}

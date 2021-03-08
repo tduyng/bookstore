@@ -1,0 +1,202 @@
+.payment {
+  grid-column: 1 / -1;
+  h1 {
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid #ced4da;
+  }
+
+  &__delivery {
+    background-color: white;
+    margin: 3rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    @include small-tablet {
+      margin: 0;
+      margin-top: 1.5rem;
+    }
+    @include mobile {
+      padding: 1rem;
+    }
+
+    &--address {
+      margin-top: 1.5rem;
+      label {
+        display: block;
+        font-size: calc(1rem + 0.5vw);
+        margin-bottom: 0.5rem;
+      }
+      input {
+        display: block;
+        margin-bottom: 2rem;
+        padding: 0.5rem;
+        width: 35%;
+        @include tablet {
+          width: 45%;
+        }
+        @include small-tablet {
+          width: 60%;
+        }
+        @include mobile {
+          width: 80%;
+        }
+      }
+      &__country,
+      &__region {
+        display: block;
+        margin-bottom: 1rem;
+        width: 35%;
+        @include small-tablet {
+          width: 60%;
+        }
+        @include mobile {
+          width: 80%;
+        }
+      }
+    }
+  }
+  &__info {
+    background-color: white;
+    border-radius: 1rem;
+    margin: 3rem;
+    padding: 2rem;
+    @include small-tablet {
+      margin: 0;
+      margin-top: 1.5rem;
+    }
+    @include mobile {
+      padding: 1rem;
+    }
+
+    &--product {
+      display: grid;
+      grid-template-columns: 1fr 4.5fr 1.5fr;
+      margin-top: 2rem;
+      @include tablet {
+        grid-template-columns: 1.5fr 4.5fr 2fr;
+      }
+      @include small-tablet {
+        grid-template-columns: 1fr 2.5fr;
+      }
+
+      &__img {
+        img {
+          width: 100%;
+        }
+      }
+      &__info {
+        margin: 0rem 2rem;
+        @include small-tablet {
+          margin-left: 0;
+        }
+        @include mobile {
+          margin: 0;
+        }
+        &--title {
+          font-size: calc(1.2rem + 0.3vw);
+          margin-bottom: 1rem;
+        }
+        &--money {
+          @include small-tablet(660px) {
+            display: flex;
+          }
+          &__price,
+          &__amount {
+            font-size: calc(1.1rem + 0.3vw);
+            margin-bottom: 0.5rem;
+            margin-right: 1rem;
+            display: none;
+            @include small-tablet {
+              display: block;
+            }
+          }
+          &__total {
+            font-size: calc(1.1rem + 0.3vw);
+            color: #f9971e;
+            font-weight: bold;
+          }
+        }
+      }
+      &__amount {
+        display: flex;
+        justify-content: space-between;
+        @include small-tablet {
+          display: none;
+        }
+        p {
+          font-size: calc(1rem + 0.4vw);
+        }
+        p:nth-child(2) {
+          margin: 0 1rem;
+        }
+        &--money {
+          color: #f9971e;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &__confirm {
+    display: grid;
+    border-radius: 1rem;
+    grid-template-rows: 2fr 1fr;
+    background-color: white;
+    padding: 1.5rem 3rem;
+    margin: 3rem 3rem 0 3rem;
+    @include small-tablet {
+      margin: 0;
+      margin-top: 1.5rem;
+    }
+    @include mobile {
+      padding: 1rem;
+    }
+    p {
+      margin: 0.5rem 2rem;
+      font-size: calc(1.3rem + 0.5vw);
+    }
+
+    &--money {
+      justify-self: end;
+      &__total,
+      &__ship,
+      &__final {
+        display: flex;
+        justify-content: space-between;
+      }
+      &__final {
+        p:nth-child(2) {
+          color: #f9971e;
+          font-size: calc(1.6rem + 0.5vw);
+          font-weight: bold;
+        }
+      }
+    }
+    &--checkout {
+      padding-top: 1rem;
+      border-top: 1px solid #ced4da;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__back {
+        color: #6c6c6c;
+        text-decoration: none;
+        font-size: calc(1rem + 0.5vw);
+      }
+      &__button {
+        border-radius: 2rem;
+        background-color: color(color-green);
+        border: none;
+        padding: 1rem 2rem;
+        color: white;
+        font-weight: bold;
+        font-size: calc(1.2rem + 0.6vw);
+        cursor: pointer;
+        transition: all 0.5s;
+      }
+      &__button:hover {
+        scale: 1.05;
+      }
+    }
+  }
+}

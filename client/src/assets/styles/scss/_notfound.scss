@@ -1,0 +1,25 @@
+.not-found {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 3rem;
+
+  h1 {
+    font-size: calc(2rem + 1vw);
+    margin-bottom: 2rem;
+  }
+  p {
+    font-size: calc(1.5rem + 1vw);
+    margin-bottom: 2rem;
+  }
+  &__link {
+    text-decoration: none;
+    font-size: calc(1.2rem + 1vw);
+    color: black;
+    border-radius: 2rem;
+    background-color: color(color-green);
+    padding: 0.7rem 2rem;
+  }
+  &__link:hover {
+    color: white;
+  }
+}

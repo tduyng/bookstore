@@ -1,0 +1,98 @@
+@import "media";
+@import "function";
+:root {
+  font-size: 62.5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr [col-end]);
+  background-color: #f4f4f4;
+  position: relative;
+  // overflow: hidden;
+}
+
+.main {
+  display: grid;
+  grid-column: col-start 3 / col-end 12;
+  grid-template-columns: repeat(4, [col-start] 1fr [col-end]);
+  transition: all 0.5s;
+
+  @include small-tablet {
+    grid-column: col-start 2 / col-end 11;
+    transform: translateX(0) !important;
+  }
+}
+
+.main.center {
+  transform: translateX(-9vw);
+}
+
+.main__landing {
+  grid-column: col-start 1 / col-end 4;
+  margin: 3vh 0 3vw 2vw;
+  //margin-left: 2vw;
+  display: grid;
+  grid-template-rows: repeat(6, min-content);
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(1vw + 1vh);
+  transition: transform 0.3s;
+}
+.main__landing.center {
+  margin-left: 0;
+}
+
+$colors: (
+  "color-green": #0ab3a3,
+);
+
+.error {
+  grid-column: 1 / 5;
+  height: 100vw;
+}
+
+.scroll {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  color: white;
+  right: calc(1vw + 1rem);
+  bottom: calc(1vw + 1rem);
+  width: calc(2.5rem + 2.5vw);
+  height: calc(2.5rem + 2.5vw);
+  font-size: calc(1.5rem + 1.5vw);
+  background-color: color(color-green);
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  i {
+    margin-top: 20%;
+  }
+}
+.scroll.active {
+  display: block;
+}
+@import "header";
+@import "side-nav";
+@import "slider-nav";
+@import "best-seller";
+@import "sale";
+@import "feature";
+@import "testimonial";
+@import "custom-slider";
+@import "book";
+@import "footer";
+@import "books";
+@import "skeleton";
+@import "book-detail";
+@import "login";
+@import "account";
+@import "checkout";
+@import "payment";
+@import "notification";
+@import "notfound";

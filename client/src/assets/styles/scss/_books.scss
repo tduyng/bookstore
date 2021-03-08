@@ -1,0 +1,122 @@
+.books {
+  grid-column: 1 / 5;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vw;
+  margin: 3vh 0 3vw 2vw;
+
+  &__desc {
+    grid-column: 1 / -1;
+    font-size: calc(1.3rem + 0.8vw);
+    border-bottom: 1px solid #c4c0c0;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  &__sort {
+    grid-column: 1 / -1;
+    display: flex;
+    &--limit {
+      display: flex;
+      position: relative;
+      background-color: white;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      padding: calc(0.2rem + 0.2vw);
+      border-radius: 0.5rem;
+      &__current {
+        width: 90%;
+        font-size: calc(0.9rem + 0.6vw);
+        margin-right: calc(0.5rem + 0.5vw);
+      }
+      &__option {
+        position: absolute;
+        top: 105%;
+        font-size: calc(0.9rem + 0.6vw);
+        list-style-type: none;
+        width: 100%;
+        background-color: white;
+        left: 0;
+        border-radius: 0.5rem;
+        transform: scaleY(0);
+        transition: all 0.3s;
+        z-index: 3;
+        &--link {
+          color: black;
+          text-decoration: none;
+          li {
+            padding: calc(0.2rem + 0.2vw);
+            padding-bottom: calc(0.4rem + 0.4vw);
+          }
+        }
+        &--link:hover {
+          color: color(color-green);
+        }
+      }
+      &__icon {
+        width: 10%;
+        font-size: calc(1rem + 0.8vw);
+      }
+    }
+    &--limit.active {
+      .books__sort--limit__option {
+        transform: scaleY(1);
+      }
+    }
+  }
+  @include tablet {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include small-tablet {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+  }
+  @include mobile(500px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3vw;
+  }
+  @include mobile {
+    margin-left: 0;
+  }
+  .pagination {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    margin-top: calc(1vw + 1rem);
+    &__prev-page,
+    &__next-page,
+    &__page {
+      width: calc(1.5rem + 1.5vw);
+      height: calc(1.3vw + 1.3rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: color(color-green);
+      font-size: calc(0.8vw + 0.8rem);
+      margin: 0 calc(0.3rem + 0.3vw);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    @include small-tablet {
+      &__prev-page,
+      &__next-page,
+      &__page {
+        width: calc(1.8rem + 1.8vw);
+        height: calc(1.5rem + 1.5vw);
+        font-size: calc(1.1rem + 1.1vw);
+      }
+    }
+    &__prev-page,
+    &__next-page {
+      color: white;
+      background-color: color(color-green);
+    }
+    &__page:hover {
+      border: 1px solid color(color-green);
+    }
+    &__page.active {
+      background-color: color(color-green);
+      color: white;
+    }
+  }
+}

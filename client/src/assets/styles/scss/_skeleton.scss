@@ -1,0 +1,56 @@
+.skeleton-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  .skeleton {
+    background-color: #ddd;
+    border-radius: 0.5rem;
+  }
+  .skeleton.img {
+    width: 75%;
+    height: calc(17rem + 5vw);
+    margin-bottom: calc(0.5rem + 0.6vw);
+    align-self: center;
+  }
+  .skeleton.title {
+    height: 2rem;
+    width: 50%;
+    margin-bottom: calc(0.5rem + 0.6vw);
+  }
+  .skeleton.text {
+    height: 1.4rem;
+    width: 90%;
+    margin-bottom: calc(0.5rem + 0.6vw);
+  }
+
+  .shimmer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    animation: loading 2.5s infinite;
+
+    &__inner {
+      width: 50%;
+      height: 100%;
+      transform: skewX(-20deg);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes loading {
+      0% {
+        transform: translateX(-150%);
+      }
+      50% {
+        transform: translateX(-60%);
+      }
+      100% {
+        transform: translateX(150%);
+      }
+    }
+  }
+}

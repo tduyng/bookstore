@@ -1,0 +1,105 @@
+.book {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  &__link {
+    &--img {
+      object-fit: contain;
+      width: 100%;
+      height: 15vw;
+      margin-bottom: 0.7rem;
+      @include tablet {
+        height: 20vw;
+      }
+      @include small-tablet {
+        height: 25vw;
+      }
+      @include mobile(500px) {
+        height: 40vw;
+      }
+      @include mobile {
+        height: 50vw;
+      }
+    }
+  }
+
+  &__content {
+    padding: calc(0.7rem + 1vw);
+    padding-top: 0;
+    width: 100%;
+    @include mobile {
+      padding: 2rem;
+      padding-top: 0;
+    }
+    &--name {
+      font-size: calc(1.2rem + 0.3vw);
+      max-height: calc(2rem + 2vw);
+      min-height: calc(2rem + 2vw);
+      line-height: calc(1rem + 1vw);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+    }
+    &--price {
+      color: #f9971e;
+      font-size: calc(0.5rem + 0.9vw);
+      font-weight: bold;
+      margin: 0.5vw 0;
+      @include small-tablet {
+        font-size: calc(1.2rem + 0.5vw);
+        margin: 1.5vw 0;
+      }
+    }
+    &--old-price {
+      text-decoration: line-through;
+      color: #bfbfbf;
+      font-size: calc(0.8rem + 0.5vw);
+      margin-bottom: calc(0.3rem + 0.3vw);
+      @include small-tablet {
+        font-size: calc(0.9rem + 0.3vw);
+      }
+    }
+    &--button {
+      outline: none;
+      border: 1px solid #b7b1b1;
+      cursor: pointer;
+      padding: 0.8vw;
+      color: color(color-green);
+      background-color: white;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+      overflow: hidden;
+      @include small-tablet {
+        padding: 0.8rem;
+        font-size: calc(1.2rem + 0.5vw);
+      }
+    }
+    &--button::after {
+      content: "";
+      height: 105%;
+      width: 105%;
+      top: 0;
+      left: 0;
+      background-color: color(color-green);
+      position: absolute;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+    }
+    &--button:hover {
+      color: white;
+    }
+    &--button:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.book:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

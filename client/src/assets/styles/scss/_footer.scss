@@ -1,0 +1,150 @@
+#footer {
+  grid-column: col-start 1 / col-end 12;
+  padding: calc(1rem + 1vw);
+  padding-bottom: 0;
+  background-color: #333333;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, min-content);
+
+  .email {
+    grid-column: 1 / 5;
+    justify-self: center;
+    @include small-tablet {
+      justify-self: start;
+    }
+    &__form {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5vw 0;
+      @include mobile {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      &--label {
+        color: white;
+        font-size: calc(0.9rem + 0.5vw);
+        text-transform: uppercase;
+        margin-right: 1vw;
+        @include small-tablet {
+          font-size: calc(1.2rem + 0.5vw);
+        }
+      }
+      &--input {
+        outline: none;
+        border: none;
+        padding: calc(0.5rem + 0.4vw);
+        margin-right: 1vw;
+        font-size: calc(1rem + 0.3vw);
+        width: 40vw;
+        @include small-tablet {
+          font-size: calc(1rem + 0.5vw);
+          padding: calc(0.8rem + 0.5vw);
+        }
+        @include mobile {
+          margin: 2vw 0;
+          width: 80vw;
+        }
+      }
+      &--button {
+        text-transform: uppercase;
+        padding: calc(0.5rem + 0.4vw) 1vw;
+        background-color: color(color-green);
+        outline: none;
+        color: white;
+        border: none;
+        font-size: calc(1rem + 0.3vw);
+        cursor: pointer;
+        @include small-tablet {
+          font-size: calc(1rem + 0.5vw);
+          padding: calc(0.8rem + 0.5vw);
+        }
+      }
+    }
+  }
+
+  .intro-wrapper {
+    grid-column: 1 / 5;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+
+    @include small-tablet {
+      grid-template-columns: 1fr 1fr;
+      .intro:nth-child(2) {
+        border-right: none;
+      }
+    }
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+    .intro {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #444444;
+      padding: 2vw;
+      @include mobile {
+        border-right: none;
+      }
+      h2 {
+        color: white;
+        margin-bottom: 2vw;
+        @include small-tablet {
+          font-size: calc(1rem + 1vw);
+        }
+      }
+      &__link {
+        font-size: calc(0.8rem + 0.4vw);
+        color: #8f8f8c;
+        text-decoration: none;
+        transition: all 0.4s;
+        margin: 0.7vw 0;
+        @include small-tablet {
+          font-size: calc(1rem + 0.5vw);
+        }
+
+        i {
+          margin-right: 1vw;
+        }
+      }
+      &__link:hover {
+        color: color(color-green);
+      }
+      &__contact--content {
+        font-size: calc(0.8rem + 0.4vw);
+        margin: 0.7vw 0;
+        line-height: 2rem;
+        @include small-tablet {
+          font-size: calc(1rem + 0.5vw);
+        }
+        i {
+          color: white;
+          margin-right: 1vw;
+        }
+        span {
+          color: #8f8f8c;
+        }
+      }
+    }
+    .intro:last-child {
+      border-right: none;
+    }
+  }
+
+  .copyright {
+    grid-column: 1 / 5;
+    place-self: center;
+    color: #8f8f8c;
+    font-size: calc(0.8rem + 0.4vw);
+    padding: 2vw;
+    @include small-tablet {
+      font-size: calc(1rem + 0.5vw);
+      padding: 3vw;
+    }
+    @include mobile {
+      padding: 4vw;
+    }
+  }
+}

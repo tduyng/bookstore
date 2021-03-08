@@ -1,0 +1,41 @@
+.account {
+  grid-column: 1 / -1;
+  &__title {
+    text-align: center;
+    font-size: calc(1vw + 1.3rem);
+    margin: 2rem 0;
+  }
+  &__profile {
+    width: 65%;
+    margin: 0 auto;
+    font-size: calc(0.8vw + 0.8rem);
+    @include mobile {
+      width: 100%;
+      font-size: calc(1.2rem + 1vw);
+    }
+
+    p {
+      margin: 1rem 0;
+    }
+    &--thumbnail {
+      width: 30%;
+      height: auto;
+      border-radius: 50%;
+      margin-bottom: 2rem;
+    }
+    form {
+      margin-bottom: 2rem;
+      #file {
+        margin-bottom: 1rem;
+      }
+    }
+    &--success {
+      color: green;
+      margin: 1rem 0;
+    }
+    &--error {
+      color: red;
+      margin-bottom: 1rem 0;
+    }
+  }
+}

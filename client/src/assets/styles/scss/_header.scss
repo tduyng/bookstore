@@ -1,0 +1,304 @@
+#header {
+  grid-column: col-start 1 / col-end 12;
+  width: 100%;
+}
+.header__wrapper {
+  background-color: color(color-green);
+  display: grid;
+  padding: 1rem 1.3rem;
+  grid-template-columns: 1fr 2fr 1fr 3fr;
+  gap: 1.5rem;
+  @include small-tablet {
+    grid-template-columns: 4fr 1fr 4fr;
+  }
+  @include mobile {
+    grid-template-columns: 2.5fr 3.5fr 2fr 6fr;
+  }
+}
+.header__hamburger {
+  display: none;
+  width: min-content;
+  @include small-tablet {
+    display: block;
+  }
+  i {
+    font-size: calc(1.2rem + 1.7vw);
+    padding: 0.7rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    background-color: white;
+  }
+}
+.header__categories {
+  display: flex;
+  background-color: white;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  padding: 0.7rem;
+  @include small-tablet {
+    display: none;
+  }
+  &--hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: calc(0.3rem + 1vw);
+    height: calc(0.3rem + 1vw);
+    @include tablet {
+      display: none;
+    }
+    .line {
+      width: 100%;
+      height: 0.3rem;
+      background-color: black;
+      border-radius: 0.4rem;
+    }
+  }
+  &--content {
+    font-size: calc(1rem + 0.2vw);
+  }
+}
+
+.header__form {
+  position: relative;
+  z-index: 3;
+  @include small-tablet {
+    display: none;
+  }
+  form {
+    height: 100%;
+    background-color: white;
+    border-radius: 0.5rem;
+    position: relative;
+    .header__form--input {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      height: 100%;
+      border: none;
+      outline: none;
+      width: 85%;
+    }
+    .header__form--search {
+      background-color: white;
+      outline: none;
+      border: none;
+      position: absolute;
+      right: 1.5rem;
+      top: 1rem;
+      cursor: pointer;
+    }
+  }
+  &--queried {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    list-style-type: none;
+    border-radius: 0.5rem;
+    animation: slideDown 0.6s 1;
+    transform-origin: top;
+    @keyframes slideDown {
+      0% {
+        transform: scaleY(0);
+      }
+      100% {
+        transform: scaleY(1);
+      }
+    }
+    &__link {
+      text-decoration: none;
+      color: black;
+      li {
+        font-size: calc(0.8rem + 0.5vw);
+        display: flex;
+        align-items: center;
+        margin: calc(1rem + 0.8vw);
+        text-decoration: none;
+        img {
+          width: 30%;
+          object-fit: contain;
+          z-index: 10;
+          margin-right: calc(1rem + 0.8vw);
+        }
+        p:first-child {
+          margin-bottom: 1vw;
+          text-decoration: none;
+        }
+        p:nth-child(2) {
+          font-size: calc(0.7rem + 0.5vw);
+          color: #7d7d7d;
+        }
+      }
+      li:hover {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+    }
+  }
+}
+
+.header__logo {
+  place-self: center;
+  a {
+    text-decoration: none;
+  }
+  &--content {
+    color: white;
+    font-size: 3rem;
+    font-family: "Gamja Flower", cursive;
+  }
+}
+
+.header__user {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  color: white;
+  position: relative;
+  @include mobile {
+    justify-content: space-around;
+  }
+  &--cart,
+  &--account {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: calc(1rem + 0.2vw);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+  }
+  &--account {
+    padding: 0 1rem;
+    margin-right: 2rem;
+    position: relative;
+    cursor: pointer;
+    &__icon {
+      font-size: 2.5rem;
+      margin-right: 1rem;
+    }
+    @include tablet {
+      margin-right: 0;
+    }
+    @include mobile {
+      padding: 0;
+      &__icon {
+        margin-right: 0;
+      }
+    }
+    &__dropdown {
+      position: absolute;
+      list-style-type: none;
+      padding: 2rem;
+      background-color: white;
+      top: 100%;
+      right: 1rem;
+      border-radius: 0.5rem;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: all 0.5s;
+      z-index: 3;
+      width: 30rem;
+      @include mobile {
+        width: 25rem;
+        text-align: center;
+        padding: 1rem;
+      }
+      li {
+        padding-bottom: 1.5rem;
+        transition: all 0.2s;
+        color: black;
+        font-size: calc(0.8rem + 0.4vw);
+        font-weight: 500;
+        cursor: pointer;
+        a {
+          text-decoration: none;
+          color: black;
+        }
+        a:hover {
+          color: color(color-green);
+        }
+        @include mobile {
+          padding-bottom: 1rem;
+          font-size: calc(1rem + 0.4vw);
+        }
+      }
+      li:hover {
+        color: color(color-green);
+      }
+      &__account {
+        color: black;
+        text-decoration: none;
+      }
+    }
+  }
+  &--account.active {
+    .header__user--account__dropdown {
+      transform: scaleY(1);
+    }
+  }
+  &--account:hover {
+    color: color(color-green);
+    background-color: white;
+  }
+  &--cart {
+    font-size: 2.2rem;
+    width: min-content;
+    position: relative;
+    margin-right: 2rem;
+    @include small-tablet {
+      margin-right: 1rem;
+    }
+    @include mobile {
+      margin-right: 0;
+    }
+    &__quantity {
+      font-size: calc(1rem + 0.4vw);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.5rem;
+      background-color: red;
+      z-index: 1;
+      position: absolute;
+      right: -0.7rem;
+      top: -0.5rem;
+    }
+  }
+  &--img-left,
+  &--img-right {
+    text-align: center;
+    max-width: 4.6rem;
+    img {
+      border-radius: 50%;
+      width: 75%;
+      height: auto;
+    }
+
+    @include small-tablet {
+      padding: 0;
+    }
+  }
+  &--img-left {
+    display: none;
+    img {
+      display: none;
+    }
+    @include mobile {
+      display: block;
+      img {
+        display: block;
+      }
+    }
+  }
+  &--img-right {
+    display: block;
+    @include mobile {
+      display: none;
+    }
+  }
+}

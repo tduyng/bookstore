@@ -1,0 +1,41 @@
+.best-seller {
+  grid-column: 1/5;
+  display: grid;
+  grid-template-rows: max-content max-content;
+  gap: 1vw;
+  @include mobile {
+    gap: 2rem;
+  }
+
+  &__title {
+    display: flex;
+    align-items: flex-end;
+    &--h2 {
+      padding-right: 2vw;
+      border-right: 1px solid #c8bcbc;
+      font-size: calc(0.8rem + 1.2vw);
+      font-weight: 400;
+      padding-bottom: 0;
+    }
+    &--para {
+      margin-left: 2vw;
+      padding-bottom: 0;
+      font-size: calc(0.5rem + 0.8vw);
+      color: #898989;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1vw;
+    justify-content: center;
+    @include tablet(900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: 0.7fr;
+      gap: 2rem;
+    }
+  }
+}

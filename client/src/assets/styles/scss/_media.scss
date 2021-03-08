@@ -1,0 +1,17 @@
+@mixin tablet($width: 1000px) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin small-tablet($width: 768px) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin mobile($width: 430px) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}

@@ -1,0 +1,184 @@
+.book-detail__wrapper {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: min-content min-content;
+  gap: calc(1rem + 1vw);
+  margin-left: 1rem;
+
+  .book-detail {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.3fr 2fr;
+    gap: calc(1.5rem + 1.5vw);
+    margin-top: 2rem;
+    @include small-tablet {
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content min-content;
+    }
+    .skeleton-wrapper {
+      height: 60vw;
+    }
+    &__error {
+      grid-column: 1 / -1;
+      height: 50vw;
+    }
+    &__media {
+      display: flex;
+      justify-content: center;
+      &--img {
+        width: 100%;
+        object-fit: contain;
+        height: 100%;
+      }
+    }
+    &__content {
+      margin-right: calc(1rem + 1.5vw);
+
+      &--author {
+        margin: calc(1rem + 1.2vw) 0;
+        font-size: calc(0.8rem + 0.5vw);
+        span {
+          font-weight: bold;
+        }
+        @include small-tablet {
+          font-size: calc(1.1rem + 0.6vw);
+        }
+      }
+      &--price {
+        display: flex;
+        align-items: flex-end;
+        &__special {
+          margin-right: calc(1.5rem + 0.5vw);
+          font-size: calc(2rem + 0.7vw);
+          font-weight: bold;
+          color: #f39801;
+        }
+        &__old {
+          font-size: calc(1rem + 0.5vw);
+          color: #bfc3d7;
+          text-decoration: line-through;
+          margin-bottom: 0.3rem;
+        }
+      }
+
+      &--amount {
+        display: flex;
+        color: #555555;
+        height: calc(3rem + 2vw);
+        align-items: center;
+        margin: calc(1rem + 1vw) 0;
+        p {
+          font-size: calc(0.8rem + 0.8vw);
+          font-weight: bold;
+          margin-right: calc(1.3rem + 0.5vw);
+
+          @include small-tablet {
+            font-size: calc(1.1rem + 1.1vw);
+          }
+        }
+
+        &__btn {
+          border: 1px solid #c1c1c1;
+          border-radius: 0.4rem;
+          display: flex;
+          align-items: center;
+          font-size: calc(0.7rem + 0.7vw);
+
+          span {
+            font-size: calc(1rem + 0.6vw);
+            padding: calc(0.5rem + 0.5vw) calc(1rem + 1vw);
+            @include small-tablet {
+              font-size: calc(1.2rem + 0.8vw);
+            }
+          }
+          i {
+            padding: calc(0.5rem + 0.5vw);
+            cursor: pointer;
+          }
+        }
+      }
+
+      &--add {
+        outline: none;
+        border: none;
+        border-radius: 0.7rem;
+        background-color: color(color-green);
+        color: white;
+        padding: calc(0.5rem + 0.5vw);
+        cursor: pointer;
+        font-size: calc(1rem + 0.6vw);
+        font-weight: bold;
+        transition: all 0.4s;
+
+        @include small-tablet {
+          padding: calc(0.7rem + 0.7vw);
+          font-size: calc(1.1rem + 0.7vw);
+        }
+      }
+      &--add:hover {
+        transform: scale(1.04);
+      }
+    }
+  }
+
+  .related {
+    grid-column: 1 / -1;
+    grid-template-rows: min-content min-content;
+    display: grid;
+    gap: 2vw;
+    @include tablet(1000px) {
+      margin-bottom: 10vw;
+    }
+    &__title {
+      grid-column: 1 / -1;
+      font-size: calc(1.5rem + 0.7vw);
+      text-transform: uppercase;
+      border-bottom: 1px solid #bfbcbc;
+    }
+    .related__slider--wrapper {
+      grid-column: 1 / -1;
+      height: 26vw;
+      @include small-tablet {
+        height: 35vw;
+      }
+      @include mobile(510px) {
+        height: 60vw;
+      }
+      @include mobile {
+        height: 80vw;
+      }
+      position: relative;
+      .related__slider {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        .slick-slide > div {
+          margin-left: 0.6vw;
+        }
+        .slick-list {
+          margin-left: -0.6vw;
+        }
+
+        .icon-related {
+          position: absolute;
+          top: 30%;
+          font-size: x-large;
+          color: black;
+          padding: 0.5vw;
+          opacity: 0.5;
+          cursor: pointer;
+        }
+        .next {
+          right: 0;
+        }
+        .prev {
+          left: 0;
+          z-index: 1;
+        }
+        .icon-related:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

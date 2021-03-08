@@ -1,0 +1,33 @@
+.notification-wrapper {
+  position: fixed;
+  top: 7vh;
+  right: 5vw;
+  width: 20vw;
+  background-color: #02c50a;
+  border-radius: 1rem;
+  transition: all 0.5s;
+  opacity: 0.9;
+  @include small-tablet {
+    width: 35vw;
+  }
+  @include mobile {
+    width: 45vw;
+  }
+  .notification {
+    display: flex;
+    align-items: center;
+    padding: 2rem 1rem;
+    color: white;
+    @include small-tablet {
+      padding: 1rem;
+    }
+    &__icon {
+      font-size: calc(1.5rem + 0.5vw);
+      margin-right: 1rem;
+    }
+
+    &__text {
+      font-size: calc(1.2rem + 0.2vw);
+    }
+  }
+}
