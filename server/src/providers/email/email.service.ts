@@ -12,7 +12,10 @@ export class EmailService {
 	}
 
 	send(options: MailOptions) {
-		return this.mailer.sendMail(options);
+		if (this._env.mode !== 'test') {
+			return this.mailer.sendMail(options);
+		}
+		return null;
 	}
 
 	public async sendWelcome(toEmail: string): Promise<void> {
