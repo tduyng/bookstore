@@ -10,6 +10,7 @@ export const SERVER_LINKS = {
   userAddToCart: '/api/users/purchase', // POST
   userUpdateCart: '/api/users/update-cart-item', // POST
   userRemoveFromCart: '/api/users/remove-cart-item', // POST
+  userRemoveAllFromCart: '/api/users/remove-carts', // POST
   bookGetById: '/api/books/book', //GET with param /:id
   bookGetByGenre: '/api/books', // GET with param /:genre
   bookSearch: '/api/books/search', // GET with query ?text=

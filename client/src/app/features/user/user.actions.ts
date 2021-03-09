@@ -66,3 +66,13 @@ export const removeFromCart = createAsyncThunk(
     return cart;
   },
 );
+
+export const removeAllFromCart = createAsyncThunk(
+  Types.REMOVE_ALL_FROM_CART,
+  async () => {
+    const cart: CartItem[] = await requestWithAuth(SERVER_LINKS.userRemoveAllFromCart, {
+      method: 'POST',
+    });
+    return cart;
+  },
+);

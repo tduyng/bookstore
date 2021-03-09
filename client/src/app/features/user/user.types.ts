@@ -4,8 +4,8 @@ export interface IUser {
   _id: string;
   email: string;
   username: string;
-  thumbnail: string;
-  cart: CartItem[];
+  thumbnail?: string;
+  cart?: CartItem[];
 }
 export type CartItem = Partial<IBook> & { total: number };
 export interface LoginUserDto {
@@ -28,16 +28,19 @@ export const UserActionTypes = {
   ADD_TO_CART: 'feature/user/addToCart',
   UPDATE_CART: 'feature/user/updateCart',
   REMOVE_FROM_CART: 'feature/user/removeFromCart',
+  REMOVE_ALL_FROM_CART: 'feature/user/removeAllFromCart',
 };
 export interface IUserReducer {
   user: IUser | null;
+  cart: CartItem[];
   isLoggedIn: boolean;
   accessToken: string;
-  error: string;
+  successMsg: string;
+  errorMsg: string;
 }
 export interface IPayloadAuth {
-  user: IUser | null;
   accessToken: string;
+  refreshToken?: string;
 }
 export interface IPayloadError {
   message: string;

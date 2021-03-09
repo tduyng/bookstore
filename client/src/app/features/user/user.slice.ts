@@ -1,30 +1,83 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { register } from './user.actions';
-import { IPayloadAuth, IUserReducer } from './user.types';
+import {
+  addToCart,
+  fetchUser,
+  login,
+  register,
+  removeAllFromCart,
+  removeFromCart,
+  updateCart,
+} from './user.actions';
+import { CartItem, IPayloadAuth, IUser, IUserReducer } from './user.types';
 
 const initialState: IUserReducer = {
   user: null,
+  cart: [],
   isLoggedIn: false,
   accessToken: '',
-  error: '',
+  successMsg: '',
+  errorMsg: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    clearStatus(state) {
+      state.successMsg = '';
+      state.errorMsg = '';
+    },
+  },
   extraReducers: builder => {
-    builder.addCase(register.fulfilled, (state, action: PayloadAction<IPayloadAuth>) => {
-      state.user = action.payload.user;
+    builder.addCase(register.fulfilled, (state, action: PayloadAction<string>) => {
+      state.successMsg = action.payload;
+      state.errorMsg = '';
+    });
+    builder.addCase(register.rejected, (state, action) => {
+      state.successMsg = '';
+      state.errorMsg = action.payload as string;
+      state.user = null;
+      state.accessToken = '';
+    });
+
+    builder.addCase(login.fulfilled, (state, action: PayloadAction<IPayloadAuth>) => {
       state.accessToken = action.payload.accessToken;
       state.isLoggedIn = true;
     });
-    builder.addCase(register.rejected, state => {
+
+    builder.addCase(login.rejected, (state, action) => {
       state.user = null;
       state.accessToken = '';
-      state.isLoggedIn = false;
+      state.errorMsg = action.payload as string;
+      state.successMsg = '';
+    });
+
+    builder.addCase(fetchUser.fulfilled, (state, action: PayloadAction<IUser>) => {
+      state.user = action.payload;
+    });
+
+    builder.addCase(fetchUser.rejected, (state, action) => {
+      state.user = null;
+      state.errorMsg = action.payload as string;
+    });
+
+    builder.addCase(addToCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+      state.cart = action.payload;
+    });
+    builder.addCase(updateCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+      state.cart = action.payload;
+    });
+    builder.addCase(
+      removeFromCart.fulfilled,
+      (state, action: PayloadAction<CartItem[]>) => {
+        state.cart = action.payload;
+      },
+    );
+    builder.addCase(removeAllFromCart.fulfilled, state => {
+      state.cart = [];
     });
   },
 });
 
+export const { clearStatus } = userSlice.actions;
 export const userReducer = userSlice.reducer;
