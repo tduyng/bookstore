@@ -71,4 +71,16 @@ export class UserService {
 			.lean();
 		return user;
 	}
+	public async removeAllFromCart(userId: string) {
+		const user: User = await this.userModel
+			.findByIdAndUpdate(
+				userId,
+				{
+					$set: { cart: [] },
+				},
+				{ new: true },
+			)
+			.lean();
+		return user;
+	}
 }

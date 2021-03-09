@@ -52,6 +52,16 @@ export class UserController {
 		return updatedCart;
 	}
 
+	@Post('remove-carts')
+	public async removeAllFromCart(@Req() req: Request) {
+		const user: UserFromRequest = req.user;
+		req.session.cart = JSON.stringify([]);
+		if (user) {
+			await this.userService.removeAllFromCart(user._id);
+		}
+		return [];
+	}
+
 	@Post('purchase')
 	public async addToCart(@Body() cartItemDto: CartItemDto, @Req() req: Request) {
 		const cartCookies = req.session?.cart;
