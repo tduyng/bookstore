@@ -8,23 +8,10 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import persistReducer from 'redux-persist/es/persistReducer';
-import storage from 'redux-persist/lib/storage';
-// import booksReducer from '../features/books/booksSlice';
-// import uiReducer from '../features/ui/uiSlice';
-
-import { userReducer } from 'src/app/features/user/user.slice';
-
-const userPersistConfig = {
-  key: 'user',
-  storage,
-  blacklist: ['errorMsg', 'successMsg'],
-};
+import { rootReducers } from './reducers';
 
 export const store = configureStore({
-  reducer: {
-    user: persistReducer(userPersistConfig, userReducer),
-  },
+  reducer: rootReducers,
   middleware: getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
