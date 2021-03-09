@@ -9,7 +9,7 @@ export const HomePage = () => {
         <title>Home</title>
         <meta name="description" content="Home page Bookstore application" />
       </Helmet>
-      <div className="not-found">
+      <div>
         <h1>Home page</h1>
       </div>
     </MainLayout>

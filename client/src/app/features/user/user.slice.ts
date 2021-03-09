@@ -1,35 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { signup } from './user.actions';
-import { IUserReducer } from './user.types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { register } from './user.actions';
+import { IPayloadAuth, IUserReducer } from './user.types';
 
 const initialState: IUserReducer = {
   user: null,
   isLoggedIn: false,
-  accessToken: null,
-  errorMsg: '',
-  successMsg: '',
+  accessToken: '',
+  error: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    clearStatus(state) {
-      state.errorMsg = '';
-      state.successMsg = '';
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
-    builder.addCase(signup.fulfilled, (state, action) => {
-      state.successMsg = action.payload;
-      state.errorMsg = '';
+    builder.addCase(register.fulfilled, (state, action: PayloadAction<IPayloadAuth>) => {
+      state.user = action.payload.user;
+      state.accessToken = action.payload.accessToken;
+      state.isLoggedIn = true;
     });
-    builder.addCase(signup.rejected, (state, action) => {
-      state.successMsg = '';
-      state.errorMsg = action.payload as string;
+    builder.addCase(register.rejected, state => {
+      state.user = null;
+      state.accessToken = '';
+      state.isLoggedIn = false;
     });
   },
 });
 
-export const { clearStatus } = userSlice.actions;
 export const userReducer = userSlice.reducer;
