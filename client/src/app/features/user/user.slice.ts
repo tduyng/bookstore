@@ -1,13 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { signup } from './user.actions';
+import { IUserReducer } from './user.types';
 
-const initialState = {
-  _id: null,
-  username: null,
-  email: '',
-  thumbnail: '',
-  cart: [],
-  isAuthenticated: false,
+const initialState: IUserReducer = {
+  user: null,
+  isLoggedIn: false,
+  accessToken: null,
   errorMsg: '',
   successMsg: '',
 };

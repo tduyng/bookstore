@@ -1,0 +1,17 @@
+export const SERVER_LINKS = {
+  refreshToken: '/api/auth/refresh',
+  login: '/api/auth/login',
+  register: '/api/auth/register',
+  activateAccount: '/api/auth/activate',
+  me: '/api/auth',
+  forgotPassword: '/api/auth/forgot-password',
+  resetPassword: '/api/auth/reset-password',
+  logout: '/api/auth',
+  userPurChase: '/api/users/purchase',
+  userUpdateCartItem: '/api/users/update-cart-item',
+  userRemoveCartItem: '/api/users/remove-cart-item',
+  bookGetById: '/api/books/book',
+  bookGetByGenre: '/api/books',
+  bookSearch: '/api/books/search',
+  bookQuery: 'api/books/query',
+};

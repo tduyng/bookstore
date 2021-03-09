@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { PATH } from './constants/paths';
+import { PATH } from './constants/paths.constant';
 import { HomePage } from './pages/HomePage/Loadable';
 
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
