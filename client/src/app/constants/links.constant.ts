@@ -12,7 +12,7 @@ export const SERVER_LINKS = {
   userRemoveFromCart: '/api/users/remove-cart-item', // POST
   userRemoveAllFromCart: '/api/users/remove-carts', // POST
   bookGetById: '/api/books/book', //GET with param /:id
-  bookGetByGenre: '/api/books', // GET with param /:genre
+  bookGetByGenre: '/api/books/genre', // GET with param /:genre
   bookSearch: '/api/books/search', // GET with query ?text=
   bookQuery: 'api/books/query', // GET with query ?text=
 };

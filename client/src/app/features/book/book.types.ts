@@ -8,8 +8,30 @@ export interface IBook {
 }
 
 export interface IBookReducer {
+  status: 'success' | 'loading' | 'failed';
   books: IBook[];
+  count: number;
   book: IBook | null;
   searchedBooks: IBook[];
-  queriedBooks: IBook[];
+  message: string;
+}
+export const BookActionTypes = {
+  FETCH_BOOKS: 'feature/book/fetchBooks',
+  FETCH_BOOK: 'feature/book/fetchBook',
+  SEARCH_BOOKS: 'feature/book/searchBooks',
+  QUERY_BOOKS: 'feature/books/queryBooks',
+};
+export interface GetBooksByGenreDto {
+  genre: string;
+  limit?: number;
+  page?: number;
+}
+export interface PaginationBooksDto {
+  text: string;
+  limit?: number;
+  page?: number;
+}
+export interface PaginatedBooks {
+  books: IBook[];
+  count?: number;
 }
