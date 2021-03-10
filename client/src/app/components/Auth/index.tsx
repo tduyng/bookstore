@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
+import { clearStatus } from 'src/app/features/user/user.slice';
+import { useAppDispatch } from 'src/store';
 import { LoginForm } from './LoginForm';
 import { RegisterForm } from './RegisterForm';
 
@@ -10,11 +12,14 @@ interface AuthProps {
 }
 export const Auth: React.FC<AuthProps> = ({ open, onClose }) => {
   const [method, setMethod] = useState('login');
+  const dispatch = useAppDispatch();
   const onLoginTab = () => {
     setMethod('login');
+    dispatch(clearStatus());
   };
   const onSignupTab = () => {
     setMethod('signup');
+    dispatch(clearStatus());
   };
 
   return (

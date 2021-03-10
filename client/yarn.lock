@@ -1028,6 +1028,13 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
+"@types/react-avatar-editor@^10.3.5":
+  version "10.3.5"
+  resolved "https://registry.yarnpkg.com/@types/react-avatar-editor/-/react-avatar-editor-10.3.5.tgz#0747bf98ca67006a8dae0af2eb95acfc4ca7f212"
+  integrity sha512-MGbqKswSgTjBQ+AexNnqAIe7y+12J+zSBPO9vCHTGMnz+tIWYo444fJ6YqXsfdhutSxSlWX2wgR+xUgpviE78w==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^17.0.0":
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.1.tgz#d92d77d020bfb083e07cc8e0ac9f933599a4d56a"
