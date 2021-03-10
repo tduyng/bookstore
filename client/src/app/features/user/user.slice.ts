@@ -3,6 +3,7 @@ import {
   addToCart,
   fetchUser,
   login,
+  logout,
   register,
   removeAllFromCart,
   removeFromCart,
@@ -59,6 +60,12 @@ const userSlice = createSlice({
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.user = null;
       state.errorMsg = action.payload as string;
+    });
+
+    builder.addCase(logout.fulfilled, state => {
+      state.user = null;
+      state.accessToken = '';
+      state.isLoggedIn = false;
     });
 
     builder.addCase(addToCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {

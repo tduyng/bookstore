@@ -4967,6 +4967,11 @@ react-avatar-editor@^11.1.0:
     "@babel/runtime" "^7.12.5"
     prop-types "^15.7.2"
 
+react-country-region-selector@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-country-region-selector/-/react-country-region-selector-3.0.2.tgz#979c07e574e26d0c089f450e28c2cfdd0735ee9e"
+  integrity sha512-0U36SdE4F01Q3/uGDOHVFqhIrNR34v2cKnptUOflV5H51cwNxDLLASkB+PNDPd8emBP2i83e7HZdocWdjvIC/g==
+
 react-dom@^17.0.0:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"

@@ -55,6 +55,9 @@ export const login = createAsyncThunk(
     }
   },
 );
+export const logout = createAsyncThunk(Types.LOGOUT, async () => {
+  await requestWithAuth(SERVER_LINKS.authLogout, { method: 'DELETE' });
+});
 
 export const addToCart = createAsyncThunk(
   Types.ADD_TO_CART,

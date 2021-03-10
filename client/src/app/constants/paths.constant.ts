@@ -8,4 +8,5 @@ export const PATH = {
   RESET_PASSWORD: '/reset-password',
   CART: '/cart',
   CHECKOUT: '/checkout',
+  BOOK_DETAIL: '/book', // with  param /:id
 };

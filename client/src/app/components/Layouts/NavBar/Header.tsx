@@ -4,7 +4,7 @@ import { useHistory, withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { PATH } from 'src/app/constants/paths.constant';
 import { toggleSideBar } from 'src/app/features/ui/ui.slice';
-import { fetchUser } from 'src/app/features/user/user.actions';
+import { fetchUser, logout } from 'src/app/features/user/user.actions';
 import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
 import { debounce } from 'src/utils/debounce';
@@ -133,7 +133,7 @@ const _Header = () => {
           </Link>
         </div>
         <div className="header__user">
-          <Link to="/checkout" className="header__user--cart">
+          <Link to={PATH.CHECKOUT} className="header__user--cart">
             <div className="header__user--cart__icon">
               <i className="fas fa-shopping-cart"></i>
             </div>
@@ -173,7 +173,7 @@ const _Header = () => {
                     <li>My Account ({user?.username})</li>
                   </Link>
                   <li>
-                    <a href="/auth/logout">Logout</a>
+                    <div onClick={() => dispatch(logout())}>Logout</div>
                   </li>
                 </>
               ) : (

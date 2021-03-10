@@ -24,6 +24,7 @@ export interface CartItemDto {
 export const UserActionTypes = {
   REGISTER: 'features/user/signup',
   LOGIN: 'features/user/login',
+  LOGOUT: 'features/user/logout',
   FETCH_USER: 'feature/user/fetchUser',
   ADD_TO_CART: 'feature/user/addToCart',
   UPDATE_CART: 'feature/user/updateCart',
