@@ -22,6 +22,12 @@ export function App() {
       />
 
       <Switch>
+        {/* <Route path="/books/genre/:genre" component={BooksGenre} />
+        <Route path="/books/search" component={BooksSearch} />
+        <Route path="/account" component={Account} />
+        <Route path="/book/:id" component={BookDetail} />
+        <Route path="/checkout/payment" component={Payment} />
+        <Route path="/checkout" component={Checkout} exact /> */}
         <Route exact path={PATH.HOME} component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>

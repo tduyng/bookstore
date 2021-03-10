@@ -3,7 +3,7 @@ import { fetchBookById, fetchBooks, queryBooks, searchBooks } from './book.actio
 import { IBook, IBookReducer, PaginatedBooks } from './book.types';
 
 const initialState: IBookReducer = {
-  status: 'loading',
+  status: 'idle',
   books: [],
   count: 0,
   book: null,

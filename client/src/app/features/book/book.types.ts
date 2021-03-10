@@ -5,10 +5,11 @@ export interface IBook {
   old_price?: number;
   imgURL?: string;
   author?: string;
+  genre?: string;
 }
 
 export interface IBookReducer {
-  status: 'success' | 'loading' | 'failed';
+  status: 'success' | 'loading' | 'failed' | 'idle';
   books: IBook[];
   count: number;
   book: IBook | null;

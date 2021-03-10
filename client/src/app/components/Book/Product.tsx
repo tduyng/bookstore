@@ -7,7 +7,7 @@ import { useAppDispatch } from 'src/store';
 
 export const Product: React.FC<CartItem> = props => {
   const dispatch = useAppDispatch();
-  const id = props._id;
+  const id = props._id as string;
   const [inpValue, setInpValue] = useState(props.total || 1);
   const [amount, setAmount] = useState(props.total || 1);
 
