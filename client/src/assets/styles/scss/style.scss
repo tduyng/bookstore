@@ -1,5 +1,5 @@
-@import "media";
-@import "function";
+@import 'media';
+@import 'function';
 :root {
   font-size: 62.5%;
 }
@@ -48,7 +48,7 @@
 }
 
 $colors: (
-  "color-green": #0ab3a3,
+  'color-green': #0ab3a3,
 );
 
 .error {
@@ -63,8 +63,8 @@ $colors: (
   color: white;
   right: calc(1vw + 1rem);
   bottom: calc(1vw + 1rem);
-  width: calc(2.5rem + 2.5vw);
-  height: calc(2.5rem + 2.5vw);
+  width: calc(1.5rem + 1.5vw);
+  height: calc(1.5rem + 1.5vw);
   font-size: calc(1.5rem + 1.5vw);
   background-color: color(color-green);
   text-align: center;
@@ -77,22 +77,22 @@ $colors: (
 .scroll.active {
   display: block;
 }
-@import "header";
-@import "side-nav";
-@import "slider-nav";
-@import "best-seller";
-@import "sale";
-@import "feature";
-@import "testimonial";
-@import "custom-slider";
-@import "book";
-@import "footer";
-@import "books";
-@import "skeleton";
-@import "book-detail";
-@import "login";
-@import "account";
-@import "checkout";
-@import "payment";
-@import "notification";
-@import "notfound";
+@import 'header';
+@import 'side-nav';
+@import 'slider-nav';
+@import 'best-seller';
+@import 'sale';
+@import 'feature';
+@import 'testimonial';
+@import 'custom-slider';
+@import 'book';
+@import 'footer';
+@import 'books';
+@import 'skeleton';
+@import 'book-detail';
+@import 'login';
+@import 'account';
+@import 'checkout';
+@import 'payment';
+@import 'notification';
+@import 'notfound';

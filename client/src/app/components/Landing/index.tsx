@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { AppState } from 'src/store/reducers';
+import { BestSeller } from './BestSeller';
+import { Feature } from './Features';
+import { Sale } from './Sale';
+import { SliderNav } from './SliderNav';
+import { Testimonial } from './Testimonial';
 
 const mapStateToProps = (state: AppState) => ({
   sideBar: state.ui.sideBar

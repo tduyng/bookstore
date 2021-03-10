@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Toaster } from 'react-hot-toast';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { PATH } from './constants/paths.constant';
 import { HomePage } from './pages/HomePage/Loadable';
@@ -12,6 +13,7 @@ export function App() {
       <Helmet titleTemplate="%s - Bookstore" defaultTitle="Bookstore">
         <meta name="description" content="Bookstore application" />
       </Helmet>
+      <Toaster position="top-right" reverseOrder={false} />
 
       <Switch>
         <Route exact path={PATH.HOME} component={HomePage} />

@@ -76,8 +76,8 @@
   color: white;
   right: calc(1vw + 1rem);
   bottom: calc(1vw + 1rem);
-  width: calc(2.5rem + 2.5vw);
-  height: calc(2.5rem + 2.5vw);
+  width: calc(1.5rem + 1.5vw);
+  height: calc(1.5rem + 1.5vw);
   font-size: calc(1.5rem + 1.5vw);
   background-color: #0ab3a3;
   text-align: center;

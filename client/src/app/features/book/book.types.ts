@@ -1,8 +1,8 @@
 export interface IBook {
   _id: string;
   title: string;
-  price: string | number;
-  old_price?: string | number;
+  price: number;
+  old_price?: number;
   imgURL?: string;
   author?: string;
 }
