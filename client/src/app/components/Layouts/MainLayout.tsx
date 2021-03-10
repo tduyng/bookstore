@@ -1,13 +1,13 @@
 import React from 'react';
-import { Navbar } from '../Navbar';
+import { NavBar } from '../NavBar';
 
 interface MainLayoutProps {}
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <>
-      <Navbar />
+    <div className="App">
+      <NavBar />
       <div>{children}</div>
-    </>
+    </div>
   );
 };
