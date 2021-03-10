@@ -13,7 +13,13 @@ export function App() {
       <Helmet titleTemplate="%s - Bookstore" defaultTitle="Bookstore">
         <meta name="description" content="Bookstore application" />
       </Helmet>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+          style: { fontSize: '1.6rem' },
+        }}
+      />
 
       <Switch>
         <Route exact path={PATH.HOME} component={HomePage} />
