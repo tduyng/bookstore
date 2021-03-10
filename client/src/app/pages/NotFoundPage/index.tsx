@@ -4,7 +4,7 @@ import { MainLayout } from 'src/app/components/Layouts/MainLayout';
 
 export const NotFoundPage = () => {
   return (
-    <MainLayout>
+    <MainLayout sideBar={false}>
       <div className="not-found">
         <h1>Sorry</h1>
         <p>That page can't be found</p>

@@ -1,3 +1,3 @@
 export interface IUiReducer {
-  sideBar: boolean;
+  sideBar?: boolean;
 }
