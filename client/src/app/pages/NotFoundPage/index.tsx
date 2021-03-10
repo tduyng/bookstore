@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MainLayout } from 'src/app/components/MainLayout';
+import { MainLayout } from 'src/app/components/Layouts/MainLayout';
 
 export const NotFoundPage = () => {
   return (
