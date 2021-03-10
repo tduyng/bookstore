@@ -1,7 +1,7 @@
-import React from "react";
-import Shimmer from "./Shimmer";
+import React from 'react';
+import { Shimmer } from './Shimmer';
 
-import SkeletonElement from "./SkeletonElement";
+import { SkeletonElement } from './SkeletonElement';
 
 const SkeletonBook = () => {
   return (
