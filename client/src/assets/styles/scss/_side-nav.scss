@@ -16,7 +16,7 @@
     width: 50vw;
   }
   &__form {
-    width: 85%;
+    width: 80%;
     margin: 0 auto;
     display: none;
     @include small-tablet {
@@ -35,7 +35,7 @@
         height: 100%;
         border: none;
         outline: none;
-        width: 85%;
+        width: 80%;
       }
       .side-nav__form--search {
         background-color: white;

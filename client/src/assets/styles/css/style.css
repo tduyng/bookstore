@@ -563,7 +563,7 @@
 }
 
 .side-nav__form {
-  width: 85%;
+  width: 80%;
   margin: 0 auto;
   display: none;
 }
@@ -589,7 +589,7 @@
   height: 100%;
   border: none;
   outline: none;
-  width: 85%;
+  width: 80%;
 }
 
 .side-nav__form form .side-nav__form--search {
@@ -3257,6 +3257,7 @@
   grid-column: 1 / -1;
   text-align: center;
   margin-top: 3rem;
+  min-height: 90vh;
 }
 
 .not-found h1 {

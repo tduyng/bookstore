@@ -1,11 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { AppState } from 'src/store/reducers';
 
-interface AsideProps {
-  isOpen: boolean;
-}
-
-export const Aside: React.FC<AsideProps> = ({ isOpen }) => {
+export const Aside = () => {
+  const { sideBar } = useSelector((state: AppState) => state.ui);
   const toggleList = (e: any) => {
     const target = e.currentTarget.childNodes[2];
     const icon = e.currentTarget.childNodes[1];
@@ -21,7 +20,7 @@ export const Aside: React.FC<AsideProps> = ({ isOpen }) => {
   };
 
   return (
-    <aside className={`side-nav${isOpen ? ' active' : ''}`}>
+    <aside className={`side-nav${sideBar ? ' active' : ''}`}>
       <ul className="side-nav__list">
         <li className="side-nav__form">
           <form>

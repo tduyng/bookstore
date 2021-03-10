@@ -9,10 +9,11 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    toggleSidebar(state) {
+    toggleSideBar(state) {
       state.sideBar = !state.sideBar;
     },
   },
 });
 
+export const { toggleSideBar } = uiSlice.actions;
 export const uiReducer = uiSlice.reducer;

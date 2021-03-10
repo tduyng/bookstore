@@ -6,17 +6,17 @@ interface ArrowProps {
   className?: string;
   onClick?: () => void;
 }
-const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
+const NextArrow: React.FC<ArrowProps> = props => {
   return (
-    <div className={`${className} icon next`} onClick={onClick}>
+    <div className="icon next" onClick={props.onClick}>
       <i className="fas fa-chevron-right"></i>
     </div>
   );
 };
 
-const PrevArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
+const PrevArrow: React.FC<ArrowProps> = props => {
   return (
-    <div className={`${className} icon prev`} onClick={onClick}>
+    <div className="icon prev" onClick={props.onClick}>
       <i className="fas fa-chevron-left"></i>
     </div>
   );

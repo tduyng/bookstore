@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 
-interface AutoScrollToTopProps {
-  history?: any;
-}
-
-const _AutoScrollToTop: React.FC<AutoScrollToTopProps> = ({ history }) => {
+const _AutoScrollToTop = () => {
+  const history = useHistory();
   useEffect(() => {
     const unListen = history.listen(() => {
       window.scrollTo(0, 0);

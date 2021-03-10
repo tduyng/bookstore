@@ -1,38 +1,35 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
+import { useHistory, withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import { PATH } from 'src/app/constants/paths.constant';
+import { toggleSideBar } from 'src/app/features/ui/ui.slice';
+import { fetchUser } from 'src/app/features/user/user.actions';
+import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
 import { debounce } from 'src/utils/debounce';
-import { Auth } from '../Auth';
+import { Auth } from '../../Auth';
 
-interface HeaderProps {
-  toggle: () => void;
-  isOpen: boolean;
-}
-export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
-  const [search, setSearch] = useState('');
+const _Header = () => {
+  const dispatch = useAppDispatch();
   const { searchedBooks } = useSelector((state: AppState) => state.book);
   const [activeAccount, setActiveAccount] = useState(false);
-  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const history = useHistory();
+
   const onOpenModal = () => {
-    toggle();
+    setOpen(true);
     setActiveAccount(false);
   };
   const onCloseModal = () => {
-    toggle();
+    setOpen(false);
   };
-  const clearInput = () => {
-    setSearch('');
+  const toggle = () => {
+    dispatch(toggleSideBar());
   };
 
-  const [{ username, thumbnail, cart }] = useState({
-    username: '',
-    thumbnail: '',
-    cart: [],
-  });
-
-  const history = useHistory();
+  const { user, cart, isLoggedIn } = useSelector((state: AppState) => state.user);
 
   const debouncedSearch = useRef(
     debounce(
@@ -50,12 +47,10 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (search) {
-      history.push(`/books/search?q=${search}`);
-      clearInput();
+      history.push(`/books/search?text=${search}`);
+      setSearch('');
     }
   };
-
-  const isLoggedIn = true;
 
   // When click outside, close the account dropdown
   const handleClickAccount = () => {
@@ -69,12 +64,11 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
       !ref.current.contains(e.target)
     ) {
       setActiveAccount(false);
-      console.log('dispatch');
     }
   };
   useEffect(() => {
     document.addEventListener('click', handleClickOutSideAccount);
-    // dispatch(fetchUser());
+    dispatch(fetchUser());
     return () => {
       document.removeEventListener('click', handleClickOutSideAccount);
     };
@@ -87,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
           <i className="fas fa-bars"></i>
         </div>
         <div className="header__user--img-left">
-          {thumbnail ? <img src={`${thumbnail}`} alt="avatar" /> : null}
+          {user?.thumbnail ? <img src={`${user.thumbnail}`} alt="avatar" /> : null}
         </div>
         <div className="header__categories" onClick={toggle}>
           <div className="header__categories--hamburger">
@@ -118,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
                       className="header__form--queried__link"
                       to={`/book/${item._id}`}
                       key={item._id}
-                      onClick={clearInput}
+                      onClick={() => setSearch('')}
                     >
                       <li>
                         <img src={item.imgURL} alt="Book" />
@@ -135,7 +129,7 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
         </div>
         <div className="header__logo">
           <Link to="/">
-            <h1 className="header__logo--content">Bookie</h1>
+            <h1 className="header__logo--content">Bookstore</h1>
           </Link>
         </div>
         <div className="header__user">
@@ -147,9 +141,9 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
               <div className="header__user--cart__quantity">{cart.length}</div>
             ) : null}
           </Link>
-          {thumbnail ? (
+          {user?.thumbnail ? (
             <div className="header__user--img-right">
-              <img src={`${thumbnail}`} alt="avatar" />
+              <img src={`${user.thumbnail}`} alt="avatar" />
             </div>
           ) : null}
 
@@ -169,14 +163,14 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
               <i className="fas fa-caret-down"></i>
             </div>
             <ul className={'header__user--account__dropdown'}>
-              {username ? (
+              {user?.username ? (
                 <>
                   <Link
                     onClick={handleClickAccount}
                     className="header__user--account__dropdown__account"
-                    to="/account"
+                    to={PATH.ACCOUNT}
                   >
-                    <li>My Account ({username})</li>
+                    <li>My Account ({user?.username})</li>
                   </Link>
                   <li>
                     <a href="/auth/logout">Logout</a>
@@ -189,7 +183,9 @@ export const Header: React.FC<HeaderProps> = ({ toggle, isOpen }) => {
           </div>
         </div>
       </div>
-      <Auth open={isOpen} onClose={onCloseModal} />
+      <Auth open={open} onClose={onCloseModal} />
     </header>
   );
 };
+
+export const Header = withRouter(_Header);
