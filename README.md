@@ -1,16 +1,17 @@
 # Bookstore
 
-Create a modern web app with NestJS + MongoDB & ViteJS + React
+Create modern web app with NestJS + MongoDB & ViteJS + React
 
 ## Technologies
 - Crawl data
-  - Using Python + Scrapy
+  - Using Python + Scrapy to crawl books data from other website
 - Backend
   - NodeJs/NestJs TypeScript
   - MongoDB/Mongoose
   - Jest (testing)
 - Front-end
-  - ReactJS + ViteJS
+  - ReactJS
+  - ViteJS (really fast)
   - Redux
   - SCSS
   - Cypress (testing)
