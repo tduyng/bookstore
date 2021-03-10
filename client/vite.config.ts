@@ -19,7 +19,6 @@ const config: UserConfig = {
         target: 'http://localhost:5025',
         changeOrigin: true,
         secure: false,
-        rewrite: path => path.replace(/^\/api/, ''),
       },
     },
   },

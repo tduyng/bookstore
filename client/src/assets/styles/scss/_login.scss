@@ -21,6 +21,7 @@
     // Login Form
     .auth__form {
       grid-column: 1 / -1;
+      min-width: 40rem;
       &--input {
         margin: 1.2vw 0;
         label {
@@ -40,7 +41,7 @@
         border-radius: 1rem;
         color: white;
         cursor: pointer;
-        padding: 0.7vw 1vw;
+        padding: 0.8rem 2rem;
         font-size: calc(1rem + 0.6vw);
         background-color: color(color-green);
       }

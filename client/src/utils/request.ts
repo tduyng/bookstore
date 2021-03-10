@@ -1,12 +1,12 @@
-import Cookies from 'js-cookie';
-import jwt_decode from 'jwt-decode';
 import { SERVER_LINKS } from 'src/app/constants/links.constant';
 
 export class ResponseError extends Error {
   public response: Response;
+  public status: number;
   constructor(response: Response) {
     super(response.statusText);
     this.response = response;
+    this.status = response.status;
   }
 }
 
@@ -22,17 +22,17 @@ function checkStatus(res: Response) {
     return res;
   }
   const error = new ResponseError(res);
-  error.response = res;
   throw error;
 }
 
 export async function request(url: string, options?: RequestInit) {
-  const fetchResponse = await fetch(url, {
-    mode: 'cors',
+  const moreOptions: RequestInit = {
     credentials: 'include',
+    mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
     ...options,
-  });
+  };
+  const fetchResponse = await fetch(url, moreOptions);
 
   const response = checkStatus(fetchResponse);
   return parseJSON(response);
@@ -43,16 +43,10 @@ export interface IAuthToken {
   refreshToken: string;
 }
 export async function requestWithAuth(url: string, options?: RequestInit) {
-  const authCookies = Cookies.get('SESSION_AUTH') || '';
-  const authToken = JSON.parse(authCookies) as IAuthToken;
-
-  if (!authToken) return null;
-  const accessToken = jwt_decode(authToken.accessToken);
-  const refreshToken = jwt_decode(authToken.refreshToken);
-  if (!accessToken && !refreshToken) return null;
-  if (!accessToken && refreshToken) {
-    // Call refresh token
-    await request(SERVER_LINKS.refreshToken, { method: 'POST' });
+  const user = await request(`${SERVER_LINKS.authMe}`);
+  if (!user) {
+    await request(SERVER_LINKS.authRefresh, { method: 'POST' });
   }
+
   return await request(url, options);
 }

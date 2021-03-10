@@ -1,3 +1,5 @@
+const serverBaseUrl = import.meta.env.VITE_SERVER_BASE_URL;
+console.log(serverBaseUrl);
 export const SERVER_LINKS = {
   authRefresh: '/api/auth/refresh', // POST
   authLogin: '/api/auth/login', // POST with body {userOrEmail, password}

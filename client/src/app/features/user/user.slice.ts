@@ -48,8 +48,8 @@ const userSlice = createSlice({
     builder.addCase(login.rejected, (state, action) => {
       state.user = null;
       state.accessToken = '';
-      state.errorMsg = action.payload as string;
       state.successMsg = '';
+      state.errorMsg = action.payload as string;
     });
 
     builder.addCase(fetchUser.fulfilled, (state, action: PayloadAction<IUser>) => {

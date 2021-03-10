@@ -4,7 +4,6 @@ import { request, requestWithAuth } from 'src/utils/request';
 import {
   CartItem,
   CartItemDto,
-  IUser,
   LoginUserDto,
   RegisterUserDto,
   UserActionTypes as Types,
@@ -12,27 +11,50 @@ import {
 
 export const register = createAsyncThunk(
   Types.REGISTER,
-  async (registerInput: RegisterUserDto) => {
-    const emailToken = await request(SERVER_LINKS.authRegister, {
-      method: 'POST',
-      body: JSON.stringify(registerInput),
-    });
-    return emailToken;
+  async (registerInput: RegisterUserDto, { rejectWithValue }) => {
+    try {
+      const emailToken = await request(SERVER_LINKS.authRegister, {
+        method: 'POST',
+        body: JSON.stringify(registerInput),
+      });
+      return emailToken;
+    } catch (error) {
+      console.log('registerError', error);
+      return rejectWithValue(error.message);
+    }
   },
 );
 
-export const fetchUser = createAsyncThunk(Types.FETCH_USER, async () => {
-  const user: IUser = await requestWithAuth(SERVER_LINKS.authMe);
-  return user;
-});
+export const fetchUser = createAsyncThunk(
+  Types.FETCH_USER,
+  async (_, { rejectWithValue }) => {
+    try {
+      return await requestWithAuth(SERVER_LINKS.authMe);
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
-export const login = createAsyncThunk(Types.LOGIN, async (loginInput: LoginUserDto) => {
-  const authToken = await request(SERVER_LINKS.authLogin, {
-    method: 'POST',
-    body: JSON.stringify(loginInput),
-  });
-  return authToken;
-});
+export const login = createAsyncThunk(
+  Types.LOGIN,
+  async (loginInput: LoginUserDto, { rejectWithValue }) => {
+    try {
+      const authToken = await request(SERVER_LINKS.authLogin, {
+        method: 'POST',
+        body: JSON.stringify(loginInput),
+      });
+      return authToken;
+    } catch (error) {
+      switch (error.status) {
+        case '400':
+          return rejectWithValue('Invalid credentials');
+        default:
+          return rejectWithValue(error.message);
+      }
+    }
+  },
+);
 
 export const addToCart = createAsyncThunk(
   Types.ADD_TO_CART,
