@@ -41,7 +41,10 @@ export class AuthController {
 	@Post('login')
 	public async login(@Body() input: LoginUserDto, @Req() req: Request) {
 		const user = await this.authService.validateUser(input);
-		if (!user) throw new BadRequestException('Invalid credentials');
+
+		if (!user) {
+			throw new BadRequestException('Invalid credentials');
+		}
 
 		const { authToken } = await this.authService.generateAuthToken({ user });
 		await this.authService.resetCurrentHashedRefreshToken(
