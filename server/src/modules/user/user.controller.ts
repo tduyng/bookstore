@@ -82,7 +82,7 @@ export class UserController {
 				if (user) {
 					await this.userService.addItemToCart(
 						user.id,
-						{ _id: cartItemDto._id, total: 1 },
+						{ _id: cartItemDto._id, total: cartItemDto.total },
 						true,
 					);
 				}
@@ -92,11 +92,11 @@ export class UserController {
 				const book = await this.bookService.findById(cartItemDto._id);
 				if (book) {
 					const { _id, title, price, old_price } = book;
-					cart.push({ total: 1, _id, title, price, old_price });
+					cart.push({ total: cartItemDto.total, _id, title, price, old_price });
 					if (user) {
 						await this.userService.addItemToCart(
 							user.id,
-							{ _id, total: 1, title, price, old_price },
+							{ _id, total: cartItemDto.total, title, price, old_price },
 							false,
 						);
 					}
