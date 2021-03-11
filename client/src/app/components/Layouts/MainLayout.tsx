@@ -1,32 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from 'src/store/reducers';
-import { NavBar } from './NavBar';
 import { AutoScrollToTop } from './AutoScrollToTop';
-import { Footer } from './Footer';
-import ScrollToTop from './ScrollToTop';
 
-interface MainLayoutProps {
-  hideFooter?: boolean;
-}
+interface MainLayoutProps {}
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ hideFooter, children }) => {
+export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const { sideBar } = useSelector((state: AppState) => state.ui);
   return (
-    <div className="App">
-      <NavBar />
-
-      <main className={`main${!sideBar ? ' center' : ''}`}>
-        <AutoScrollToTop />
-        <>{children}</>
-      </main>
-
-      {hideFooter ? null : <Footer />}
-      <ScrollToTop />
-    </div>
+    <main className={`main${!sideBar ? ' center' : ''}`}>
+      <AutoScrollToTop />
+      <>{children}</>
+    </main>
   );
-};
-
-MainLayout.defaultProps = {
-  hideFooter: false,
 };

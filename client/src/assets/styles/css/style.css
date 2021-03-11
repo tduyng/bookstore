@@ -1785,6 +1785,7 @@
   -ms-grid-rows: (min-content)[4];
       grid-template-rows: repeat(4, -webkit-min-content);
       grid-template-rows: repeat(4, min-content);
+  margin-top: 4rem;
 }
 
 #footer .email {

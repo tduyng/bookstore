@@ -74,10 +74,12 @@ const _Header = () => {
         <div className="header__hamburger" onClick={toggle}>
           <i className="fas fa-bars"></i>
         </div>
-        <div className="header__user--img-left">
-          <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
-          gggg
-        </div>
+        {isLoggedIn && user ? (
+          <div className="header__user--img-left">
+            <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+          </div>
+        ) : null}
+
         <div className="header__categories" onClick={toggle}>
           <div className="header__categories--hamburger">
             <div className="line line-1"></div>
@@ -136,10 +138,11 @@ const _Header = () => {
               <div className="header__user--cart__quantity">{cart.length}</div>
             ) : null}
           </Link>
-
-          <div className="header__user--img-right">
-            <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
-          </div>
+          {isLoggedIn && user ? (
+            <div className="header__user--img-right">
+              <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+            </div>
+          ) : null}
 
           <div
             className={`header__user--account${activeAccount ? ' active' : ''}`}
@@ -147,7 +150,7 @@ const _Header = () => {
             ref={ref}
           >
             <div className="header__user--account__icon">
-              {isLoggedIn ? (
+              {isLoggedIn && user ? (
                 <i className="fas fa-user"></i>
               ) : (
                 <i className="fas fa-sign-in-alt"></i>

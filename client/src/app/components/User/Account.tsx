@@ -58,7 +58,7 @@ export const Account = () => {
 
   return (
     <div className="account">
-      {!isLoggedIn && <Redirect to="/" />}
+      {(!user || !isLoggedIn) && <Redirect to="/" />}
       <h1 className="account__title">My account</h1>
       <div className="account__profile">
         <p className="account__profile--username">Username: {username}</p>
@@ -96,7 +96,9 @@ export const Account = () => {
 
         <form onSubmit={onSubmit}>
           <input type="file" id="file" name="file" accept="image/*" onChange={onChange} />
-          <button type="submit">Upload</button>
+          <button type="submit" className="auth__form--button">
+            Upload
+          </button>
         </form>
         {success && <p className="account__profile--success">{success}</p>}
         {error && <p className="account__profile--error">{error}</p>}
