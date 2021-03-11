@@ -10,7 +10,7 @@ export const BooksGenrePage = () => {
   return (
     <MainLayout>
       <Helmet>
-        <title>Books {book?.genre}</title>
+        <title>{book?.genre}</title>
         <meta name="description" content={book?.genre} />
       </Helmet>
       <BooksGenre />

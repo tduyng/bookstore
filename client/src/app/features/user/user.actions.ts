@@ -4,6 +4,7 @@ import { request, requestWithAuth } from 'src/utils/request';
 import {
   CartItem,
   CartItemDto,
+  IUser,
   LoginUserDto,
   RegisterUserDto,
   UserActionTypes as Types,
@@ -25,16 +26,14 @@ export const register = createAsyncThunk(
   },
 );
 
-export const fetchUser = createAsyncThunk(
-  Types.FETCH_USER,
-  async (_, { rejectWithValue }) => {
-    try {
-      return await requestWithAuth(SERVER_LINKS.authMe);
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  },
-);
+export const fetchUser = createAsyncThunk(Types.FETCH_USER, async () => {
+  try {
+    const user: IUser = (await requestWithAuth(SERVER_LINKS.authMe)) as IUser;
+    return user;
+  } catch (error) {
+    return null;
+  }
+});
 
 export const login = createAsyncThunk(
   Types.LOGIN,

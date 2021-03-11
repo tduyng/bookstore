@@ -23,6 +23,7 @@
   grid-column: col-start 3 / col-end 12;
   grid-template-columns: repeat(4, [col-start] 1fr [col-end]);
   transition: all 0.5s;
+  min-height: 50vh;
 
   @include small-tablet {
     grid-column: col-start 2 / col-end 11;

@@ -27,6 +27,7 @@
       grid-template-columns: repeat(4, [col-start] 1fr [col-end]);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  min-height: 50vh;
 }
 
 @media screen and (max-width: 768px) {

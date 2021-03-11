@@ -10,21 +10,6 @@ export class ResponseError extends Error {
   }
 }
 
-function parseJSON(res: Response) {
-  if (res.status === 204 || res.status === 205) {
-    return null;
-  }
-  return res.json();
-}
-
-function checkStatus(res: Response) {
-  if (res.status >= 200 && res.status < 300) {
-    return res;
-  }
-  const error = new ResponseError(res);
-  throw error;
-}
-
 export async function request(url: string, options?: RequestInit) {
   const moreOptions: RequestInit = {
     credentials: 'include',
@@ -32,10 +17,8 @@ export async function request(url: string, options?: RequestInit) {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   };
-  const fetchResponse = await fetch(url, moreOptions);
-
-  const response = checkStatus(fetchResponse);
-  return parseJSON(response);
+  const res = await fetch(url, moreOptions);
+  return res.json();
 }
 
 export interface IAuthToken {
@@ -47,6 +30,5 @@ export async function requestWithAuth(url: string, options?: RequestInit) {
   if (!user) {
     await request(SERVER_LINKS.authRefresh, { method: 'POST' });
   }
-
   return await request(url, options);
 }

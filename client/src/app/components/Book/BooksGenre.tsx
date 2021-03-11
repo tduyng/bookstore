@@ -28,7 +28,7 @@ export const BooksGenre = () => {
         Array.from(Array(10).keys()).map(n => <SkeletonBook key={n} />)
       ) : (
         <>
-          {status === 'success' && <div className="books__desc">{books[0].genre}</div>}
+          {status === 'success' && <div className="books__desc">{books[0]?.genre}</div>}
           <BooksList
             status={status}
             books={books}

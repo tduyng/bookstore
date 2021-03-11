@@ -13,7 +13,10 @@ export const fetchBooks = createAsyncThunk(
   Types.FETCH_BOOKS,
   async (input: GetBooksByGenreDto, { rejectWithValue }) => {
     try {
-      const { genre, limit, page } = input;
+      const { genre } = input;
+      const limit: number = input.limit || 25;
+      const page: number = input.page || 1;
+
       const data: PaginatedBooks = await request(
         `${SERVER_LINKS.bookGetByGenre}/${genre}?limit=${limit}&p=${page}`,
       );
@@ -53,7 +56,10 @@ export const queryBooks = createAsyncThunk(
   Types.QUERY_BOOKS,
   async (input: PaginationBooksDto, { rejectWithValue }) => {
     try {
-      const { text, limit, page } = input;
+      const { text } = input;
+      const limit: number = input.limit || 25;
+      const page: number = input.page || 1;
+
       const data: PaginatedBooks = await request(
         `${SERVER_LINKS.bookQuery}?text=${text}&limit=${limit}&p=${page}`,
       );

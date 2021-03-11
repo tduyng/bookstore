@@ -10,7 +10,7 @@ export const Checkout = () => {
   return (
     <div className="checkout">
       <h1 className="checkout__title">Cart</h1>
-      {cart && cart.length
+      {cart && cart?.length
         ? cart.map(product => (
             <Product
               _id={product._id}
@@ -23,7 +23,7 @@ export const Checkout = () => {
             />
           ))
         : null}
-      {cart.length ? (
+      {cart?.length ? (
         <div className="checkout__pay">
           <div className="checkout__pay--total">
             <p>Total:</p>

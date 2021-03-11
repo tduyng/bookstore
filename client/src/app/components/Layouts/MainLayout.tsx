@@ -15,10 +15,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ hideFooter, children }) 
   return (
     <div className="App">
       <NavBar />
+
       <main className={`main${!sideBar ? ' center' : ''}`}>
         <AutoScrollToTop />
         <>{children}</>
       </main>
+
       {hideFooter ? null : <Footer />}
       <ScrollToTop />
     </div>
