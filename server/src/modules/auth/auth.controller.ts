@@ -95,10 +95,6 @@ export class AuthController {
 		const newAccessToken = await this.authService.resetAccessToken({ user });
 		const { authToken } = req.session;
 		authToken.accessToken = newAccessToken;
-		await this.authService.resetCurrentHashedRefreshToken(
-			user._id,
-			authToken.refreshToken,
-		);
 		req.session.authToken = authToken;
 
 		return { authToken };
@@ -117,11 +113,6 @@ export class AuthController {
 		const newAccessToken = await this.authService.resetAccessToken({ user });
 		const newAuthToken = req.session.authToken;
 		newAuthToken.accessToken = newAccessToken;
-
-		await this.authService.resetCurrentHashedRefreshToken(
-			user._id,
-			newAuthToken.refreshToken,
-		);
 
 		req.session.authToken = newAuthToken;
 		return { authToken: newAuthToken };
