@@ -1,6 +1,7 @@
 // const serverBaseUrl = import.meta.env.VITE_SERVER_BASE_URL;
 export const SERVER_LINKS = {
   authRefresh: '/api/auth/refresh', // POST
+  authAutoRefresh: 'api/auth/auto-refresh',
   authLogin: '/api/auth/login', // POST with body {userOrEmail, password}
   authRegister: '/api/auth/register', // POST with body {username, email, password}
   authActivate: '/api/auth/activate', //GET with query ?token=

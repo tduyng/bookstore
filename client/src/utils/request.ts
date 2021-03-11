@@ -32,12 +32,8 @@ export async function requestWithAuth(url: string, options?: RequestInit) {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   };
-  const raw = await fetch(`${SERVER_LINKS.authMe}`);
-  // const user = await raw.json();
-  const body: any = raw.body;
-  if (!body?.email) {
-    await fetch(SERVER_LINKS.authRefresh, { method: 'POST' });
-  }
+  await fetch(SERVER_LINKS.authAutoRefresh, { method: 'POST', ...moreOptions });
+
   const data = await fetch(url, moreOptions);
   return await data.json();
 }
