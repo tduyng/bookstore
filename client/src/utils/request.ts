@@ -18,7 +18,7 @@ export async function request(url: string, options?: RequestInit) {
     ...options,
   };
   const res = await fetch(url, moreOptions);
-  return res.json();
+  return await res.json();
 }
 
 export interface IAuthToken {
@@ -26,9 +26,18 @@ export interface IAuthToken {
   refreshToken: string;
 }
 export async function requestWithAuth(url: string, options?: RequestInit) {
-  const user = await request(`${SERVER_LINKS.authMe}`);
-  if (!user) {
-    await request(SERVER_LINKS.authRefresh, { method: 'POST' });
+  const moreOptions: RequestInit = {
+    credentials: 'include',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+    ...options,
+  };
+  const raw = await fetch(`${SERVER_LINKS.authMe}`);
+  // const user = await raw.json();
+  const body: any = raw.body;
+  if (!body?.email) {
+    await fetch(SERVER_LINKS.authRefresh, { method: 'POST' });
   }
-  return await request(url, options);
+  const data = await fetch(url, moreOptions);
+  return await data.json();
 }
