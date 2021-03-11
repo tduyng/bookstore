@@ -22,9 +22,11 @@ export class BookController {
 		if (!limit) {
 			return await this.bookService.findManyByGenre(genre);
 		}
+		const safeLimit = parseInt(limit.toString()) || 25;
+		const safePage = parseInt(p.toString()) || 1;
 		const pagination: PaginationDto = {
-			limit,
-			page: p || 1,
+			limit: safeLimit,
+			page: safePage,
 		};
 		return await this.bookService.findManyByGenre(genre, pagination);
 	}
@@ -43,9 +45,11 @@ export class BookController {
 		if (!limit) {
 			return await this.bookService.queryBooks(text);
 		}
+		const safeLimit = parseInt(limit.toString()) || 25;
+		const safePage = parseInt(p.toString()) || 1;
 		const pagination: PaginationDto = {
-			limit,
-			page: p || 1,
+			limit: safeLimit,
+			page: safePage,
 		};
 		return await this.bookService.queryBooks(text, pagination);
 	}

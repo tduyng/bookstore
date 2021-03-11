@@ -44,6 +44,15 @@ export class AuthService {
 		return user;
 	}
 
+	public async getUserFromToken(token: string): Promise<User | null> {
+		const decoded: DataStoredFromToken = await this.jwtService.verifyAsync(token);
+		const { user } = decoded;
+		if (!user) return null;
+		const realUser: User = await this.userModel.findOne({ email: user.email }).lean();
+		if (!realUser) return null;
+		return realUser;
+	}
+
 	public async register(input: RegisterUserDto): Promise<{ token: string }> {
 		// just send token to email
 		const payload: PayloadUserForJwtToken = {
@@ -58,6 +67,7 @@ export class AuthService {
 	}
 
 	public async activateAccount(token: string): Promise<User> {
+		if (!token) return null;
 		const decoded: DataStoredFromToken = await this.jwtService.verifyAsync(token);
 		if (!decoded || !decoded.user) return null;
 		const { user } = decoded;

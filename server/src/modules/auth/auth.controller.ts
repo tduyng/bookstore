@@ -14,7 +14,6 @@ import { ApiTags } from '@nestjs/swagger';
 import { JwtAuth, JwtRefreshTokenGuard } from './guards';
 import { Request } from 'express';
 import { AuthService } from './services/auth.service';
-import { UserService } from '@modules/user/user.service';
 import { UserFromRequest } from 'src/common/types';
 import {
 	LoginUserDto,
@@ -27,14 +26,13 @@ import { SESSION_AUTH_KEY } from 'src/common/config/session.config';
 @Controller('auth')
 @ApiTags('Auth')
 export class AuthController {
-	constructor(private authService: AuthService, private userService: UserService) {}
+	constructor(private authService: AuthService) {}
 
-	@JwtAuth()
 	@Get()
 	public async me(@Req() req: Request) {
-		const userFromRequest: UserFromRequest = req.user;
-
-		const user = await this.userService.findOne({ email: userFromRequest.email });
+		const token = req?.session?.authToken?.accessToken;
+		if (!token) return null;
+		const user = await this.authService.getUserFromToken(token);
 		return user;
 	}
 

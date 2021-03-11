@@ -2,6 +2,7 @@ import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
 import { CartItemDto } from '../dto/cart-item.dto';
+import { CartItem } from '../types/user.types';
 import { User } from '../user.schema';
 import { UserService } from '../user.service';
 
@@ -20,7 +21,7 @@ const oneUser = {
 	],
 } as User;
 
-const cartItemDto = { _id: 'some-book-id', total: 1 } as CartItemDto;
+const cartItemDto = { bookId: 'some-book-id', total: 1 } as CartItemDto;
 
 describe('UserService', () => {
 	let userService: UserService;
@@ -82,14 +83,22 @@ describe('UserService', () => {
 			userModel.findOneAndUpdate.mockImplementationOnce(() => ({
 				lean: jest.fn().mockReturnValue(oneUser),
 			}));
-			const result = await userService.addItemToCart('some-id', cartItemDto);
+			const cartItem: CartItem = {
+				_id: cartItemDto.bookId,
+				total: 1,
+			};
+			const result = await userService.addItemToCart('some-id', cartItem);
 			expect(result).toEqual(oneUser);
 		});
 		it('Should update total of cart item successfully when item already exists', async () => {
 			userModel.findOneAndUpdate.mockImplementationOnce(() => ({
 				lean: jest.fn().mockReturnValue(oneUser),
 			}));
-			const result = await userService.addItemToCart('some-id', cartItemDto, true);
+			const cartItem: CartItem = {
+				_id: cartItemDto.bookId,
+				total: 1,
+			};
+			const result = await userService.addItemToCart('some-id', cartItem, true);
 			expect(result).toEqual(oneUser);
 		});
 	});
