@@ -12,7 +12,7 @@ import { PasswordService } from '../services/password.service';
 
 describe('AuthService', () => {
 	let authService: AuthService;
-	let passwordService: PasswordService;
+	let passwordService: any;
 
 	let jwtService: any;
 	let userModel: any;
@@ -37,6 +37,11 @@ describe('AuthService', () => {
 		verifyAsync: jest.fn(),
 	});
 
+	const mockPasswordService = () => ({
+		hash: jest.fn(),
+		verify: jest.fn(),
+	});
+
 	beforeAll(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			providers: [
@@ -46,6 +51,10 @@ describe('AuthService', () => {
 				{ provide: getModelToken(User.name), useFactory: mockUserModel },
 				{ provide: EmailService, useFactory: mockEmailService },
 				{ provide: JwtService, useFactory: mockJwtService },
+				{
+					provide: PasswordService,
+					useFactory: mockPasswordService,
+				},
 			],
 		}).compile();
 
@@ -82,6 +91,7 @@ describe('AuthService', () => {
 					.fn()
 					.mockImplementationOnce(() => ({ lean: jest.fn().mockReturnValue(mockUser) })),
 			}));
+			passwordService.verify.mockReturnValue(true);
 			const user = await authService.validateUser(loginInput);
 			expect(user).toEqual(mockUser);
 		});
@@ -96,6 +106,7 @@ describe('AuthService', () => {
 					.fn()
 					.mockImplementationOnce(() => ({ lean: jest.fn().mockReturnValue(mockUser) })),
 			}));
+			passwordService.verify.mockReturnValue(true);
 			const user = await authService.validateUser(loginInput);
 			expect(user).toEqual(mockUser);
 		});
@@ -110,6 +121,7 @@ describe('AuthService', () => {
 					.fn()
 					.mockImplementationOnce(() => ({ lean: jest.fn().mockReturnValue(mockUser) })),
 			}));
+			passwordService.verify.mockReturnValue(false);
 			const user = await authService.validateUser(loginInput);
 			expect(user).toBe(null);
 		});
@@ -257,6 +269,67 @@ describe('AuthService', () => {
 					'some-refresh-token-jwt',
 				);
 				expect(result).toEqual(oneUser);
+			});
+		});
+
+		describe('getUserFromToken', () => {
+			it('Should return null for invalid token', async () => {
+				jwtService.verifyAsync.mockReturnValue(null);
+				const result = await authService.getUserFromToken('some-token');
+				expect(result).toBe(null);
+			});
+			it('Should return null for invalid email in token', async () => {
+				jwtService.verifyAsync.mockReturnValue({
+					user: { email: 'some-email-not-exists@email.com' },
+				});
+				userModel.findOne.mockImplementationOnce(() => ({
+					lean: jest.fn().mockReturnValue(null),
+				}));
+				const result = await authService.getUserFromToken('some-token');
+				expect(result).toBe(null);
+			});
+
+			it('Should return an user', async () => {
+				const mockUser = { email: 'some-email-exists@email.com' } as User;
+				jwtService.verifyAsync.mockReturnValue({
+					user: mockUser,
+				});
+				userModel.findOne.mockImplementationOnce(() => ({
+					lean: jest.fn().mockReturnValue(mockUser),
+				}));
+				const result = await authService.getUserFromToken('some-token');
+				expect(result).toEqual(mockUser);
+			});
+		});
+
+		describe('getUserFromRefreshToken', () => {
+			let loginInput: LoginUserDto;
+			let hash: string;
+			let mockUser: User;
+			beforeAll(async () => {
+				loginInput = {
+					usernameOrEmail: 'some-email@email.com',
+					password: '123456',
+				};
+				hash = await passwordService.hash(loginInput.password);
+				mockUser = {
+					username: 'some-username',
+					email: 'some-email@email.com',
+					password: hash,
+				} as User;
+			});
+			it('Should return an user', async () => {
+				jwtService.verifyAsync.mockReturnValue({
+					user: mockUser,
+				});
+				userModel.findOne.mockImplementationOnce(() => ({
+					select: jest.fn().mockImplementationOnce(() => ({
+						lean: jest.fn().mockReturnValue(mockUser),
+					})),
+				}));
+				passwordService.verify.mockReturnValue(true);
+				const result = await authService.getUserFromRefreshToken('some-token');
+				expect(result).toEqual(mockUser);
 			});
 		});
 	});

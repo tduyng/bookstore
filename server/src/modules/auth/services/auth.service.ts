@@ -47,8 +47,8 @@ export class AuthService {
 
 	public async getUserFromToken(token: string): Promise<User | null> {
 		const decoded: DataStoredFromToken = await this.jwtService.verifyAsync(token);
+		if (!decoded || !decoded?.user) return null;
 		const { user } = decoded;
-		if (!user) return null;
 		const realUser: User = await this.userModel.findOne({ email: user.email }).lean();
 		if (!realUser) return null;
 		return realUser;
@@ -58,7 +58,7 @@ export class AuthService {
 		if (!refreshToken) return null;
 		const decoded: DataStoredFromToken = await this.jwtService.verifyAsync(refreshToken);
 		const userReq: UserFromRequest = decoded.user;
-		if (!userReq) return null;
+		if (!decoded || !userReq) return null;
 		const user: User = await this.userModel
 			.findOne({ email: userReq.email })
 			.select('+currentHashedRefreshToken')
