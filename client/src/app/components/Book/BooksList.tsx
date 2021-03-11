@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IBook } from 'src/app/features/book/book.types';
 import LazyLoad from 'react-lazyload';
-import SkeletonBook from '../skeleton/SkeletonBook';
+import SkeletonBook from '../Skeletons/SkeletonBook';
 import { Book } from './Book';
 import { Pagination } from './Pagination';
 

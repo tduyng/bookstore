@@ -8,7 +8,7 @@ import { IBook } from 'src/app/features/book/book.types';
 import { addToCart } from 'src/app/features/user/user.actions';
 import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
-import SkeletonBook from '../skeleton/SkeletonBook';
+import SkeletonBook from '../Skeletons/SkeletonBook';
 import { Book } from './Book';
 import noImage from '/no-image.png';
 interface ArrowProps {

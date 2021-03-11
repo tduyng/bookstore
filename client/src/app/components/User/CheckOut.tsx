@@ -10,10 +10,14 @@ export const Checkout = () => {
   const [totalCheckout, setTotalCheckout] = useState(0);
 
   const getTotal = (cart: CartItem[]) => {
-    const total: number = cart.reduce(
-      (sum, current) => sum + current.total * (current.price ? current.price * 1000 : 0),
-      0,
-    );
+    let total = 0;
+    if (cart?.length > 0) {
+      total = cart.reduce(
+        (sum, current) =>
+          sum + current.total * (current.price ? current.price * 1000 : 0),
+        0,
+      );
+    }
     return total;
   };
 

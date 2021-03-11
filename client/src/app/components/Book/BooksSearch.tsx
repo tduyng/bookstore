@@ -4,7 +4,7 @@ import { queryBooks } from 'src/app/features/book/book.actions';
 import { useQueryUrl } from 'src/app/hooks/useQueryUrl';
 import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
-import SkeletonBook from '../skeleton/SkeletonBook';
+import SkeletonBook from '../Skeletons/SkeletonBook';
 import { BooksList } from './BooksList';
 
 export const BookSearch = () => {

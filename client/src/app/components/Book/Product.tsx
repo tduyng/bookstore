@@ -55,7 +55,6 @@ export const Product: React.FC<CartItem> = props => {
       return;
     }
     dispatch(updateCart({ _id, total: amount })).then(unwrapResult => {
-      console.log(unwrapResult.payload);
       if (unwrapResult.meta.requestStatus === 'fulfilled') {
         toast.success('Update cart');
       }
