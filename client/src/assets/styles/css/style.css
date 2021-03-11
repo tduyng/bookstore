@@ -1785,7 +1785,7 @@
   -ms-grid-rows: (min-content)[4];
       grid-template-rows: repeat(4, -webkit-min-content);
       grid-template-rows: repeat(4, min-content);
-  margin-top: 4rem;
+  padding-top: 6rem;
 }
 
 #footer .email {
@@ -3281,6 +3281,7 @@
   border-radius: 2rem;
   background-color: #0ab3a3;
   padding: 0.7rem 2rem;
+  cursor: pointer;
 }
 
 .not-found__link:hover {

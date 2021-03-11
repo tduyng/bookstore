@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import Slider from 'react-slick';
 import { fetchBookById, fetchBooks } from 'src/app/features/book/book.actions';
 import { IBook } from 'src/app/features/book/book.types';
 import { addToCart } from 'src/app/features/user/user.actions';
+import { NotFoundPage } from 'src/app/pages/NotFoundPage/Loadable';
 import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
 import SkeletonBook from '../skeleton/SkeletonBook';
@@ -77,6 +78,8 @@ export const BookDetail = () => {
   const { book, status, message, books } = useSelector((state: AppState) => state.book);
   const [amount, setAmount] = useState(1);
   const [btnText, setBtnText] = useState('Add to Cart');
+  const [foundBook, setFoundBook] = useState(false);
+  const history = useHistory();
 
   const handleAddToCart = (id: string, amount: number) => {
     setBtnText('Adding...');
@@ -101,14 +104,33 @@ export const BookDetail = () => {
   useEffect(() => {
     dispatch(fetchBookById(id)).then(result => {
       if (result.meta.requestStatus === 'fulfilled') {
+        setFoundBook(true);
         const bookFound = result.payload as IBook;
         const genre = (bookFound ? bookFound.genre : '') as string;
         const limit = 25;
         const p = 1;
         dispatch(fetchBooks({ genre, limit, page: p }));
+      } else {
+        setFoundBook(false);
       }
     });
-  }, [id, dispatch]);
+  }, [id, dispatch, foundBook, setFoundBook]);
+
+  if (!foundBook) {
+    return (
+      <div className="book-detail__wrapper">
+        <div className="book-detail">
+          <div className="not-found">
+            <h1>Sorry</h1>
+            <p>That page can't be found</p>
+            <a className="not-found__link" onClick={() => history.goBack()}>
+              Go back
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="book-detail__wrapper">
