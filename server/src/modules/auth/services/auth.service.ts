@@ -5,6 +5,7 @@ import {
 	DataStoredFromToken,
 	PayloadUserForJwtToken,
 	SessionAuthToken,
+	UserFromRequest,
 } from 'src/common/types';
 import { LoginUserDto, RegisterUserDto, ResetPasswordDto } from '../dto';
 import { JwtService } from '@nestjs/jwt';
@@ -51,6 +52,25 @@ export class AuthService {
 		const realUser: User = await this.userModel.findOne({ email: user.email }).lean();
 		if (!realUser) return null;
 		return realUser;
+	}
+
+	public async getUserFromRefreshToken(refreshToken: string): Promise<User | null> {
+		if (!refreshToken) return null;
+		const decoded: DataStoredFromToken = await this.jwtService.verifyAsync(refreshToken);
+		const userReq: UserFromRequest = decoded.user;
+		if (!userReq) return null;
+		const user: User = await this.userModel
+			.findOne({ email: userReq.email })
+			.select('+currentHashedRefreshToken')
+			.lean();
+		if (!user) return null;
+		const isRefreshTokenMatching = await this.passwordService.verify(
+			user.currentHashedRefreshToken,
+			refreshToken,
+		);
+
+		if (!isRefreshTokenMatching) return null;
+		return user;
 	}
 
 	public async register(input: RegisterUserDto): Promise<{ token: string }> {

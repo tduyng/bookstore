@@ -14,7 +14,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { JwtAuth, JwtRefreshTokenGuard } from './guards';
 import { Request } from 'express';
 import { AuthService } from './services/auth.service';
-import { UserFromRequest } from 'src/common/types';
+import { SessionAuthToken, UserFromRequest } from 'src/common/types';
 import {
 	LoginUserDto,
 	RegisterUserDto,
@@ -95,8 +95,36 @@ export class AuthController {
 		const newAccessToken = await this.authService.resetAccessToken({ user });
 		const { authToken } = req.session;
 		authToken.accessToken = newAccessToken;
+		await this.authService.resetCurrentHashedRefreshToken(
+			user._id,
+			authToken.refreshToken,
+		);
 		req.session.authToken = authToken;
+
 		return { authToken };
+	}
+
+	// Using for auto refresh token with fetch API
+	@Post('auto-refresh')
+	public async autoRefreshToken(@Req() req: Request): Promise<SessionAuthToken | null> {
+		const authToken = req?.session?.authToken;
+		if (!authToken || !authToken?.accessToken || !authToken?.refreshToken) return null;
+		const { accessToken, refreshToken } = authToken;
+		const user = await this.authService.getUserFromToken(accessToken);
+		const moreCheck = await this.authService.getUserFromRefreshToken(refreshToken);
+		if (!user || !moreCheck) return null;
+
+		const newAccessToken = await this.authService.resetAccessToken({ user });
+		const newAuthToken = req.session.authToken;
+		newAuthToken.accessToken = newAccessToken;
+
+		await this.authService.resetCurrentHashedRefreshToken(
+			user._id,
+			newAuthToken.refreshToken,
+		);
+
+		req.session.authToken = newAuthToken;
+		return { authToken: newAuthToken };
 	}
 
 	@Post('forgot-password')

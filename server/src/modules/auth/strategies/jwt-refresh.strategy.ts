@@ -1,23 +1,17 @@
 import { User } from '@modules/user/user.schema';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
+import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
-import { Model } from 'mongoose';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { envConfig } from 'src/common/config/env.config';
-import { PayloadUserForJwtToken } from 'src/common/types';
-import { PasswordService } from '../services/password.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(
 	Strategy,
 	'jwt-refresh-token',
 ) {
-	constructor(
-		@InjectModel(User.name) private userModel: Model<User>,
-		private passwordService: PasswordService,
-	) {
+	constructor(private authService: AuthService) {
 		super({
 			jwtFromRequest: ExtractJwt.fromExtractors([
 				(req: Request) => req?.session?.authToken?.refreshToken,
@@ -27,20 +21,10 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(
 			passReqToCallback: true,
 		});
 	}
-	async validate(req: Request, payload: PayloadUserForJwtToken): Promise<User> {
-		const user: User = await this.userModel
-			.findOne({ email: payload.user.email })
-			.select('+currentHashedRefreshToken')
-			.lean();
-		if (!user) throw new UnauthorizedException('User not found');
+	async validate(req: Request): Promise<User> {
 		const refreshToken = req?.session?.authToken?.refreshToken;
-		const isRefreshTokenMatching = await this.passwordService.verify(
-			user.currentHashedRefreshToken,
-			refreshToken,
-		);
-
-		if (!isRefreshTokenMatching)
-			throw new UnauthorizedException('Refresh token not match!');
+		if (!refreshToken) return null;
+		const user = await this.authService.getUserFromRefreshToken(refreshToken);
 		return user;
 	}
 }
