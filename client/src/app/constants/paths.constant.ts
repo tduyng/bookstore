@@ -3,10 +3,11 @@ export const PATH = {
   LOGIN: '/login',
   REGISTER: '/signup',
   ACCOUNT: '/account',
-  BOOK_SEARCH: 'books/search', //\?text=
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
   CART: '/cart',
   CHECKOUT: '/checkout',
   BOOK_DETAIL: '/book', // with  param /:id
+  BOOKS_SEARCH: 'books/search', //\?text=,
+  BOOKS_GENRE: 'books/genre', // with param /:genre
 };
