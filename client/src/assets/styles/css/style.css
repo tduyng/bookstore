@@ -2702,6 +2702,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-height: 90vh;
 }
 
 @media screen and (max-width: 768px) {
@@ -2918,6 +2919,7 @@
 }
 
 .payment {
+  min-height: 90vh;
   grid-column: 1 / -1;
 }
 

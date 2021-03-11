@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { removeFromCart } from 'src/app/features/user/user.actions';
+import { removeFromCart, updateCart } from 'src/app/features/user/user.actions';
 import { CartItem } from 'src/app/features/user/user.types';
 import { useAppDispatch } from 'src/store';
 import noImage from '/no-image.png';
 
 export const Product: React.FC<CartItem> = props => {
   const dispatch = useAppDispatch();
-  const id = props._id as string;
+  const _id = props._id as string;
   const [inpValue, setInpValue] = useState(props.total || 1);
   const [amount, setAmount] = useState(props.total || 1);
 
@@ -48,10 +48,24 @@ export const Product: React.FC<CartItem> = props => {
     });
   };
 
+  const loaded: any = useRef(true);
+  useEffect(() => {
+    if (loaded.current) {
+      loaded.current = false;
+      return;
+    }
+    dispatch(updateCart({ _id, total: amount })).then(unwrapResult => {
+      console.log(unwrapResult.payload);
+      if (unwrapResult.meta.requestStatus === 'fulfilled') {
+        toast.success('Update cart');
+      }
+    });
+  }, [dispatch, _id, amount]);
+
   return (
     <div className="checkout__product">
-      <i className="fas fa-times" onClick={() => deleteProduct(id)}></i>
-      <Link to={`/book/${id}`} className="checkout__product--img">
+      <i className="fas fa-times" onClick={() => deleteProduct(_id)}></i>
+      <Link to={`/book/${_id}`} className="checkout__product--img">
         <img src={props.imgURL || noImage} alt="Product" />
       </Link>
       <div className="checkout__product--detail">

@@ -6,7 +6,6 @@ import Slider from 'react-slick';
 import { fetchBookById, fetchBooks } from 'src/app/features/book/book.actions';
 import { IBook } from 'src/app/features/book/book.types';
 import { addToCart } from 'src/app/features/user/user.actions';
-import { NotFoundPage } from 'src/app/pages/NotFoundPage/Loadable';
 import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
 import SkeletonBook from '../skeleton/SkeletonBook';
@@ -101,19 +100,25 @@ export const BookDetail = () => {
     }
   };
 
+  // Handle Clean up useEffect
   useEffect(() => {
-    dispatch(fetchBookById(id)).then(result => {
-      if (result.meta.requestStatus === 'fulfilled') {
-        setFoundBook(true);
-        const bookFound = result.payload as IBook;
-        const genre = (bookFound ? bookFound.genre : '') as string;
-        const limit = 25;
-        const p = 1;
-        dispatch(fetchBooks({ genre, limit, page: p }));
-      } else {
-        setFoundBook(false);
-      }
-    });
+    const abortController = new AbortController();
+    const runAsync = async () => {
+      dispatch(fetchBookById(id)).then(result => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          setFoundBook(true);
+          const bookFound = result.payload as IBook;
+          const genre = (bookFound ? bookFound.genre : '') as string;
+          const limit = 25;
+          const p = 1;
+          dispatch(fetchBooks({ genre, limit, page: p }));
+        } else {
+          setFoundBook(false);
+        }
+      });
+    };
+    runAsync();
+    return () => abortController.abort();
   }, [id, dispatch, foundBook, setFoundBook]);
 
   if (!foundBook) {
@@ -121,8 +126,8 @@ export const BookDetail = () => {
       <div className="book-detail__wrapper">
         <div className="book-detail">
           <div className="not-found">
-            <h1>Sorry</h1>
-            <p>That page can't be found</p>
+            <h1>Sorry for this inconvenient</h1>
+            <p>This book is not available in our stock anymore!</p>
             <a className="not-found__link" onClick={() => history.goBack()}>
               Go back
             </a>

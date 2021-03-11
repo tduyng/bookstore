@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { CartItem } from 'src/app/features/user/user.types';
 import { AppState } from 'src/store/reducers';
 import { Product } from '../Book/Product';
 
 export const Checkout = () => {
   const { cart } = useSelector((state: AppState) => state.user);
+  const [totalCheckout, setTotalCheckout] = useState(0);
+
+  const getTotal = (cart: CartItem[]) => {
+    const total: number = cart.reduce(
+      (sum, current) => sum + current.total * (current.price ? current.price * 1000 : 0),
+      0,
+    );
+    return total;
+  };
+
+  useEffect(() => {
+    setTotalCheckout(getTotal(cart));
+  }, [cart, totalCheckout, setTotalCheckout]);
 
   return (
     <div className="checkout">
@@ -28,16 +42,10 @@ export const Checkout = () => {
           <div className="checkout__pay--total">
             <p>Total:</p>
             <div>
-              {cart
-                .reduce(
-                  (sum, current) =>
-                    sum + current.total * (current.price ? current.price * 1000 : 0),
-                  0,
-                )
-                .toLocaleString('vi-VN', {
-                  style: 'currency',
-                  currency: 'VND',
-                })}
+              {totalCheckout.toLocaleString('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+              })}
             </div>
           </div>
 
