@@ -75,7 +75,9 @@ export class UserController {
 			// If belongs to cart, we will update amount of item + 1 in cart
 			if (indexItem >= 0) {
 				cart = cart.map((item) =>
-					item._id == cartItemDto._id ? { ...item, total: item.total + 1 } : item,
+					item._id == cartItemDto._id
+						? { ...item, total: item.total + cartItemDto.total }
+						: item,
 				);
 				if (user) {
 					await this.userService.addItemToCart(
