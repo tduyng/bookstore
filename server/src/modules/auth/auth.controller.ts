@@ -105,11 +105,17 @@ export class AuthController {
 	public async autoRefreshToken(@Req() req: Request): Promise<SessionAuthToken | null> {
 		const authToken = req?.session?.authToken;
 		if (!authToken || !authToken?.accessToken || !authToken?.refreshToken) return null;
+
 		const { accessToken, refreshToken } = authToken;
 		const user = await this.authService.getUserFromToken(accessToken);
+		// Check if accessToken still valid, no need refresh token
+		if (user) return { authToken };
 		const moreCheck = await this.authService.getUserFromRefreshToken(refreshToken);
-		if (!user || !moreCheck) return null;
 
+		// If refresh token is not valid, return null
+		if (!moreCheck) return null;
+
+		// Auto refresh, generate new accessToken
 		const newAccessToken = await this.authService.resetAccessToken({ user });
 		const newAuthToken = req.session.authToken;
 		newAuthToken.accessToken = newAccessToken;
