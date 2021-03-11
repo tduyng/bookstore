@@ -2921,6 +2921,7 @@
 .payment {
   min-height: 90vh;
   grid-column: 1 / -1;
+  padding-bottom: 6rem;
 }
 
 .payment h1 {

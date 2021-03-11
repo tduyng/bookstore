@@ -10,6 +10,22 @@ export class ResponseError extends Error {
   }
 }
 
+function parseJSON(res: Response) {
+  if (res.status === 204 || res.status === 205) {
+    return null;
+  }
+  return res.json();
+}
+
+function checkStatus(res: Response) {
+  if (res.status >= 200 && res.status < 300) {
+    return res;
+  }
+  const error = new ResponseError(res);
+  error.response = res;
+  throw error;
+}
+
 export async function request(url: string, options?: RequestInit) {
   const moreOptions: RequestInit = {
     credentials: 'include',
@@ -17,8 +33,9 @@ export async function request(url: string, options?: RequestInit) {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   };
-  const res = await fetch(url, moreOptions);
-  return await res.json();
+  const fetchResponse = await fetch(url, moreOptions);
+  const response = checkStatus(fetchResponse);
+  return parseJSON(response);
 }
 
 export interface IAuthToken {
@@ -34,6 +51,7 @@ export async function requestWithAuth(url: string, options?: RequestInit) {
   };
   await fetch(SERVER_LINKS.authAutoRefresh, { method: 'POST', ...moreOptions });
 
-  const data = await fetch(url, moreOptions);
-  return await data.json();
+  const fetchResponse = await fetch(url, moreOptions);
+  const response = checkStatus(fetchResponse);
+  return parseJSON(response);
 }

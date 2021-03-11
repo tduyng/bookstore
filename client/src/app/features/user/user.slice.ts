@@ -71,8 +71,16 @@ const userSlice = createSlice({
     builder.addCase(addToCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
       state.cart = action.payload;
     });
+
+    builder.addCase(addToCart.rejected, (state, action) => {
+      state.errorMsg = action.payload as string;
+    });
     builder.addCase(updateCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
       state.cart = action.payload;
+    });
+
+    builder.addCase(updateCart.rejected, (state, action) => {
+      state.errorMsg = action.payload as string;
     });
     builder.addCase(
       removeFromCart.fulfilled,
@@ -80,6 +88,11 @@ const userSlice = createSlice({
         state.cart = action.payload;
       },
     );
+
+    builder.addCase(removeFromCart.rejected, (state, action) => {
+      state.errorMsg = action.payload as string;
+    });
+
     builder.addCase(removeAllFromCart.fulfilled, state => {
       state.cart = [];
     });

@@ -61,12 +61,16 @@ export const logout = createAsyncThunk(Types.LOGOUT, async () => {
 
 export const addToCart = createAsyncThunk(
   Types.ADD_TO_CART,
-  async (item: CartItemDto) => {
-    const cart: CartItem[] = await requestWithAuth(SERVER_LINKS.userAddToCart, {
-      method: 'POST',
-      body: JSON.stringify(item),
-    });
-    return cart;
+  async (item: CartItemDto, { rejectWithValue }) => {
+    try {
+      const cart: CartItem[] = await requestWithAuth(SERVER_LINKS.userAddToCart, {
+        method: 'POST',
+        body: JSON.stringify(item),
+      });
+      return cart;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   },
 );
 

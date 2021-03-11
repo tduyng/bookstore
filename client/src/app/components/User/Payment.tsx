@@ -11,8 +11,8 @@ export const Payment = () => {
   const { cart } = useSelector((state: AppState) => state.user);
   const userAuth = useSelector((state: AppState) => state.user.user) as IUser;
   const [user, setUser] = useState({
-    name: userAuth.username || '',
-    email: userAuth.email || '',
+    name: userAuth?.username || '',
+    email: userAuth?.email || '',
     phone: '',
     country: '',
     region: '',
