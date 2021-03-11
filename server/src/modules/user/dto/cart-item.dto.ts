@@ -1,4 +1,11 @@
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+
 export class CartItemDto {
-	bookId: string;
+	@IsString()
+	@IsNotEmpty()
+	_id: string;
+
+	@IsNumber()
+	@IsOptional()
 	total?: number;
 }

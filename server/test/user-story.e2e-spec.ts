@@ -84,17 +84,22 @@ describe('UserStory (User-Auth-Book) (e2e)', () => {
 		it('(POST) /users/purchase', async () => {
 			const data = await agent
 				.post(`/users/purchase`)
-				.send({ bookId: oneBook?._id })
+				.send({ _id: oneBook?._id })
 				.expect(201);
 			expect(data.body).toBeDefined();
 			expect(Array.isArray(data.body)).toBe(true);
 			const cart = JSON.parse(JSON.stringify(data.body));
 			expect(cart.some((book) => book._id == oneBook?._id)).toBe(true);
 		});
+
 		it('(POST) /users/update-cart-item', async () => {
+			// Add an item to cart first
+			await agent.post(`/users/purchase`).send({ _id: oneBook?._id }).expect(201);
+
+			// Update cart
 			const data = await agent
 				.post(`/users/update-cart-item`)
-				.send({ bookId: oneBook._id, total: 5 })
+				.send({ _id: oneBook._id, total: 5 })
 				.expect(201);
 			expect(data.body).toBeDefined();
 			expect(Array.isArray(data.body)).toBe(true);
@@ -107,7 +112,7 @@ describe('UserStory (User-Auth-Book) (e2e)', () => {
 		it('(POST) /users/remove-cart-item', async () => {
 			const data = await agent
 				.post(`/users/update-cart-item`)
-				.send({ bookId: oneBook._id })
+				.send({ _id: oneBook._id })
 				.expect(201);
 			expect(data.body).toBeDefined();
 			expect(Array.isArray(data.body)).toBe(true);
@@ -117,10 +122,6 @@ describe('UserStory (User-Auth-Book) (e2e)', () => {
 	describe('Without Auth', () => {
 		beforeAll(async () => {
 			agent = request.agent(app.getHttpServer());
-		});
-
-		it('(GET) /auth', async () => {
-			await agent.get('/auth').expect(401);
 		});
 
 		it('(GET) /books/book/:id', async () => {

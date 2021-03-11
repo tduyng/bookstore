@@ -21,7 +21,7 @@ const oneUser = {
 	],
 } as User;
 
-const cartItemDto = { bookId: 'some-book-id', total: 1 } as CartItemDto;
+const cartItemDto = { _id: 'some-book-id', total: 1 } as CartItemDto;
 
 describe('UserService', () => {
 	let userService: UserService;
@@ -84,7 +84,7 @@ describe('UserService', () => {
 				lean: jest.fn().mockReturnValue(oneUser),
 			}));
 			const cartItem: CartItem = {
-				_id: cartItemDto.bookId,
+				_id: cartItemDto._id,
 				total: 1,
 			};
 			const result = await userService.addItemToCart('some-id', cartItem);
@@ -95,7 +95,7 @@ describe('UserService', () => {
 				lean: jest.fn().mockReturnValue(oneUser),
 			}));
 			const cartItem: CartItem = {
-				_id: cartItemDto.bookId,
+				_id: cartItemDto._id,
 				total: 1,
 			};
 			const result = await userService.addItemToCart('some-id', cartItem, true);

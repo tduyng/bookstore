@@ -1,5 +1,5 @@
 import { BookService } from '@modules/book/book.service';
-import { Body, Controller, HttpException, Post, Req } from '@nestjs/common';
+import { Body, Controller, HttpException, Logger, Post, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { UserFromRequest } from 'src/common/types';
@@ -14,7 +14,7 @@ export class UserController {
 
 	@Post('update-cart-item')
 	public async updateAmountCartItem(@Body() cartItem: CartItemDto, @Req() req: Request) {
-		const { bookId } = cartItem;
+		const { _id } = cartItem;
 		const user: UserFromRequest = req.user;
 		try {
 			const cartCookies = req.session?.cart;
@@ -22,7 +22,7 @@ export class UserController {
 			if (cartCookies) cart = JSON.parse(cartCookies);
 
 			cart = cart.map((item) =>
-				item._id == bookId ? { ...item, total: cartItem.total } : item,
+				item._id == _id ? { ...item, total: cartItem.total } : item,
 			);
 
 			req.session.cart = JSON.stringify(cart);
@@ -39,15 +39,15 @@ export class UserController {
 	@Post('remove-cart-item')
 	public async removeFromCart(@Body() cartItemDto: CartItemDto, @Req() req: Request) {
 		const user: UserFromRequest = req.user;
-		const { bookId } = cartItemDto;
+		const { _id } = cartItemDto;
 		const cartCookies = req.session?.cart;
 		let cart: CartItem[] = [];
 		if (cartCookies) cart = JSON.parse(cartCookies);
 
-		const updatedCart = cart.filter((item) => item._id != bookId);
+		const updatedCart = cart.filter((item) => item._id != _id);
 		req.session.cart = JSON.stringify(updatedCart);
 		if (user) {
-			await this.userService.removeCartItem(user._id, bookId);
+			await this.userService.removeCartItem(user._id, _id);
 		}
 		return updatedCart;
 	}
@@ -65,30 +65,45 @@ export class UserController {
 	@Post('purchase')
 	public async addToCart(@Body() cartItemDto: CartItemDto, @Req() req: Request) {
 		const cartCookies = req.session?.cart;
-		const { bookId } = cartItemDto;
 		let cart: CartItem[] = [];
 		if (cartCookies) cart = JSON.parse(cartCookies);
 
-		const indexItem = cart.findIndex((item) => item._id == bookId);
+		// If cart not empty, check if item is belongs to cart or not
+		const indexItem = cart.findIndex((item) => item._id == cartItemDto._id);
 		const user: UserFromRequest = req.user;
-		if (indexItem >= 0) {
-			cart = cart.map((item) =>
-				item._id == bookId ? { ...item, total: item.total + 1 } : item,
-			);
-			if (user) {
-				await this.userService.addItemToCart(user.id, { _id: bookId, total: 1 }, true);
-			}
-		} else {
-			const { _id, title, price, old_price } = await this.bookService.findById(bookId);
-			cart.push({ total: 1, _id, title, price, old_price });
-			if (user) {
-				await this.userService.addItemToCart(
-					user.id,
-					{ _id, total: 1, title, price, old_price },
-					false,
+		try {
+			// If belongs to cart, we will update amount of item + 1 in cart
+			if (indexItem >= 0) {
+				cart = cart.map((item) =>
+					item._id == cartItemDto._id ? { ...item, total: item.total + 1 } : item,
 				);
+				if (user) {
+					await this.userService.addItemToCart(
+						user.id,
+						{ _id: cartItemDto._id, total: 1 },
+						true,
+					);
+				}
+
+				// if not exists, add new one
+			} else {
+				const book = await this.bookService.findById(cartItemDto._id);
+				if (book) {
+					const { _id, title, price, old_price } = book;
+					cart.push({ total: 1, _id, title, price, old_price });
+					if (user) {
+						await this.userService.addItemToCart(
+							user.id,
+							{ _id, total: 1, title, price, old_price },
+							false,
+						);
+					}
+				}
 			}
+		} catch (error) {
+			Logger.error(error.message);
 		}
+
 		req.session.cart = JSON.stringify(cart);
 		return cart;
 	}

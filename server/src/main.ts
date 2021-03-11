@@ -26,6 +26,21 @@ async function bootstrap() {
 	});
 	const port = env.port;
 
+	// Handle errors
+	app.useGlobalPipes(
+		new ValidationPipe({
+			skipMissingProperties: false,
+			transform: true,
+			validationError: {
+				target: false,
+			},
+		}),
+	);
+	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+
+	// Allow inject dependency injection in  validator
+	useContainer(app.select(AppModule), { fallbackOnErrors: true });
+
 	app.set('trust proxy', 1);
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
@@ -63,13 +78,6 @@ async function bootstrap() {
 	// Init passport
 	app.use(passport.initialize());
 	app.use(passport.session());
-
-	// Handle errors
-	app.useGlobalPipes(new ValidationPipe());
-	app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
-
-	// Allow inject dependency injection in  validator
-	useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
 	app.setGlobalPrefix('api');
 	if (env.mode !== 'production') {
