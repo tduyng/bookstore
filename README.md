@@ -36,3 +36,9 @@ Create modern web app clean architecture with NestJS + MongoDB & ViteJS + React
 - Improvements:
   - Custom logger with winston
   - Nginx
+
+
+## Images
+<div align="center">
+<img src="docs/img/home.png"/>
+</div>
