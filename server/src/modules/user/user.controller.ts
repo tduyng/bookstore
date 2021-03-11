@@ -1,5 +1,13 @@
 import { BookService } from '@modules/book/book.service';
-import { Body, Controller, HttpException, Logger, Post, Req } from '@nestjs/common';
+import {
+	BadRequestException,
+	Body,
+	Controller,
+	HttpException,
+	Logger,
+	Post,
+	Req,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { UserFromRequest } from 'src/common/types';
@@ -100,10 +108,15 @@ export class UserController {
 							false,
 						);
 					}
+				} else {
+					throw new BadRequestException(
+						`AddItemToCart error: book not found with id: ${cartItemDto._id}`,
+					);
 				}
 			}
 		} catch (error) {
 			Logger.error(error.message);
+			throw error;
 		}
 
 		req.session.cart = JSON.stringify(cart);
