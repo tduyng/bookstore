@@ -5,6 +5,7 @@ import { addToCart } from 'src/app/features/user/user.actions';
 import { CartItemDto } from 'src/app/features/user/user.types';
 import { useAppDispatch } from 'src/store';
 import toast from 'react-hot-toast';
+import noImage from '/no-image.png';
 
 type BookProps = IBook & { hideButton?: boolean };
 export const Book: React.FC<BookProps> = props => {
@@ -28,7 +29,7 @@ export const Book: React.FC<BookProps> = props => {
   return (
     <div className="book">
       <Link to={`/book/${_id}`} className="book__link">
-        <img className="book__link--img" src={imgURL} alt=""></img>
+        <img className="book__link--img" src={imgURL || noImage} alt=""></img>
       </Link>
       <div className="book__content">
         <div className="book__content--name">{title}</div>

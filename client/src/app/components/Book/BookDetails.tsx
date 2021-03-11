@@ -10,7 +10,7 @@ import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
 import SkeletonBook from '../skeleton/SkeletonBook';
 import { Book } from './Book';
-
+import noImage from '/no-image.png';
 interface ArrowProps {
   onClick?: () => void;
 }
@@ -117,7 +117,11 @@ export const BookDetail = () => {
         {status === 'success' && (
           <>
             <div className="book-detail__media">
-              <img src={book?.imgURL} alt="Book" className="book-detail__media--img" />
+              <img
+                src={book?.imgURL || noImage}
+                alt="Book"
+                className="book-detail__media--img"
+              />
             </div>
             <div className="book-detail__content">
               <h1 className="book-detail__content--title">{book?.title}</h1>

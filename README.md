@@ -1,6 +1,6 @@
 # Bookstore
 
-Create modern web app with NestJS + MongoDB & ViteJS + React
+Create modern web app clean architecture with NestJS + MongoDB & ViteJS + React
 
 ## Technologies
 - Crawl data

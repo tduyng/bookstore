@@ -3,12 +3,14 @@ import { useSelector } from 'react-redux';
 import { useHistory, withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { PATH } from 'src/app/constants/paths.constant';
+import { searchBooks } from 'src/app/features/book/book.actions';
 import { toggleSideBar } from 'src/app/features/ui/ui.slice';
 import { fetchUser, logout } from 'src/app/features/user/user.actions';
 import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
 import { debounce } from 'src/utils/debounce';
 import { Auth } from '../../Auth';
+import noImage from '/no-image.png';
 
 const _Header = () => {
   const dispatch = useAppDispatch();
@@ -31,15 +33,7 @@ const _Header = () => {
 
   const { user, cart, isLoggedIn } = useSelector((state: AppState) => state.user);
 
-  const debouncedSearch = useRef(
-    debounce(
-      q =>
-        dispatch(() => {
-          console.log(q);
-        }),
-      600,
-    ),
-  ).current;
+  const debouncedSearch = useRef(debounce(q => dispatch(searchBooks(q)), 600)).current;
   const handleChange = (e: any) => {
     setSearch(e.target.value);
     debouncedSearch(e.target.value);
@@ -81,7 +75,8 @@ const _Header = () => {
           <i className="fas fa-bars"></i>
         </div>
         <div className="header__user--img-left">
-          {user?.thumbnail ? <img src={`${user.thumbnail}`} alt="avatar" /> : null}
+          <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+          gggg
         </div>
         <div className="header__categories" onClick={toggle}>
           <div className="header__categories--hamburger">
@@ -115,7 +110,7 @@ const _Header = () => {
                       onClick={() => setSearch('')}
                     >
                       <li>
-                        <img src={item.imgURL} alt="Book" />
+                        <img src={item.imgURL || noImage} alt="Book" />
                         <div>
                           <p>{item.title}</p>
                           <p>{item.author}</p>
@@ -141,11 +136,10 @@ const _Header = () => {
               <div className="header__user--cart__quantity">{cart.length}</div>
             ) : null}
           </Link>
-          {user?.thumbnail ? (
-            <div className="header__user--img-right">
-              <img src={`${user.thumbnail}`} alt="avatar" />
-            </div>
-          ) : null}
+
+          <div className="header__user--img-right">
+            <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+          </div>
 
           <div
             className={`header__user--account${activeAccount ? ' active' : ''}`}

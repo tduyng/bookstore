@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { removeFromCart } from 'src/app/features/user/user.actions';
 import { CartItem } from 'src/app/features/user/user.types';
 import { useAppDispatch } from 'src/store';
+import noImage from '/no-image.png';
 
 export const Product: React.FC<CartItem> = props => {
   const dispatch = useAppDispatch();
@@ -51,7 +52,7 @@ export const Product: React.FC<CartItem> = props => {
     <div className="checkout__product">
       <i className="fas fa-times" onClick={() => deleteProduct(id)}></i>
       <Link to={`/book/${id}`} className="checkout__product--img">
-        <img src={props.imgURL} alt="Product" />
+        <img src={props.imgURL || noImage} alt="Product" />
       </Link>
       <div className="checkout__product--detail">
         <p className="checkout__product--detail__name">{props.title}</p>

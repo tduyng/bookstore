@@ -5,6 +5,7 @@ import { PATH } from 'src/app/constants/paths.constant';
 import { IUser } from 'src/app/features/user/user.types';
 import { AppState } from 'src/store/reducers';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import noImage from '/no-image.png';
 
 export const Payment = () => {
   const { cart } = useSelector((state: AppState) => state.user);
@@ -109,11 +110,11 @@ export const Payment = () => {
         </div>
       </div>
       <div className="payment__info">
-        <h1>Order infomation</h1>
+        <h1>Order information</h1>
         {cart.map(item => (
           <div className="payment__info--product" key={item._id}>
             <div className="payment__info--product__img">
-              <img src={item.imgURL} alt="Product" />
+              <img src={item.imgURL || noImage} alt="Product" />
             </div>
             <div className="payment__info--product__info">
               <p className="payment__info--product__info--title">{item.title}</p>

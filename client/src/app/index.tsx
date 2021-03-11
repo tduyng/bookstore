@@ -20,7 +20,7 @@ export function App() {
         <meta name="description" content="Bookstore application" />
       </Helmet>
       <Toaster
-        position="top-right"
+        position="bottom-right"
         reverseOrder={false}
         toastOptions={{
           style: { fontSize: '1.6rem' },
