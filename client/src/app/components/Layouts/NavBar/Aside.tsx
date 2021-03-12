@@ -106,32 +106,32 @@ export const Aside = () => {
           <div className="sub-menu menu-education">
             <ul>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="/books/genre/text-book" className="sub-menu__link">
                   Textbook
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="/books/genre/reference-book" className="sub-menu__link">
                   Reference Books
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="english" className="sub-menu__link">
                   English
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="japanese" className="sub-menu__link">
                   Japanese
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="chinese" className="sub-menu__link">
                   Chinese
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="korean" className="sub-menu__link">
                   Korean
                 </Link>
               </li>
@@ -185,22 +185,22 @@ export const Aside = () => {
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="life-skill" className="sub-menu__link">
                   Life Skills
                 </Link>
               </li>
               <li>
-                <Link to="books/genre/mentality" className="sub-menu__link">
+                <Link to="/books/genre/business" className="sub-menu__link">
                   Mentality
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="comic" className="sub-menu__link">
                   Personality
                 </Link>
               </li>
               <li>
-                <Link to="#" className="sub-menu__link">
+                <Link to="romance" className="sub-menu__link">
                   Books for Teenagers
                 </Link>
               </li>
