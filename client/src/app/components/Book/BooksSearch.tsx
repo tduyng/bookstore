@@ -29,15 +29,19 @@ export const BookSearch = () => {
       ) : (
         <>
           {status === 'success' && <div className="books__desc">Result for : {q}</div>}
-          <BooksList
-            status={status}
-            books={books}
-            message={message}
-            count={count}
-            page={page}
-            limit={limit}
-            q={q}
-          />
+          {books && books.length > 0 ? (
+            <BooksList
+              status={status}
+              books={books}
+              message={message}
+              count={count}
+              page={page}
+              limit={limit}
+              q={q}
+            />
+          ) : (
+            <h2>No result found</h2>
+          )}
         </>
       )}
     </div>

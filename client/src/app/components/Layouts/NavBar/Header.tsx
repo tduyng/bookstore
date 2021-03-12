@@ -38,6 +38,7 @@ const _Header = () => {
   const handleChange = (e: any) => {
     setSearch(e.target.value);
     debouncedSearch(e.target.value);
+    console.log(search);
   };
 
   const handleSubmit = (e: any) => {
@@ -52,7 +53,7 @@ const _Header = () => {
   const handleClickAccount = () => {
     setActiveAccount(!activeAccount);
   };
-  const ref = useRef<HTMLDivElement>(null);
+  const ref: any = useRef();
   const handleClickOutSideAccount = (e: any) => {
     if (
       ref.current &&

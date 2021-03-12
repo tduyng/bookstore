@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { searchBooks } from 'src/app/features/book/book.actions';
+import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
+import { debounce } from 'src/utils/debounce';
 
 export const Aside = () => {
   const { sideBar } = useSelector((state: AppState) => state.ui);
@@ -19,12 +22,36 @@ export const Aside = () => {
     icon.classList.toggle('active');
   };
 
+  const dispatch = useAppDispatch();
+  const [search, setSearch] = useState('');
+  const history = useHistory();
+
+  const debouncedSearch = useRef(debounce(q => dispatch(searchBooks(q)), 600)).current;
+
+  const handleChange = (e: any) => {
+    setSearch(e.target.value);
+    debouncedSearch(e.target.value);
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (search) {
+      history.push(`/books/search?q=${search}`);
+      setSearch('');
+    }
+  };
+
   return (
     <aside className={`side-nav${sideBar ? ' active' : ''}`}>
       <ul className="side-nav__list">
         <li className="side-nav__form">
-          <form>
-            <input className="side-nav__form--input" placeholder="Search For Product" />
+          <form onSubmit={handleSubmit}>
+            <input
+              className="side-nav__form--input"
+              placeholder="Search For Product"
+              onChange={handleChange}
+              value={search}
+            />
             <button className="side-nav__form--search" type="submit">
               <i className="fas fa-search"></i>
             </button>
