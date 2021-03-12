@@ -60,11 +60,11 @@ class FahasaByGenreSpider(scrapy.Spider):
     # text_file = os.getcwd() + "/crawler/spiders/bygenre.txt"
     # start_urls = get_links_from_text_file(text_file)
     start_urls = [
-        "https://www.fahasa.com/sach-trong-nuoc/sach-hoc-ngoai-ngu/tieng-anh.html",
+        "https://www.fahasa.com/sach-trong-nuoc/manga-comic.html?order=num_orders&limit=48&p=1",
     ]
 
     next_url = ""
-    item_genre = "english"
+    item_genre = "comic"
     headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:48.0) Gecko/20100101 Firefox/48.0"}
     folder = f"data/{item_genre}"
     file_name = f"data/{item_genre}/${item_genre}.json"

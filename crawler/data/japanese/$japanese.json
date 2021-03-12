@@ -1,0 +1,500 @@
+{
+  "books": [{
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Sơ Cấp 1 – Hán Tự (Bản Tiếng Việt) (Bản Mới)",
+    "author": "Minna no Nihonggo",
+    "price": "80.750",
+    "old_price": "95.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/i/tieng_nhat_cho_moi_nguoi___so_cap_1_han_tu_ban_tieng_viet_ban_moi_1_2018_08_07_11_40_31.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ Trình Độ N2 - Đọc Hiểu",
+    "author": "NXB Trẻ",
+    "price": "42.500",
+    "old_price": "50.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/l/u/luyen_thi_nang_luc_nhat_ngu_trinh_do_n2___doc_hieu_1_2018_12_21_08_58_16.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Tiếng Nhật Tổng Hợp Từ Vựng N2 - JLPT N2",
+    "author": "Nhiều tác giả",
+    "price": "93.500",
+    "old_price": "110.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_180746.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "N2 - 2500 Từ Vựng Cần Thiết Cho Kỳ Thi Năng Lực Nhật Ngữ",
+    "author": "Arc Academy",
+    "price": "97.750",
+    "old_price": "115.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_26608.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Giáo Trình Luyện Thi Năng Lực Tiếng Nhật Try! - N4 (Kèm 1 CD)",
+    "author": "Nhóm tác giả",
+    "price": "77.400",
+    "old_price": "90.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_113826.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "N1 - 3000 Từ Vựng Cần Thiết Cho Kỳ Thi Năng Lực Nhật Ngữ",
+    "author": "Arc Academy",
+    "price": "106.250",
+    "old_price": "125.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_26612.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Sơ Cấp 1 - Bản Dịch Và Giải Thích Ngữ Pháp - Tiếng Việt (Bản Mới)",
+    "author": "Minna no Nihongo",
+    "price": "60.000",
+    "old_price": "75.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_176631.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N4. Hán Tự, Từ Vựng",
+    "author": "SASAKI HITOKO, MATSUMOTO NORIKO",
+    "price": "51.000",
+    "old_price": "60.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_7960.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "N3 - 2000 Từ Vựng Cần Thiết Cho Kỳ Thi Năng Lực Nhật Ngữ",
+    "author": "Arc Academy",
+    "price": "93.500",
+    "old_price": "110.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_26609.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tự Học Viết Tiếng Nhật 200 Chữ Kanji Căn Bản (Tập 1)",
+    "author": "Eriko Sato",
+    "price": "40.800",
+    "old_price": "60.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/u/tu_hoc_viet_tieng_nhat_200_chu_kanji_can_ban_tap_1_1_2018_08_07_11_12_29.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Tập Viết Tiếng Nhật Căn Bản Kanji",
+    "author": "Mai Ngọc",
+    "price": "37.440",
+    "old_price": "48.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/8/9/8935236408479.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Giáo Trình Luyện Thi Năng Lực Tiếng Nhật Try! - N2 (Kèm 1 CD)",
+    "author": "Nhóm tác giả",
+    "price": "76.950",
+    "old_price": "95.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_113828.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Giáo Trình Luyện Thi Năng Lực Tiếng Nhật Try! - N1 (Kèm 1 CD)",
+    "author": "Nhóm tác giả",
+    "price": "81.700",
+    "old_price": "95.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_113829.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Trình Độ Sơ Cấp 1 - Tổng Hợp Các Bài Tập Chủ Điểm (Bản Mới)",
+    "author": "Minna no Nihongo",
+    "price": "38.250",
+    "old_price": "45.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/i/tieng_nhat_cho_moi_nguoi___trinh_do_so_cap_1___tong_hop_cac_bai_tap_chu_diem_ban_moi_1_2018_08_07_11_40_41.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Tập Viết Tiếng Nhật Căn Bản Hiragana (Tái Bản 2018)",
+    "author": "Mai Ngọc",
+    "price": "33.150",
+    "old_price": "39.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/_/t_p_viet_ti_ng_nh_t_c_n_b_n_39k_t_i_b_n_.png"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Sơ Cấp 2 - Bản Dịch Và Giải Thích Ngữ Pháp - Tiếng Việt (Bản Mới)",
+    "author": "Minna no Nihongo",
+    "price": "56.000",
+    "old_price": "70.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/i/tieng_nhat_cho_moi_nguoi___so_cap_2___ban_dich_va_giai_thich_ngu_phap___tieng_viet_ban_moi_1_2018_08_07_11_41_17.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Tập Viết Tiếng Nhật Căn Bản Katakana (Tái Bản 2018)",
+    "author": "Mai Ngọc (chủ biên)",
+    "price": "35.200",
+    "old_price": "44.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_180054.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Sách Tự Học Hiragana Katakana - Học Thông Qua Nghe Và Viết",
+    "author": "AOTS, The Association For Overseas Technical Scholarship",
+    "price": "55.080",
+    "old_price": "68.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_180870.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Giáo Trình Chính Thức - Kỳ Thi Chứng Nhận Năng Lực Ứng Xử Trong Doanh Nghiệp Nhật Bản (Cấp Độ 4)",
+    "author": "JBAA",
+    "price": "84.000",
+    "old_price": "105.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_4943.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Marugoto - Sơ Cấp 1 - A2 - Hiểu Biết Ngôn Ngữ",
+    "author": "The Japan Foundation",
+    "price": "108.800",
+    "old_price": "160.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/r/i/rikai_1.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Sơ Cấp 1 - Bản Tiếng Nhật (Bản Mới)",
+    "author": "Minna no Nihongo",
+    "price": "116.000",
+    "old_price": "145.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/s/o/so-cap-1_ban-tieng-nhat.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tự Học Tiếng Nhật Cấp Tốc Trong 30 Ngày",
+    "author": "Nguyễn Vân Anh (Asahi)",
+    "price": "60.000",
+    "old_price": "75.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/u/tu_hoc_tieng_nhat_cap_toc_trong_30_ngay_1_2018_10_06_11_26_14.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Tiếng Nhật N3 - Ngữ Pháp",
+    "author": "Nhiều Tác Giả",
+    "price": "109.500",
+    "old_price": "146.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_32298.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N1 – Ngữ Pháp",
+    "author": "Sasaki Hitoko, Matsumoto Noriko",
+    "price": "59.500",
+    "old_price": "70.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/l/u/luyen_thi_nang_luc_nhat_ngu_n1_ngu_phap_1_2018_08_07_11_38_32.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "7000 Từ Vựng Tiếng Nhật Theo Chủ Đề",
+    "author": "Ryo Shimizu",
+    "price": "80.000",
+    "old_price": "100.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_24753.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Tiếng Nhật N4 - Nghe Hiểu",
+    "author": "Tomomatsu Etsuko, Fukushima Sachi, Nakamura Kaori",
+    "price": "71.250",
+    "old_price": "95.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_42796.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N3 - Từ Vựng (Tái Bản 2020)",
+    "author": "Sasaki Hitoko, Matsumoto Noriko",
+    "price": "59.500",
+    "old_price": "70.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_29273.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Marugoto A1 - Hoạt Động Giao Tiếp",
+    "author": "The Japan Foundation",
+    "price": "102.000",
+    "old_price": "150.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/m/a/marugoto_-_katsudoo-hd_giao_tiep_b_a_1.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Tiếng Nhật JLPT 2000 Từ Vựng N1",
+    "author": "Nhiều Tác Giả",
+    "price": "100.750",
+    "old_price": "155.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_33218.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Bài Tập Ngữ Pháp Tiếng Nhật Hiện Đại - Sơ Cấp (Tái Bản)",
+    "author": "Megumi",
+    "price": "76.000",
+    "old_price": "95.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_184795.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Đàm Thoại Tiếng Nhật - Làm Việc Trong Doanh Nghiệp Nhật Bản  (Kèm CD MP3)",
+    "author": "Cao Lê Dung Chi",
+    "price": "85.260",
+    "old_price": "98.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_86555.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Hướng Dẫn Đọc Và Viết Tiếng Nhật",
+    "author": "Thiên Phúc",
+    "price": "40.300",
+    "old_price": "62.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/h/u/huong_dan_doc_va_viet_tieng_nhat_1_2018_08_07_11_49_47.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Ngữ Pháp Tiếng Nhật Căn Bản",
+    "author": "Masahiro Tanimori, Eriko Sato",
+    "price": "183.200",
+    "old_price": "229.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_41291.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "5500 Từ Vựng Tiếng Nhật Thông Dụng",
+    "author": "Thanh Xuân",
+    "price": "63.200",
+    "old_price": "79.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_33748.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Marugoto - Sơ Cấp 1 - A2 - Hoạt Động Giao Tiếp",
+    "author": "The Japan Foundation",
+    "price": "108.800",
+    "old_price": "160.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/k/a/katsudoo.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Tiếng Nhật N3 - Đọc Hiểu",
+    "author": "Nhiều Tác Giả",
+    "price": "120.750",
+    "old_price": "161.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/8/9/8935246929094.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tự Học Tiếng Nhật Cho Người Mới Bắt Đầu (Tái Bản 2018)",
+    "author": "The sakura",
+    "price": "78.750",
+    "old_price": "105.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/u/tu_hoc_tieng_nhat_cho_nguoi_moi_bat_dau_tai_ban_2018_1_2018_09_20_17_23_17.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Mô Phỏng Đề Thi HSK - Phiên Bản Mới - Cấp Độ 4",
+    "author": "Lý Xuân Linh",
+    "price": "259.260",
+    "old_price": "298.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/m/o/mo_phong_de_thi_hsk___phien_ban_moi___cap_do_4_1_2020_05_25_10_26_37.png"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người Trình Đô Sơ Cấp 1: 25 Bài Luyện Nghe (Kèm CD)",
+    "author": "Makino Akiko, Tanaka Yone, Kitagawa Itsuko",
+    "price": "55.250",
+    "old_price": "65.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/8/9/8934974147077_2.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tập Viết Tiếng Nhật Căn Bản - Kanji (Tái Bản 2021)",
+    "author": "Mai Ngọc, Vân Anh",
+    "price": "41.600",
+    "old_price": "52.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_221267.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tự Học 1000 Chữ Kanji Thông Dụng Trong Tiếng Nhật",
+    "author": "Minh Tân",
+    "price": "76.950",
+    "old_price": "95.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/_/t_-h_c-1000-ch_-kanji-trong-ti_ng-nh_t-95k.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Dành Cho Trẻ Em - Tập 1",
+    "author": "Hà Thiện Thuyên",
+    "price": "39.150",
+    "old_price": "45.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_141340.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Từ Vựng Tiếng Nhật Theo Chủ Đề (Tái Bản)",
+    "author": "Mai Hương",
+    "price": "40.000",
+    "old_price": "50.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_192621_1.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Mô Phỏng Đề Thi HSK - Phiên Bản Mới - Cấp Độ 6",
+    "author": "Vương Tố Mai",
+    "price": "302.760",
+    "old_price": "348.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_32313.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Phân Tích Đề Thi HSK - Cấp Độ 6",
+    "author": "Trịnh Lệ Kiệt",
+    "price": "206.400",
+    "old_price": "258.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_219419.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Sơ Cấp 2 – Hán Tự (Bản Tiếng Việt) (Bản Mới)",
+    "author": "Minna no Nihonggo",
+    "price": "89.250",
+    "old_price": "105.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_176633.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Mô Phỏng Đề Thi HSK - Phiên Bản Mới - Cấp Độ 3",
+    "author": "Kim Học Lệ",
+    "price": "198.400",
+    "old_price": "248.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_219416.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Thật Đơn Giản Trong Giao Tiếp Hàng Ngày - Sơ Cấp 2",
+    "author": "Choi Chunghui, Machida Goyuki, Park Minyeong",
+    "price": "138.750",
+    "old_price": "185.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_11239.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tập Viết Tiếng Nhật Bảng Chữ Cái Katakana",
+    "author": "The Sakura",
+    "price": "48.750",
+    "old_price": "65.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/u/n/untitled-2_68_2.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "N5 - 1000 Từ Vựng Cần Thiết Cho Kỳ Thi Năng Lực Nhật Ngữ",
+    "author": "Arc Academy",
+    "price": "61.200",
+    "old_price": "72.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_26611.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tập Viết Tiếng Nhật Bảng Chữ Cái Hiragana",
+    "author": "The Sakura",
+    "price": "48.750",
+    "old_price": "65.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_182442.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N1 - Đọc Hiểu",
+    "author": "NXB Trẻ",
+    "price": "55.250",
+    "old_price": "65.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_1453.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Học Tiếng Nhật Cấp Tốc",
+    "author": "Thiên Phúc ",
+    "price": "33.800",
+    "old_price": "52.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/h/o/hoc_tieng_nhat_cap_toc_1_2018_08_07_11_49_19.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Sơ Cấp 2 - Bản Tiếng Nhật (Bản Mới 2018)",
+    "author": "Nhiều Tác Giả",
+    "price": "116.000",
+    "old_price": "145.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/s/o/so-cap-2_ban-tieng-nhat.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Minna No Nihongo - Tiếng Nhật Sơ Cấp 2. Tổng Hợp Các Bài Tập Chủ Điểm",
+    "author": "Nhiều tác giả",
+    "price": "36.000",
+    "old_price": "40.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/m/i/minna_no_nihongo___tieng_nhat_so_cap_2_tong_hop_cac_bai_tap_chu_diem_1_2018_12_21_08_48_40.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Trong Cuộc Sống Hàng Ngày (Kèm CD) (Tái Bản)",
+    "author": "Hà Nguyên, Tuyết Nhung",
+    "price": "50.700",
+    "old_price": "65.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_112373.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Viết Chữ Kanji",
+    "author": "Minh Tân",
+    "price": "84.000",
+    "old_price": "105.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_186578.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "28 Ngày Tự Học Tiếng Nhật",
+    "author": "Yu Semi",
+    "price": "178.500",
+    "old_price": "238.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_19362.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N3 - Hán Tự (Tái Bản 2019)",
+    "author": "Sasaki Hitoko, Matsumoto Noriko",
+    "price": "59.500",
+    "old_price": "70.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_29718.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N2 - Nghe Hiểu",
+    "author": "Matsumoto Noriko, Sasaki Hitoko",
+    "price": "56.100",
+    "old_price": "66.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_112910.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N1 –  Từ Vựng",
+    "author": "Sasaki Hitoko, Matsumoto Noriko",
+    "price": "59.500",
+    "old_price": "70.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/l/u/luyen_thi_nang_luc_nhat_ngu_n1_tu_vung_1_2019_02_20_16_17_20.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N1 – Nghe Hiểu",
+    "author": "Sasaki Hitoko, Matsumoto Noriko",
+    "price": "59.500",
+    "old_price": "70.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/n/x/nxbtre_full_02192018_041934.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tập Viết Tiếng Nhật Hiragana (Tái Bản 2019)",
+    "author": "Thảo Nguyên",
+    "price": "26.000",
+    "old_price": "40.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_191882.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Ngữ Pháp Tiếng Nhật Hiện Đại - Sơ Cấp ( Tái Bản)",
+    "author": "Hoàng Quỳnh",
+    "price": "84.000",
+    "old_price": "105.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_62.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người Sơ Cấp 1 - Viết - Nhớ Các Mẫu Câu (Bản Mới)",
+    "author": "Hirai Etsuko, Miwa Sachiko",
+    "price": "76.500",
+    "old_price": "90.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_48217.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Tiếng Nhật Cho Mọi Người - Trình Độ Sơ Cấp 2 - Tổng Hợp Các Bài Tập Chủ Điểm (Bản Mới)",
+    "author": "Minna no Nihongo",
+    "price": "38.250",
+    "old_price": "45.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/t/i/tieng_nhat_cho_moi_nguoi___trinh_do_so_cap_2___tong_hop_cac_bai_tap_chu_diem_ban_moi_1_2018_08_07_11_40_51.JPG"
+  }, {
+    "genre": "japanese",
+    "title": "Marugoto A1 - Hiểu Biết Ngôn Ngữ",
+    "author": "The Japan Foundation",
+    "price": "102.000",
+    "old_price": "150.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/m/a/marugoto---rikai---hieu-biet-ngon-ngu_b_a_1.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Combo Giáo Trình Luyện Thi Năng Lực Tiếng Nhật (Bộ 4 Cuốn)",
+    "author": "Nhóm tác giả",
+    "price": 0,
+    "old_price": 0,
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/c/o/combo8935072893545-8935072893552-8935072893606-8935072893569_1.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Tiếng Nhật N4 - Chữ Hán",
+    "author": "Ishii Reiko, Saito Akiko, Koyano Miho, Suzuki Hideko, Yamazaki Hiroko",
+    "price": "82.500",
+    "old_price": "110.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_42797.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Luyện Thi Năng Lực Nhật Ngữ N3 - Đọc Hiểu (Tái Bản 2020)",
+    "author": "Sasaki Hitoko, Matsumoto Noriko",
+    "price": "59.500",
+    "old_price": "70.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_49919.jpg"
+  }, {
+    "genre": "japanese",
+    "title": "Ngữ Pháp Tiếng Nhật Căn Bản N5",
+    "author": "Hoàng Khang",
+    "price": "59.250",
+    "old_price": "79.000",
+    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/66x/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_9043.jpg"
+  }]
+}
