@@ -34,6 +34,11 @@ export const envConfig = (): EnvConfig => {
 			googleAppId: process.env.GOOGLE_APP_ID,
 			googleAppSecret: process.env.GOOGLE_APP_SECRET,
 		},
+		cloudinary: {
+			cloudName: process.env.CLOUDINARY_NAME,
+			apiKey: process.env.CLOUDINARY_API_KEY,
+			secret: process.env.CLOUDINARY_SECRET,
+		},
 	};
 };
 
@@ -60,5 +65,10 @@ export interface EnvConfig {
 	email: {
 		sendgridApiKey: string;
 		emailSender: string;
+	};
+	cloudinary: {
+		cloudName: string;
+		apiKey: string;
+		secret: string;
 	};
 }

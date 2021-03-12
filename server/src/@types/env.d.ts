@@ -20,5 +20,8 @@ declare namespace NodeJS {
 		readonly FB_APP_SECRET: string;
 		readonly GOOGLE_APP_ID: string;
 		readonly GOOGLE_APP_SECRET: string;
+		readonly CLOUDINARY_NAME: string;
+		readonly CLOUDINARY_API_KEY: string;
+		readonly CLOUDINARY_SECRET: string;
 	}
 }

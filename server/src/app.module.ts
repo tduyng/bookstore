@@ -8,6 +8,7 @@ import { AppController } from 'src/app/app.controller';
 import { AppService } from 'src/app/app.service';
 import { envConfig } from './common/config/env.config';
 import { AvatarModule } from '@modules/avatar/avartar.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
 	imports: [
@@ -18,6 +19,9 @@ import { AvatarModule } from '@modules/avatar/avartar.module';
 				useFindAndModify: false,
 				useCreateIndex: true,
 			}),
+		}),
+		MulterModule.register({
+			dest: 'src/upload',
 		}),
 		EmailModule,
 		UserModule,

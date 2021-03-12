@@ -7,14 +7,32 @@ import {
 	Logger,
 	Post,
 	Req,
+	UploadedFile,
+	UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { UserFromRequest } from 'src/common/types';
 import { CartItemDto } from './dto/cart-item.dto';
 import { CartItem } from './types/user.types';
 import { UserService } from './user.service';
+import { diskStorage } from 'multer';
+import cloudinaryRaw from 'cloudinary';
+const cloudinary = cloudinaryRaw.v2;
+import fs from 'fs';
+import { JwtAuth } from '@modules/auth/guards';
+import { envConfig } from 'src/common/config/env.config';
 
+// import { promisify } from 'util';
+// const unlink = promisify(fs.unlink);
+
+const env = envConfig();
+cloudinary.config({
+	cloud_name: env.cloudinary.cloudName,
+	api_key: env.cloudinary.apiKey,
+	api_secret: env.cloudinary.secret,
+});
 @Controller('users')
 @ApiTags('Users')
 export class UserController {
@@ -121,5 +139,41 @@ export class UserController {
 
 		req.session.cart = JSON.stringify(cart);
 		return cart;
+	}
+
+	//Upload cloudinary
+	@JwtAuth()
+	@Post('/upload')
+	@UseInterceptors(
+		FileInterceptor('file', {
+			storage: diskStorage({
+				destination: 'src/upload',
+			}),
+		}),
+	)
+	public async uploadImage(@Req() req: Request, @UploadedFile() file: any) {
+		try {
+			const user = req.user as UserFromRequest;
+			if (!file) {
+				throw new BadRequestException('Please choose a file');
+			}
+			// Transaction avatar & user thumbnail
+			const path = process.cwd() + `/src/upload/${file.filename}`;
+			const uniqueFileName = Date.now() + '-' + file.originalname;
+			const imagePublicId = `avatars/${uniqueFileName}`;
+
+			const image = await cloudinary.uploader.upload(path, {
+				public_id: imagePublicId,
+				tags: `avatars`,
+				quality: 60,
+			});
+
+			const updated = await this.userService.updateThumbnail(user._id, image.url);
+
+			fs.unlinkSync(path);
+			return updated;
+		} catch (error) {
+			throw new HttpException(error.message, 500);
+		}
 	}
 }

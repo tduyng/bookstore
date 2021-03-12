@@ -83,4 +83,12 @@ export class UserService {
 			.lean();
 		return user;
 	}
+
+	public async updateThumbnail(userId: string, thumbnail: string) {
+		const user: User = await this.userModel
+			.findByIdAndUpdate(userId, { thumbnail: thumbnail }, { new: true })
+			.select('+thumbnail')
+			.lean();
+		return user;
+	}
 }
