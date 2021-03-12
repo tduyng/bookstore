@@ -28,7 +28,7 @@ export interface GetBooksByGenreDto {
   page?: number;
 }
 export interface PaginationBooksDto {
-  text: string;
+  q: string;
   limit?: number;
   page?: number;
 }

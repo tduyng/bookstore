@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface PaginationProps {
   count: number;
@@ -9,9 +9,10 @@ interface PaginationProps {
 }
 
 export const Pagination: React.FC<PaginationProps> = ({ count, limit, page, q }) => {
-  const path: string = window.location.pathname;
   const [currentPage, setCurrentPage] = useState(page);
   const pages = Math.ceil(count / limit);
+  const location = useLocation();
+  const path = location.pathname;
 
   const range = (start: number, stop: number, step: number) =>
     Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);

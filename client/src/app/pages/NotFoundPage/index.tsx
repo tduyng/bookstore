@@ -9,9 +9,9 @@ export const NotFoundPage = () => {
       <div className="not-found">
         <h1>Sorry</h1>
         <p>That page can't be found</p>
-        <div className="not-found__link" onClick={() => history.goBack()}>
+        <a className="not-found__link" onClick={() => history.goBack()}>
           Go back
-        </div>
+        </a>
       </div>
     </MainLayout>
   );

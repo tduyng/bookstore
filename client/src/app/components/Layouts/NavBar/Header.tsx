@@ -34,14 +34,16 @@ const _Header = () => {
   const { user, cart, isLoggedIn } = useSelector((state: AppState) => state.user);
 
   const debouncedSearch = useRef(debounce(q => dispatch(searchBooks(q)), 600)).current;
+
   const handleChange = (e: any) => {
     setSearch(e.target.value);
     debouncedSearch(e.target.value);
   };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (search) {
-      history.push(`/books/search?text=${search}`);
+      history.push(`/books/search?q=${search}`);
       setSearch('');
     }
   };
@@ -101,7 +103,7 @@ const _Header = () => {
               <i className="fas fa-search"></i>
             </button>
           </form>
-          {searchedBooks.length
+          {searchedBooks?.length
             ? search.length > 1 && (
                 <ul className="header__form--queried">
                   {searchedBooks.map(item => (

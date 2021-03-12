@@ -41,10 +41,10 @@ export const fetchBookById = createAsyncThunk(
 
 export const searchBooks = createAsyncThunk(
   Types.SEARCH_BOOKS,
-  async (text: string, { rejectWithValue }) => {
+  async (q: string, { rejectWithValue }) => {
     try {
-      if (!text) return [];
-      const books: IBook[] = await request(`${SERVER_LINKS.bookSearch}?text=${text}`);
+      if (!q) return [];
+      const books: IBook[] = await request(`${SERVER_LINKS.bookSearch}?q=${q}`);
       return books;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -56,12 +56,12 @@ export const queryBooks = createAsyncThunk(
   Types.QUERY_BOOKS,
   async (input: PaginationBooksDto, { rejectWithValue }) => {
     try {
-      const { text } = input;
+      const { q } = input;
       const limit: number = input.limit || 25;
       const page: number = input.page || 1;
 
       const data: PaginatedBooks = await request(
-        `${SERVER_LINKS.bookQuery}?text=${text}&limit=${limit}&p=${page}`,
+        `${SERVER_LINKS.bookQuery}?q=${q}&limit=${limit}&p=${page}`,
       );
       return data;
     } catch (error) {

@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IBook } from 'src/app/features/book/book.types';
 import LazyLoad from 'react-lazyload';
 import SkeletonBook from '../Skeletons/SkeletonBook';
@@ -18,26 +18,25 @@ interface BooksListProps {
 export const BooksList: React.FC<BooksListProps> = props => {
   const { status, books, page, count, message, limit, q } = props;
   const [activeLimit, setActiveLimit] = useState(false);
+  const [path, setPath] = useState('');
+  const location = useLocation();
   const handleClickLimit = () => {
     setActiveLimit(!activeLimit);
   };
-  const path = window.location.pathname;
   const ref: any = useRef();
   const handleClickOutsideLimit = (e: any) => {
-    if (
-      ref?.current?.classList?.contains('active') &&
-      !ref?.current?.contains(e.target)
-    ) {
+    if (ref.current.classList.contains('active') && !ref.current.contains(e.target)) {
       setActiveLimit(!activeLimit);
     }
   };
 
   useEffect(() => {
+    setPath(location.pathname);
     document.addEventListener('click', handleClickOutsideLimit);
     return () => {
       document.removeEventListener('click', handleClickOutsideLimit);
     };
-  });
+  }, [path, setPath]);
 
   return (
     <>

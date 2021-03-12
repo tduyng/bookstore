@@ -8,6 +8,6 @@ export const PATH = {
   CART: '/cart',
   CHECKOUT: '/checkout',
   BOOK_DETAIL: '/book', // with  param /:id
-  BOOKS_SEARCH: 'books/search', //\?text=,
+  BOOKS_SEARCH: 'books/search', //\?q=,
   BOOKS_GENRE: 'books/genre', // with param /:genre
 };

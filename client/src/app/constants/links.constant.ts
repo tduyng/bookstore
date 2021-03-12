@@ -15,6 +15,6 @@ export const SERVER_LINKS = {
   userRemoveAllFromCart: '/api/users/remove-carts', // POST
   bookGetById: '/api/books/book', //GET with param /:id
   bookGetByGenre: '/api/books/genre', // GET with param /:genre
-  bookSearch: '/api/books/search', // GET with query ?text=
-  bookQuery: 'api/books/query', // GET with query ?text=
+  bookSearch: '/api/books/search', // GET with query ?q=
+  bookQuery: '/api/books/query', // GET with query ?q=
 };

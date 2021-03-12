@@ -16,8 +16,9 @@ export const BookSearch = () => {
   const q = useQueryUrl('q') || '';
 
   useEffect(() => {
+    if (!q) return;
     const getQueriedBooks = async () => {
-      await dispatch(queryBooks({ text: q, limit, page }));
+      return await dispatch(queryBooks({ q, limit, page }));
     };
     getQueriedBooks();
   }, [limit, page, dispatch, q]);
