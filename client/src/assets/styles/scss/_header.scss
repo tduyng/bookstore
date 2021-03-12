@@ -147,7 +147,7 @@
   &--content {
     color: white;
     font-size: 3rem;
-    font-family: "Gamja Flower", cursive;
+    font-family: 'Gamja Flower', cursive;
   }
 }
 
@@ -273,6 +273,10 @@
   &--img-right {
     text-align: center;
     max-width: 4.6rem;
+    align-items: center;
+    padding-top: 0.4rem;
+    cursor: pointer;
+
     img {
       border-radius: 50%;
       width: 75%;
@@ -285,6 +289,7 @@
   }
   &--img-left {
     display: none;
+    padding-top: 0.4rem;
     img {
       display: none;
     }

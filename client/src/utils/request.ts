@@ -23,6 +23,7 @@ function checkStatus(res: Response) {
   }
   const error = new ResponseError(res);
   error.response = res;
+  error.status = res.status;
   throw error;
 }
 
@@ -47,6 +48,18 @@ export async function requestWithAuth(url: string, options?: RequestInit) {
     credentials: 'include',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    ...options,
+  };
+  await fetch(SERVER_LINKS.authAutoRefresh, { method: 'POST', ...moreOptions });
+
+  const fetchResponse = await fetch(url, moreOptions);
+  const response = checkStatus(fetchResponse);
+  return parseJSON(response);
+}
+export async function requestWithAuthSimple(url: string, options?: RequestInit) {
+  const moreOptions: RequestInit = {
+    credentials: 'include',
+    mode: 'cors',
     ...options,
   };
   await fetch(SERVER_LINKS.authAutoRefresh, { method: 'POST', ...moreOptions });

@@ -6,6 +6,7 @@ import { PATH } from 'src/app/constants/paths.constant';
 import { searchBooks } from 'src/app/features/book/book.actions';
 import { toggleSideBar } from 'src/app/features/ui/ui.slice';
 import { fetchUser, logout } from 'src/app/features/user/user.actions';
+import { clearStatus } from 'src/app/features/user/user.slice';
 import { useAppDispatch } from 'src/store';
 import { AppState } from 'src/store/reducers';
 import { debounce } from 'src/utils/debounce';
@@ -23,6 +24,7 @@ const _Header = () => {
   const onOpenModal = () => {
     setOpen(true);
     setActiveAccount(false);
+    dispatch(clearStatus());
   };
   const onCloseModal = () => {
     setOpen(false);
@@ -64,8 +66,11 @@ const _Header = () => {
     }
   };
   useEffect(() => {
+    const fetchData = async () => {
+      return await dispatch(fetchUser());
+    };
+    fetchData();
     document.addEventListener('click', handleClickOutSideAccount);
-    dispatch(fetchUser());
     return () => {
       document.removeEventListener('click', handleClickOutSideAccount);
     };
@@ -78,8 +83,17 @@ const _Header = () => {
           <i className="fas fa-bars"></i>
         </div>
         {isLoggedIn && user ? (
-          <div className="header__user--img-left">
-            <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+          <div
+            className="header__user--img-left"
+            onClick={() => history.push('/account')}
+          >
+            <Link
+              onClick={handleClickAccount}
+              className="header__user--account__dropdown__account"
+              to={PATH.ACCOUNT}
+            >
+              <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+            </Link>
           </div>
         ) : null}
 
@@ -142,8 +156,17 @@ const _Header = () => {
             ) : null}
           </Link>
           {isLoggedIn && user ? (
-            <div className="header__user--img-right">
-              <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+            <div
+              className="header__user--img-right"
+              onClick={() => history.push('/account')}
+            >
+              <Link
+                onClick={handleClickAccount}
+                className="header__user--account__dropdown__account"
+                to={PATH.ACCOUNT}
+              >
+                <img src={`${user?.thumbnail ? user.thumbnail : noImage}`} alt="avatar" />
+              </Link>
             </div>
           ) : null}
 

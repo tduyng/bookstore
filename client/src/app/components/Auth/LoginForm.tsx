@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { PATH } from 'src/app/constants/paths.constant';
@@ -13,6 +14,7 @@ export const LoginForm = () => {
     usernameOrEmail: '',
     password: '',
   });
+  const { errorMsg } = useSelector((state: AppState) => state.user);
   const history = useHistory();
 
   const handleChange = (name: string) => (e: any) => {
@@ -24,12 +26,14 @@ export const LoginForm = () => {
     setBtnText('Logging...');
     dispatch(login(userData)).then(unwrapResult => {
       if (unwrapResult.meta.requestStatus === 'fulfilled') {
-        history.goBack();
+        history.go(0);
+        toast.success('Login successfully');
+      } else {
+        setBtnText('Login');
       }
     });
   };
 
-  const { errorMsg } = useSelector((state: AppState) => state.user);
   return (
     <div className="auth__form">
       <form onSubmit={handleSubmit}>

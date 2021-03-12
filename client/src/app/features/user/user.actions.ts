@@ -25,16 +25,9 @@ export const register = createAsyncThunk(
   },
 );
 
-export const fetchUser = createAsyncThunk(
-  Types.FETCH_USER,
-  async (_, { rejectWithValue }) => {
-    try {
-      return await requestWithAuth(SERVER_LINKS.authMe);
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  },
-);
+export const fetchUser = createAsyncThunk(Types.FETCH_USER, async () => {
+  return await requestWithAuth(SERVER_LINKS.authMe);
+});
 
 export const login = createAsyncThunk(
   Types.LOGIN,
@@ -47,7 +40,7 @@ export const login = createAsyncThunk(
       return authToken;
     } catch (error) {
       switch (error.status) {
-        case '400':
+        case 400:
           return rejectWithValue('Invalid credentials');
         default:
           return rejectWithValue(error.message);

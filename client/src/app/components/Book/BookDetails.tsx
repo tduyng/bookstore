@@ -111,7 +111,7 @@ export const BookDetail = () => {
           const genre = (bookFound ? bookFound.genre : '') as string;
           const limit = 25;
           const p = 1;
-          dispatch(fetchBooks({ genre, limit, page: p }));
+          dispatch(fetchBooks({ genre, limit, page: p })).then(res => res);
         } else {
           setFoundBook(false);
         }

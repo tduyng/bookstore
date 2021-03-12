@@ -1,16 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { IUser } from 'src/app/features/user/user.types';
 import { AppState } from 'src/store/reducers';
-import { requestWithAuth } from 'src/utils/request';
+import { requestWithAuthSimple } from 'src/utils/request';
 import { useAppDispatch } from 'src/store';
 import { fetchUser } from 'src/app/features/user/user.actions';
+import { SERVER_LINKS } from 'src/app/constants/links.constant';
 
 export const Account = () => {
   const { user, isLoggedIn } = useSelector((state: AppState) => state.user);
-  const { username, email, thumbnail } = user as IUser;
+  const history = useHistory();
+
   const [file, setFile] = useState('');
   const [nameFile, setNameFile] = useState('');
   const [scale, setScale] = useState(1);
@@ -30,8 +32,15 @@ export const Account = () => {
     setError('');
   };
 
+  useEffect(() => {
+    if (!user || !isLoggedIn) {
+      history.push('/');
+    }
+  }, [user, isLoggedIn]);
+
   const onSubmit = (e: any) => {
     e.preventDefault();
+
     if (ref.current) {
       setError('');
       ref.current.getImageScaledToCanvas().toBlob(async (blob: any) => {
@@ -39,10 +48,9 @@ export const Account = () => {
           const scaledFile = new File([blob], nameFile);
           const formData = new FormData();
           formData.append('file', scaledFile);
-          const res = await requestWithAuth('/api/upload', {
+          const res = await requestWithAuthSimple(SERVER_LINKS.avatarUpload, {
             method: 'POST',
-            body: JSON.stringify(formData),
-            headers: { 'Content-Type': 'multipart/form-data' },
+            body: formData,
           });
           await dispatch(fetchUser());
           setSuccess(res.data);
@@ -58,14 +66,17 @@ export const Account = () => {
 
   return (
     <div className="account">
-      {(!user || !isLoggedIn) && <Redirect to="/" />}
       <h1 className="account__title">My account</h1>
       <div className="account__profile">
-        <p className="account__profile--username">Username: {username}</p>
-        <p className="account__profile--email">Email: {email}</p>
-        <p>Thumbnail: {!thumbnail && "image doesn't exist"}</p>
-        {thumbnail && (
-          <img className="account__profile--thumbnail" alt="thumbnail" src={thumbnail} />
+        <p className="account__profile--username">Username: {user?.username}</p>
+        <p className="account__profile--email">Email: {user?.email}</p>
+        <p>Thumbnail: {!user?.thumbnail && "image doesn't exist"}</p>
+        {user?.thumbnail && (
+          <img
+            className="account__profile--thumbnail"
+            alt="thumbnail"
+            src={user?.thumbnail}
+          />
         )}
         {file && (
           <>
@@ -95,8 +106,19 @@ export const Account = () => {
         )}
 
         <form onSubmit={onSubmit}>
-          <input type="file" id="file" name="file" accept="image/*" onChange={onChange} />
-          <button type="submit" className="auth__form--button">
+          <input
+            type="file"
+            id="file"
+            name="file"
+            accept="image/*"
+            onChange={onChange}
+            style={{ display: 'block', marginTop: '2rem' }}
+          />
+          <button
+            type="submit"
+            className="book__content--button"
+            style={{ marginTop: '2rem' }}
+          >
             Upload
           </button>
         </form>
