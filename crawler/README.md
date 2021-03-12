@@ -9,6 +9,11 @@
   There are two packages to install: **scrapy** and **scrapy-splash**
   And make sure you have **splash** installed and run on port: **8085**. Check out the guide installation **splash**: [Installation splash linux+docker](https://splash.readthedocs.io/en/stable/install.html#linux-docker)
 
+  Run **scrapy-splash** with docker
+  ```bash
+  $ docker run -it -p 8050:8050 --rm scrapinghub/splash
+  ```
+
 - Bootstrap a scrapy project
   ```bash
   $ scrapy startproject crawler
