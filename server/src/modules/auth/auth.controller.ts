@@ -76,7 +76,7 @@ export class AuthController {
 	}
 
 	@JwtAuth()
-	@Delete('logout')
+	@Delete()
 	public async logout(@Req() req: Request) {
 		try {
 			req.session?.destroy();

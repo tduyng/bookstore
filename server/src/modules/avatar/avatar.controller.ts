@@ -9,14 +9,16 @@ import {
 	Param,
 	Post,
 	Req,
+	Res,
 	UploadedFile,
 	UseInterceptors,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { Model } from 'mongoose';
+import { envConfig } from 'src/common/config/env.config';
 import { UserFromRequest } from 'src/common/types';
 import { Avatar } from './avatar.schema';
 
@@ -30,26 +32,25 @@ export class AvatarController {
 	) {}
 
 	@Get('/:key')
-	public async getByKey(@Param('key') key: string, @Req() req: Request) {
+	public async getByKey(@Param('key') key: string, @Res() res: Response) {
 		const image: Avatar = await this.avatarModel.findOne({ key }).lean();
 		if (!image) {
 			throw new BadRequestException('Image not exists');
 		}
-		req.res?.contentType('image/*');
-		req.res?.send(image.data);
+		res.contentType('image/*');
+		res.send(image.data);
 	}
 
 	@Post('/upload')
 	@UseInterceptors(FileInterceptor('file'))
 	public async uploadImage(@Req() req: Request, @UploadedFile() file: any) {
-		const user = req.user as UserFromRequest;
-		if (!file) {
-			throw new BadRequestException('Please choose a file');
-		}
-		const key = Date.now() + '-' + file.originalname;
-		const data = file.buffer;
-
 		try {
+			const user = req.user as UserFromRequest;
+			if (!file) {
+				throw new BadRequestException('Please choose a file');
+			}
+			const key = Date.now() + '-' + file.originalname;
+			const data = file.buffer;
 			// Transaction avatar & user thumbnail
 			const session = await this.userModel.startSession();
 			session.startTransaction();
@@ -63,9 +64,10 @@ export class AvatarController {
 				)
 				.lean();
 
-			const path = `/api/avatars/${key}`;
+			const path = envConfig().clientUrl + `/api/avatars/${key}`;
 			const updated: User = await this.userModel
 				.findByIdAndUpdate(user._id, { thumbnail: path })
+				.select('+thumbnail')
 				.lean();
 			await session.commitTransaction();
 			session.endSession();
