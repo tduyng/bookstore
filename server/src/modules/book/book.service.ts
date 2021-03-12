@@ -40,28 +40,28 @@ export class BookService {
 	}
 	// get books/search/:key
 
-	public async searchBooks(text: string): Promise<Book[]> {
+	public async searchBooks(q: string): Promise<Book[]> {
 		const books: Book[] = await this.bookModel
-			.find({ $text: { $search: `\"${text}\"` } })
+			.find({ $text: { $search: `\"${q}\"` } })
 			.limit(10)
 			.lean();
 		return books;
 	}
 	// get books/query/:key
 	public async queryBooks(
-		text: string,
+		q: string,
 		pagination?: PaginationDto,
 	): Promise<PaginatedBooksDto> {
 		const count = await this.bookModel.countDocuments({
-			$text: { $search: `\"${text}\"` },
+			$text: { $search: `\"${q}\"` },
 		});
 		let books: Book[];
 		if (!pagination) {
-			books = await this.bookModel.find({ $text: { $search: `\"${text}\"` } }).lean();
+			books = await this.bookModel.find({ $text: { $search: `\"${q}\"` } }).lean();
 		} else {
 			const { limit, page } = pagination;
 			books = await this.bookModel
-				.find({ $text: { $search: `\"${text}\"` } })
+				.find({ $text: { $search: `\"${q}\"` } })
 				.skip((page - 1) * limit)
 				.limit(limit)
 				.lean();

@@ -136,13 +136,13 @@ describe('UserStory (User-Auth-Book) (e2e)', () => {
 		});
 
 		it('(GET) /books/search/', async () => {
-			const data = await agent.get(`/books/search?text=book`).expect(200);
+			const data = await agent.get(`/books/search?q=book`).expect(200);
 			expect(data.body).toBeDefined();
 			expect(Array.isArray(data.body)).toBe(true);
 		});
 
 		it('(GET) /books/query', async () => {
-			const data = await agent.get(`/books/query?text=book?limit=10?page=1`).expect(200);
+			const data = await agent.get(`/books/query?q=book?limit=10?page=1`).expect(200);
 			expect(data.body.count).toBeDefined();
 			expect(data.body.books).toBeDefined();
 		});

@@ -32,18 +32,18 @@ export class BookController {
 	}
 
 	@Get('search')
-	public async searchBooks(@Query('text') text: string) {
-		return await this.bookService.searchBooks(text);
+	public async searchBooks(@Query('q') q: string) {
+		return await this.bookService.searchBooks(q);
 	}
 
 	@Get('query')
 	public async queryBooks(
-		@Query('text') text: string,
+		@Query('q') q: string,
 		@Query('limit') limit?: number,
 		@Query('p') p?: number,
 	) {
 		if (!limit) {
-			return await this.bookService.queryBooks(text);
+			return await this.bookService.queryBooks(q);
 		}
 		const safeLimit = parseInt(limit.toString()) || 25;
 		const safePage = parseInt(p.toString()) || 1;
@@ -51,6 +51,6 @@ export class BookController {
 			limit: safeLimit,
 			page: safePage,
 		};
-		return await this.bookService.queryBooks(text, pagination);
+		return await this.bookService.queryBooks(q, pagination);
 	}
 }

@@ -99,12 +99,12 @@ export class UserController {
 			} else {
 				const book = await this.bookService.findById(cartItemDto._id);
 				if (book) {
-					const { _id, title, price, old_price } = book;
-					cart.push({ total: cartItemDto.total, _id, title, price, old_price });
+					const { _id, title, price, old_price, imgURL } = book;
+					cart.push({ total: cartItemDto.total, _id, title, price, old_price, imgURL });
 					if (user) {
 						await this.userService.addItemToCart(
 							user.id,
-							{ _id, total: cartItemDto.total, title, price, old_price },
+							{ _id, total: cartItemDto.total, title, price, old_price, imgURL },
 							false,
 						);
 					}
