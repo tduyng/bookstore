@@ -2,38 +2,28 @@ module.exports = {
   // The root of your source code, typically /src
   // `<rootDir>` is a token Jest substitutes
   preset: 'ts-jest',
-  moduleFileExtensions: ['js', 'json', 'ts'],
-  rootDir: 'src',
-  // roots: ['<rootDir>/src'],
 
-  // Jest transformations -- this adds support for TypeScript
-  // using ts-jest
-  // transform: {
-  //   '^.+\\.tsx?$': 'ts-jest',
-  // },
+  moduleFileExtensions: ['js', 'json', 'ts', 'jsx', 'tsx', 'node'],
+  rootDir: './',
+
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$',
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
   },
+  testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    'src/(.*)$': '<rootDir>/src/$1',
+    '\\.(css|less|scss|sss|styl)$': '<rootDir>/src/__mocks__/fileMock.js',
+    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/src/__mocks__/fileMock.js',
+  },
+  clearMocks: true,
 
   // Runs special logic, such as cleaning up components
   // when using React Testing Library and adds special
   // extended assertions to Jest
   setupFilesAfterEnv: [
-    '@testing-library/react/cleanup-after-each',
+    // '@testing-library/react/cleanup-after-each',
     '@testing-library/jest-dom/extend-expect',
   ],
-
-  // Test spec file resolution pattern
-  // Matches parent folder `__tests__` and filename
-  // should contain `test` or `spec`.
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-
-  // Module file extensions for importing
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  moduleNameMapper: {
-    'src/(.*)$': '<rootDir>/src/$1',
-  },
-  clearMocks: true,
 };
-
-// https://www.pluralsight.com/guides/how-to-test-react-components-in-typescript

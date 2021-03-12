@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App> Should render and match the snapshot 1`] = `
+<BrowserRouter>
+  <Helmet
+    defaultTitle="Bookstore"
+    defer={true}
+    encodeSpecialCharacters={true}
+    titleTemplate="%s - Bookstore"
+  >
+    <meta
+      content="Bookstore application"
+      name="description"
+    />
+  </Helmet>
+  <div
+    className="App"
+  >
+    <NavBar />
+    <Toaster
+      position="bottom-right"
+      reverseOrder={false}
+      toastOptions={
+        Object {
+          "style": Object {
+            "fontSize": "1.6rem",
+          },
+        }
+      }
+    />
+    <Switch>
+      <Route
+        component={[Function]}
+        path="/books/genre/:genre"
+      />
+      <Route
+        component={[Function]}
+        path="/books/search"
+      />
+      <Route
+        component={[Function]}
+        path="/account"
+      />
+      <Route
+        component={[Function]}
+        path="/book/:id"
+      />
+      <Route
+        component={[Function]}
+        path="/checkout/payment"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/checkout"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={[Function]}
+      />
+    </Switch>
+    <Footer />
+    <ScrollToTop />
+  </div>
+</BrowserRouter>
+`;

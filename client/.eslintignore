@@ -1,3 +1,4 @@
 node_module
 tsconfig.json
 .gitnigore
+__mocks__
