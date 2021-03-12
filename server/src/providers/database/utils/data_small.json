@@ -1,17 +1,153 @@
-{
-  "books": [{
-    "genre": "art-photography",
-    "title": "Leonardo da Vinci",
-    "author": "",
-    "price": "326.400",
-    "old_price": "384.000",
-    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_181884.jpg"
-  }, {
-    "genre": "art-photography",
-    "title": "Leonardo da Vinci",
-    "author": "",
-    "price": "326.400",
-    "old_price": "384.000",
-    "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/400x400/9df78eab33525d08d6e5fb8d27136e95/i/m/image_181884.jpg"
-  }]
-}
+ [{
+     "_id": {
+       "$oid": "5f91cb78bb017357906536c9"
+     },
+     "genre": "romance",
+     "title": "[Bản Giới Hạn] Hội Chứng Tuổi Thanh Xuân - Tập 1 - Tặng Kèm Bookmark + Postcard PVC",
+     "author": "Quan Nhat Tue",
+     "price": "99.75",
+     "old_price": "105.000",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/h/o/hoi-chung-tuoi-thanh-xuan-tap-1_1.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "hoi-chung-tuoi-thanh-xua",
+     "__v": 0
+   }, {
+     "_id": {
+       "$oid": "5f93a87d3678c00cd934a5a1"
+     },
+     "genre": "management",
+     "title": "Kỷ Nguyên Mới Của Quản Trị",
+     "author": "Hai Tien Phong",
+     "price": "326.400",
+     "old_price": "384.000",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_193617.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "ky-nguyen-moi-cua-quan-tri",
+     "__v": 0
+   },
+   {
+     "_id": {
+       "$oid": "5f91cb78bb017357906536c8"
+     },
+     "genre": "novel",
+     "title": "Tận Thế Nếu Không Bận, Anh Cứu Chúng Em Nhé? - Tập 5",
+     "author": "Nam Trung Hoa",
+     "price": "76.5",
+     "old_price": "90",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/_/t_n-th_-5.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "anh-cuu-chung-em-nhe",
+     "__v": 0
+   },
+   {
+     "_id": {
+       "$oid": "5f92a2372f69d81ef9ed0986"
+     },
+     "genre": "life-skill",
+     "title": "Không Bao Giờ Là Thất Bại! Tất Cả Là Thử Thách (Tái Bản 2019)",
+     "author": "Nguyen Nhat Thuat",
+     "price": "78.4",
+     "old_price": "90",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/u/n/untitled_1_2.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "khong-bao-gio-la-that-bai",
+     "__v": 0
+   },
+   {
+     "_id": {
+       "$oid": "5f91cb78bb017357906536cb"
+     },
+     "genre": "comic",
+     "title": "Sword Art Online 17 - Tặng Kèm Bookmark PVC",
+     "author": "Akatsuki",
+     "price": "106.25",
+     "old_price": "125",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/i/bia-sao-17_11-9-2020-1.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "sword-art-online-17",
+     "__v": 0
+   },
+   {
+     "_id": {
+       "$oid": "5f92967afee4881711cf0f45"
+     },
+     "genre": "light-novel",
+     "title": "Tôi Thấy Hoa Vàng Trên Cỏ Xanh (Bản In Mới - 2018)",
+     "author": "Vu Hoa Than",
+     "price": "100",
+     "old_price": "125",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_180164_1_43_1_57_1_4_1_2_1_210_1_29_1_98_1_25_1_21_1_5_1_3_1_18_1_18_1_45_1_26_1_32_1_14_1_2199.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "toi-thay-hoa-vang-dang-no-xinh-dep",
+     "__v": 0
+   },
+   {
+     "_id": {
+       "$oid": "5f92a2372f69d81ef9ed099d"
+     },
+     "genre": "business-analysis",
+     "title": "7 Phương Pháp Đầu Tư Warren Buffet",
+     "author": "Akatsuki",
+     "price": "108.42",
+     "old_price": "139",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_180164_1_43_1_57_1_4_1_2_1_210_1_29_1_98_1_25_1_21_1_5_1_3_1_18_1_18_1_45_1_26_1_32_1_14_1_2199.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "7-phuong-phat-dautu-warren-buffet",
+     "__v": 0
+   },
+   {
+     "_id": {
+       "$oid": "5f91cf129bcd585b3e0ef405"
+     },
+     "genre": "comic",
+     "title": "Thanh Gươm Diệt Quỷ - Kimetsu No Yaiba - Tập 16: Bất Diệt",
+     "author": "Akatsuki",
+     "price": "23.75",
+     "old_price": "25",
+     "imgURL": "https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/h/thanh-guom-diet-quy-tap-16.jpg",
+     "createdAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "updatedAt": {
+       "$date": "2021-03-12T16:38:02.186Z"
+     },
+     "slug": "thanh-guom-diet-quy",
+     "__v": 0
+   }
+
+ ]

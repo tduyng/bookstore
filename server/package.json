@@ -12,6 +12,7 @@
     "start:dev": "NODE_ENV=development nest start --watch",
     "start:debug": "NODE_ENV=development nest start --debug --watch",
     "start:prod": "node dist/main",
+    "upload-data": "ts-node src/providers/database/utils/upload-data.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prettier": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "test": "NODE_ENV=test jest",

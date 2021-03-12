@@ -60,14 +60,19 @@ class FahasaByGenreSpider(scrapy.Spider):
     # text_file = os.getcwd() + "/crawler/spiders/bygenre.txt"
     # start_urls = get_links_from_text_file(text_file)
     start_urls = [
-        "https://www.fahasa.com/sach-trong-nuoc/manga-comic.html?order=num_orders&limit=48&p=1",
+        "https://www.fahasa.com/sach-trong-nuoc/giao-khoa-tham-khao/sach-giao-khoa/giao-khoa-lop-12.html",
+        "https://www.fahasa.com/sach-trong-nuoc/giao-khoa-tham-khao/sach-giao-khoa/giao-khoa-lop-11.html",
+        "https://www.fahasa.com/sach-trong-nuoc/giao-khoa-tham-khao/sach-giao-khoa/giao-khoa-lop-10.html",
+        "https://www.fahasa.com/sach-trong-nuoc/giao-khoa-tham-khao/sach-giao-khoa/giao-khoa-lop-9.html",
+        "https://www.fahasa.com/sach-trong-nuoc/giao-khoa-tham-khao/sach-giao-khoa/giao-khoa-lop-8.html",
+        "https://www.fahasa.com/sach-trong-nuoc/giao-khoa-tham-khao/sach-giao-khoa/giao-khoa-lop-7.html",
     ]
 
     next_url = ""
-    item_genre = "comic"
+    item_genre = "text-book"
     headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:48.0) Gecko/20100101 Firefox/48.0"}
     folder = f"data/{item_genre}"
-    file_name = f"data/{item_genre}/${item_genre}.json"
+    file_name = f"data/{item_genre}/{item_genre}.json"
     file_name_csv = f"data/{item_genre}/{item_genre}.csv"
 
     if not os.path.exists(folder):
@@ -113,7 +118,7 @@ class FahasaByGenreSpider(scrapy.Spider):
             item["title"] = title[0].strip()
 
         item["author"] = book_detail.xpath('//div[@class="product-view-sa-author"]/span/text()').getall()[1]
-        item["imgURL"] = response.xpath('//div[@class="product-view-image"]//img/@src').get()
+        item["imgURL"] = response.xpath('//div[@class="product-view-image-product"]//img[@id="image"]/@src').get()
 
         current_price = book_detail.xpath('//span[@class="regular-price"]/span[@class="price"]/text()').get()
         old_price = "0.00\xa0d"
