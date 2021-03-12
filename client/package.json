@@ -11,7 +11,9 @@
     "serve": "vite preview",
     "lint": "eslint --fix --ext js,jsx,ts,tsx src/",
     "prettier": "prettier --write \"(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)\"",
-    "test": "concurrently \"yarn start \" \"cypress open\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:e2e": "concurrently \"yarn start \" \"cypress open\"",
     "test:ci": "cypress run --headless"
   },
   "dependencies": {
