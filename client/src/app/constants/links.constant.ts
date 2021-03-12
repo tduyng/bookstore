@@ -13,9 +13,7 @@ export const SERVER_LINKS = {
   userUpdateCart: '/api/users/update-cart-item', // POST
   userRemoveFromCart: '/api/users/remove-cart-item', // POST
   userRemoveAllFromCart: '/api/users/remove-carts', // POST
-  avatarUpload: '/api/avatars/upload', // POST,
-  avatarGetByKey: '/api/avatars', // GET With Param /:key
-  avatarDeteleteByKey: '/api/avatars', // DELETE Param /:key
+  userUpload: '/api/users/upload', // POST with param {file: FileType}
   bookGetById: '/api/books/book', //GET with param /:id
   bookGetByGenre: '/api/books/genre', // GET with param /:genre
   bookSearch: '/api/books/search', // GET with query ?q=

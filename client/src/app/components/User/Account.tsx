@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { IUser } from 'src/app/features/user/user.types';
 import { AppState } from 'src/store/reducers';
 import { requestWithAuthSimple } from 'src/utils/request';
 import { useAppDispatch } from 'src/store';
 import { fetchUser } from 'src/app/features/user/user.actions';
 import { SERVER_LINKS } from 'src/app/constants/links.constant';
+import { useHistory } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export const Account = () => {
   const { user, isLoggedIn } = useSelector((state: AppState) => state.user);
@@ -48,14 +48,16 @@ export const Account = () => {
           const scaledFile = new File([blob], nameFile);
           const formData = new FormData();
           formData.append('file', scaledFile);
-          const res = await requestWithAuthSimple(SERVER_LINKS.avatarUpload, {
+          const res = await requestWithAuthSimple(SERVER_LINKS.userUpload, {
             method: 'POST',
             body: formData,
           });
           await dispatch(fetchUser());
           setSuccess(res.data);
+          toast.success('Upload new avatar successfully');
         } catch (err) {
           setError(err.response.data);
+          toast.error(err.response.data);
         }
       });
     } else {

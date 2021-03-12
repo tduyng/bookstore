@@ -65,6 +65,10 @@ const _Header = () => {
       setActiveAccount(false);
     }
   };
+
+  const onLogout = async () => {
+    await dispatch(logout());
+  };
   useEffect(() => {
     const fetchData = async () => {
       return await dispatch(fetchUser());
@@ -196,7 +200,7 @@ const _Header = () => {
                     <li>My Account ({user?.username})</li>
                   </Link>
                   <li>
-                    <div onClick={() => dispatch(logout())}>Logout</div>
+                    <div onClick={onLogout}>Logout</div>
                   </li>
                 </>
               ) : (

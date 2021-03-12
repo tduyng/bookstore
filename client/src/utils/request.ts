@@ -50,7 +50,7 @@ export async function requestWithAuth(url: string, options?: RequestInit) {
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     ...options,
   };
-  await fetch(SERVER_LINKS.authAutoRefresh, { method: 'POST', ...moreOptions });
+  await fetch(SERVER_LINKS.authAutoRefresh, { ...moreOptions, method: 'POST' });
 
   const fetchResponse = await fetch(url, moreOptions);
   const response = checkStatus(fetchResponse);
@@ -62,7 +62,7 @@ export async function requestWithAuthSimple(url: string, options?: RequestInit) 
     mode: 'cors',
     ...options,
   };
-  await fetch(SERVER_LINKS.authAutoRefresh, { method: 'POST', ...moreOptions });
+  await fetch(SERVER_LINKS.authAutoRefresh, { ...moreOptions, method: 'POST' });
 
   const fetchResponse = await fetch(url, moreOptions);
   const response = checkStatus(fetchResponse);
