@@ -8,11 +8,12 @@ Create modern web app clean architecture with NestJS + MongoDB & ViteJS + React
 - Backend
   - NodeJs/NestJs TypeScript
   - MongoDB/Mongoose
+  - Cloudinary for uploading images
   - Jest (testing)
 - Front-end
   - ReactJS
   - ViteJS (really fast)
-  - Redux
+  - Redux + Redux Thunk
   - SCSS
   - Cypress (testing)
 
