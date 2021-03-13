@@ -44,7 +44,11 @@ async function bootstrap() {
 	app.use(express.urlencoded({ extended: true }));
 
 	app.use(cookieParser(env.cookieSecret));
-	app.enableCors();
+	app.enableCors({
+		origin: true,
+		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+		credentials: true,
+	});
 
 	if (env.mode === 'production') {
 		app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -63,9 +67,9 @@ async function bootstrap() {
 			res.header('Access-Control-Allow-Origin', env.clientUrl); // update to match the domain you will make the request from
 			res.header(
 				'Access-Control-Allow-Headers',
-				'Origin, X-Requested-With, Content-Type, Accept',
+				'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept',
 			);
-			res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+			res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE, OPTIONS');
 			res.header('Access-Control-Allow-Credentials', true);
 			if (req.method === 'OPTIONS') {
 				return res.sendStatus(204);
