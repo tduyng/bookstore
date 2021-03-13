@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm/> Should match the snapshot 1`] = `
+<div
+  class="auth__form"
+>
+  <form>
+    <div
+      class="auth__form--input"
+    >
+      <label
+        for="login__email"
+      >
+        Email
+      </label>
+      <input
+        class="auth__form--input__email"
+        id="login__email"
+        placeholder="Username or Email"
+        required=""
+        type="text"
+      />
+    </div>
+    <div
+      class="auth__form--input"
+    >
+      <label
+        for="login__password"
+      >
+        Password
+      </label>
+      <input
+        autocomplete="password"
+        class="auth__form--input__password"
+        id="login__password"
+        placeholder="Password"
+        required=""
+        type="password"
+      />
+    </div>
+    <button
+      class="auth__form--button"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+  <p
+    class="auth__form--reset"
+  >
+    <a
+      href="/forgot-password"
+    >
+      Forgot password?
+    </a>
+  </p>
+</div>
+`;

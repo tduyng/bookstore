@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RegisterFrom/> Should match snapshot 1`] = `
+<div
+  class="auth__form"
+>
+  <form>
+    <div
+      class="auth__form--input"
+    >
+      <label
+        for="signup__username"
+      >
+        Username
+      </label>
+      <input
+        class="auth__form--input__username"
+        id="signup__username"
+        placeholder="Username"
+        required=""
+        type="text"
+      />
+    </div>
+    <div
+      class="auth__form--input"
+    >
+      <label
+        for="signup__email"
+      >
+        Email
+      </label>
+      <input
+        class="auth__form--input__email"
+        id="signup__email"
+        placeholder="Email"
+        required=""
+        type="email"
+      />
+    </div>
+    <div
+      class="auth__form--input"
+    >
+      <label
+        for="signup__password"
+      >
+        Password
+      </label>
+      <input
+        autocomplete="password"
+        class="auth__form--input__password"
+        id="signup__password"
+        placeholder="Password"
+        required=""
+        type="password"
+      />
+    </div>
+    <button
+      class="auth__form--button"
+      type="submit"
+    >
+      Signup
+    </button>
+  </form>
+</div>
+`;

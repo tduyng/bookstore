@@ -33,6 +33,7 @@ Create modern web app clean architecture with NestJS + MongoDB & ViteJS + React
 - Improve **SEO** with react-helmet
 - **Lazyload** page & components
 - Lint & format with **Eslint + Prettier**
+- Documentation with Swagger/Open API
 
 - Improvements:
   - Custom logger with winston
