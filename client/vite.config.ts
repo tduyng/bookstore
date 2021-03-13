@@ -2,9 +2,12 @@ import eslint from '@rollup/plugin-eslint';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import { UserConfig } from 'vite';
 import { resolve } from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const serverUrl: string =
-  (import.meta.env.VITE_SERVER_BASE_URL as string) || 'http://localhost:5025';
+  (process.env.VITE_SERVER_BASE_URL as string) || 'http://localhost:5025';
 
 const config: UserConfig = {
   plugins: [
