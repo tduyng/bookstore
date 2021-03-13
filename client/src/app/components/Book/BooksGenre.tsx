@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { fetchBooks } from 'src/app/features/book/book.actions';
 import { useQueryUrl } from 'src/app/hooks/useQueryUrl';
 import { useAppDispatch } from 'src/store';

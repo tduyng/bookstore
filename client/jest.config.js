@@ -13,9 +13,9 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     'src/(.*)$': '<rootDir>/src/$1',
-    '\\.(css|less|scss|sss|styl)$': '<rootDir>/src/__mocks__/fileMock.js',
+    '\\.(css|less|scss|sss|styl)$': '<rootDir>/src/__mocks__/matchFile.mock.js',
     '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/src/__mocks__/fileMock.js',
+      '<rootDir>/src/__mocks__/matchFile.mock.js',
   },
   clearMocks: true,
 
@@ -25,5 +25,8 @@ module.exports = {
   setupFilesAfterEnv: [
     // '@testing-library/react/cleanup-after-each',
     '@testing-library/jest-dom/extend-expect',
+    '<rootDir>/src/setupTests.js',
   ],
+  automock: false,
+  setupFiles: ['./setupJest.js'],
 };

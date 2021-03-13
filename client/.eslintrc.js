@@ -18,6 +18,13 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
+  ignorePatterns: [
+    '.eslintrc.js',
+    '*.config.js',
+    '*.json',
+    '__test__',
+    '**/setupTest.js',
+  ],
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     '@typescript-eslint/explicit-function-return-type': 'off',

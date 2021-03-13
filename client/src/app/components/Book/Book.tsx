@@ -7,7 +7,7 @@ import { useAppDispatch } from 'src/store';
 import toast from 'react-hot-toast';
 import noImage from '/no-image.png';
 
-type BookProps = IBook & { hideButton?: boolean };
+export type BookProps = IBook & { hideButton?: boolean };
 export const Book: React.FC<BookProps> = props => {
   const dispatch = useAppDispatch();
 

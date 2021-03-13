@@ -19,7 +19,6 @@ export const register = createAsyncThunk(
       });
       return emailToken;
     } catch (error) {
-      console.log('registerError', error);
       return rejectWithValue(error.message);
     }
   },

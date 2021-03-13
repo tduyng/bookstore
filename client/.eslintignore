@@ -2,3 +2,5 @@ node_module
 tsconfig.json
 .gitnigore
 __mocks__
+setupTests.ts
+__test__

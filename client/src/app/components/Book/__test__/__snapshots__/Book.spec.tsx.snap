@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Book> Should match snapshot 1`] = `
+<div
+  className="book"
+>
+  <a
+    className="book__link"
+    href="/book/some"
+    onClick={[Function]}
+  >
+    <img
+      alt=""
+      className="book__link--img"
+      src="some-stub"
+    />
+  </a>
+  <div
+    className="book__content"
+  >
+    <div
+      className="book__content--name"
+    >
+      some
+    </div>
+    <div
+      className="book__content--price"
+    >
+      0 ₫
+    </div>
+    0
+    <button
+      className="book__content--button"
+      onClick={[Function]}
+    >
+      Add to cart
+    </button>
+  </div>
+</div>
+`;
