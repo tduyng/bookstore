@@ -7,7 +7,6 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import compression from 'compression';
 import RateLimit from 'express-rate-limit';
-import cors from 'cors';
 import { setupSwagger } from './common/config/swagger.config';
 import { sessionConfig } from './common/config/session.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
@@ -43,14 +42,9 @@ async function bootstrap() {
 	app.set('trust proxy', 1);
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
-	app.use(
-		cors({
-			origin: '*',
-			credentials: true,
-		}),
-	);
 
 	app.use(cookieParser(env.cookieSecret));
+	app.enableCors();
 
 	if (env.mode === 'production') {
 		app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -63,6 +57,21 @@ async function bootstrap() {
 					max: 100, // limit each IP to 100 requests per windowMs
 				}),
 			);
+
+		// Enable cors middleware
+		app.use(function (req, res, next) {
+			res.header('Access-Control-Allow-Origin', env.clientUrl); // update to match the domain you will make the request from
+			res.header(
+				'Access-Control-Allow-Headers',
+				'Origin, X-Requested-With, Content-Type, Accept',
+			);
+			res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+			res.header('Access-Control-Allow-Credentials', true);
+			if (req.method === 'OPTIONS') {
+				return res.sendStatus(204);
+			}
+			next();
+		});
 
 		// Disable console.log() in production
 		// eslint-disable-next-line @typescript-eslint/no-empty-function
