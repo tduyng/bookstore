@@ -2,6 +2,11 @@ module.exports = {
   // The root of your source code, typically /src
   // `<rootDir>` is a token Jest substitutes
   preset: 'ts-jest',
+  globals: {
+    'ts-jest': {
+      babelConfig: true,
+    },
+  },
 
   moduleFileExtensions: ['js', 'json', 'ts', 'jsx', 'tsx', 'node'],
   rootDir: './',
