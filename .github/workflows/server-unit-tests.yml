@@ -15,9 +15,6 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - name: Change to server directory
-        run: cd server
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -33,6 +30,10 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
+        working-directory: ./server
         run: yarn install
-      - run: yarn test
+
+      - name: Run unit tests
+        working-directory: ./server
+        run: yarn test
 

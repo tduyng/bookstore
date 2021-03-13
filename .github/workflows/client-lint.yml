@@ -1,4 +1,4 @@
-name: Client unit tests
+name: Client lint
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  client-unit-tests:
+  client-lint:
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,18 +22,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          
-      - name: Yarn caching
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
         working-directory: ./client
         run: yarn install
 
-      - name: Run unit tests
+      - name: Run linter
         working-directory: ./client
-        run: yarn test
+        run: yarn lint
 

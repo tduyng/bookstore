@@ -15,9 +15,6 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - name: Change to server directory
-        run: cd server
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -27,7 +24,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
+        working-directory: ./server
         run: yarn install
 
-      - run: yarn lint
+      - name: Run linter
+        working-directory: ./server
+        run: yarn lint
 
