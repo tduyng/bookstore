@@ -16,7 +16,7 @@ export function sessionConfig(): session.SessionOptions {
 			secure: __prod__,
 			maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
 			sameSite: 'lax', // csrf
-			domain: __prod__ ? '.codeponder.com' : undefined,
+			domain: __prod__ ? '.netlify.com' : undefined,
 		},
 	};
 }
