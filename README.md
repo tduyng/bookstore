@@ -2,7 +2,9 @@
 
 Create modern web app clean architecture with NestJS + MongoDB & ViteJS + React
 
-Visit demo for client side at : [https://td-bookstore.vercel.app/](https://td-bookstore.vercel.app/)
+Visit demo for client side at : [https://bookzeta.netlify.app/](https://bookzeta.netlify.app/)
+
+**Note: ** I have a problem with proxy netlify. It's not work for this moment --> working in progress ....
 
 ## Technologies
 - Crawl data
