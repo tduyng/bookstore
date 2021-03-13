@@ -2,6 +2,8 @@
 /dist
 /node_modules
 upload/
+dist/
+build/
 
 # Logs
 logs

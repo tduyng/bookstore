@@ -3,7 +3,7 @@
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "typeRoots": ["./node_modules/@types", "src/@types"],
-    "types": ["vite/client", "cypress", "node"],
+    "types": ["vite/client", "jest", "node"],
     "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
@@ -20,6 +20,6 @@
     "baseUrl": "./",
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src", "cypress"],
-  "exclude": ["__mocks__", "__test__"]
+  "include": ["./src"],
+  "exclude": ["__mocks__", "__test__", "cypress", "node_module"]
 }
