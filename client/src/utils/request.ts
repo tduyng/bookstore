@@ -31,7 +31,11 @@ export async function request(url: string, options?: RequestInit) {
   const moreOptions: RequestInit = {
     credentials: 'include',
     mode: 'cors',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
     ...options,
   };
   const fetchResponse = await fetch(url, moreOptions);
@@ -47,7 +51,11 @@ export async function requestWithAuth(url: string, options?: RequestInit) {
   const moreOptions: RequestInit = {
     credentials: 'include',
     mode: 'cors',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
     ...options,
   };
   await fetch(SERVER_LINKS.authAutoRefresh, { ...moreOptions, method: 'POST' });
@@ -60,6 +68,9 @@ export async function requestWithAuthSimple(url: string, options?: RequestInit) 
   const moreOptions: RequestInit = {
     credentials: 'include',
     mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
     ...options,
   };
   await fetch(SERVER_LINKS.authAutoRefresh, { ...moreOptions, method: 'POST' });
