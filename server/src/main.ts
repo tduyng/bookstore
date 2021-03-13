@@ -39,7 +39,7 @@ async function bootstrap() {
 	// Allow inject dependency injection in  validator
 	useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-	app.set('trust proxy', 1);
+	app.set('trust proxy', 1); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
 
@@ -51,7 +51,6 @@ async function bootstrap() {
 	});
 
 	if (env.mode === 'production') {
-		app.enable('trust proxy'); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 		app
 			.use(compression())
 			.use(helmet())
