@@ -38,10 +38,10 @@ export const Auth: React.FC<AuthProps> = ({ open, onClose }) => {
           <p className="auth__links--signup">Signup</p>
         </div>
         {method === 'login' ? <LoginForm /> : <RegisterForm />}
-        <a href="/auth/facebook" className="oauth auth__facebook">
+        <a href="#" className="oauth auth__facebook">
           <i className="fab fa-facebook"></i>
         </a>
-        <a href="/auth/google" className="oauth auth__google">
+        <a href="#" className="oauth auth__google">
           <i className="fab fa-google"></i>
         </a>
       </div>
