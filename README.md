@@ -49,3 +49,11 @@ Visit demo for client side at : [https://bookzeta.netlify.app/](https://bookzeta
 <div align="center">
 <img src="docs/img/home.png"/>
 </div>
+
+## Fast screencast
+
+<div align="center"></div>
+
+[![Screen cast](https://share.gifyoutube.com/4QgOm1.gif)](https://www.youtube.com/watch?v=bAreBxxrDac)
+
+</div>
