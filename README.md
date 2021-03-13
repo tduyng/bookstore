@@ -2,6 +2,8 @@
 
 Create modern web app clean architecture with NestJS + MongoDB & ViteJS + React
 
+Visit demo for client side at : [https://td-bookstore.vercel.app/](https://td-bookstore.vercel.app/)
+
 ## Technologies
 - Crawl data
   - Using Python + Scrapy to crawl books data from other website
