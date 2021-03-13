@@ -7,8 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const serverUrl: string =
-  (process.env.VITE_SERVER_BASE_URL as string) ||
-  'https://td-server-bookstore.herokuapp.com';
+  (process.env.VITE_SERVER_BASE_URL as string) || 'http://localhost:5025';
 
 console.log('serverUrl: --------------> ', serverUrl);
 

@@ -126,7 +126,7 @@ export const BookDetail = () => {
       <div className="book-detail__wrapper">
         <div className="book-detail">
           <div className="not-found">
-            <h2>Sorry</h2>
+            <h1>Sorry</h1>
             <p>This book is not available in our stock anymore!</p>
             <a className="not-found__link" onClick={() => history.goBack()}>
               Go back
