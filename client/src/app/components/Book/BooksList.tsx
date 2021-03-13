@@ -25,7 +25,7 @@ export const BooksList: React.FC<BooksListProps> = props => {
   };
   const ref: any = useRef();
   const handleClickOutsideLimit = (e: any) => {
-    if (ref.current.classList.contains('active') && !ref.current.contains(e.target)) {
+    if (ref.current?.classList?.contains('active') && !ref.current?.contains(e.target)) {
       setActiveLimit(!activeLimit);
     }
   };
