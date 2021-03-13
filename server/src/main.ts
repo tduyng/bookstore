@@ -8,7 +8,6 @@ import helmet from 'helmet';
 import compression from 'compression';
 import RateLimit from 'express-rate-limit';
 import cors from 'cors';
-import csurf from 'csurf';
 import { setupSwagger } from './common/config/swagger.config';
 import { sessionConfig } from './common/config/session.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
@@ -58,7 +57,6 @@ async function bootstrap() {
 		app
 			.use(compression())
 			.use(helmet())
-			.use(csurf())
 			.use(
 				RateLimit({
 					windowMs: 15 * 60 * 1000, // 15 minutes
