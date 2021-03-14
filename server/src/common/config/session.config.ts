@@ -2,10 +2,17 @@ import session from 'express-session';
 import { envConfig } from './env.config';
 export const SESSION_AUTH_KEY = 'SESSION_AUTH';
 
+// const tryToFixCookieOnHerokuProduction = (env: EnvConfig, __prod__: boolean) => ({
+// 	httpOnly: true,
+// 	secure: false,
+// 	maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
+// 	sameSite: 'lax', // csrf
+// 	domain: __prod__ ? '.bookzeta.netlify.app' : undefined,
+// });
+
 export function sessionConfig(): session.SessionOptions {
 	const env = envConfig();
 	const __prod__ = env.mode === 'production';
-	console.log('__prod__ from sessionConfig is production?: ', __prod__);
 	// In-memory storage
 	return {
 		name: SESSION_AUTH_KEY,
@@ -14,9 +21,9 @@ export function sessionConfig(): session.SessionOptions {
 		saveUninitialized: false,
 		cookie: {
 			httpOnly: true,
-			secure: false,
+			secure: __prod__,
 			maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
-			sameSite: 'lax', // csrf
+			sameSite: true,
 			domain: __prod__ ? '.bookzeta.netlify.app' : undefined,
 		},
 	};
