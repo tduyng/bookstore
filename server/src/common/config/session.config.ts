@@ -5,6 +5,7 @@ export const SESSION_AUTH_KEY = 'SESSION_AUTH';
 export function sessionConfig(): session.SessionOptions {
 	const env = envConfig();
 	const __prod__ = env.mode === 'production';
+	console.log('__prod__ from sessionConfig is production?: ', __prod__);
 	// In-memory storage
 	return {
 		name: SESSION_AUTH_KEY,
