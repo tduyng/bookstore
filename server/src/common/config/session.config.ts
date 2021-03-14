@@ -11,6 +11,7 @@ export function sessionConfig(): session.SessionOptions {
 		secret: env.sessionSecret,
 		resave: false,
 		saveUninitialized: false,
+		proxy: true, // add this when behind a reverse proxy, if you need secure cookies
 		cookie: {
 			httpOnly: true,
 			secure: __prod__,
