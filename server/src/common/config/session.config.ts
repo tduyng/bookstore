@@ -1,14 +1,6 @@
 import session from 'express-session';
-import { EnvConfig, envConfig } from './env.config';
+import { envConfig } from './env.config';
 export const SESSION_AUTH_KEY = 'SESSION_AUTH';
-
-const tryToFixCookieOnHerokuProduction = (env: EnvConfig, __prod__: boolean) => ({
-	httpOnly: true,
-	secure: false,
-	maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
-	sameSite: true, // csrf
-	domain: __prod__ ? '.bookzeta.netlify.app' : undefined,
-});
 
 export function sessionConfig(): session.SessionOptions {
 	const env = envConfig();
@@ -19,6 +11,12 @@ export function sessionConfig(): session.SessionOptions {
 		secret: env.sessionSecret,
 		resave: false,
 		saveUninitialized: false,
-		cookie: __prod__ ? undefined : tryToFixCookieOnHerokuProduction(env, __prod__),
+		cookie: {
+			httpOnly: true,
+			secure: __prod__,
+			maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
+			sameSite: true,
+			domain: __prod__ ? '.bookzeta.netlify.app' : undefined,
+		},
 	};
 }
