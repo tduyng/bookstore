@@ -4,7 +4,7 @@ Create modern web app clean architecture with NestJS + MongoDB & ViteJS + React
 
 Visit demo for client side at : [https://bookzeta.netlify.app/](https://bookzeta.netlify.app/)
 
-**Note: ** I have a problem with proxy netlify. It's not work for this moment --> working in progress ....
+**Note: ** I still have some [issues](#issues) for the production demo between Heroku & Netlify.
 
 ## Technologies
 - Crawl data
@@ -44,7 +44,11 @@ Visit demo for client side at : [https://bookzeta.netlify.app/](https://bookzeta
   - Nginx
   - Testing
 
+## Issues
 
+Still have some issues with production, that I'm working in progress to figure out why:
+  - Proxy netlify not working --> so I must using request to server link directly with cross-origin
+  - Heroku session-cookie not working --> can't take the actions create, update data in production like login, register, addToCart, updateCart ...
 ## Images
 <div align="center">
 <img src="docs/img/home.png"/>
