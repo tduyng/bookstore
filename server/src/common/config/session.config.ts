@@ -23,7 +23,7 @@ export function sessionConfig(): session.SessionOptions {
 			httpOnly: true,
 			secure: __prod__,
 			maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
-			sameSite: true,
+			sameSite: 'none',
 			domain: __prod__ ? '.bookzeta.netlify.app' : undefined,
 		},
 	};
