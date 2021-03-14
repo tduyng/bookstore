@@ -14,7 +14,7 @@ export function sessionConfig(): session.SessionOptions {
 		saveUninitialized: false,
 		cookie: {
 			httpOnly: true,
-			secure: __prod__,
+			secure: false,
 			maxAge: env.jwt.jwtRefreshExpiredTime, // 30 days --> need >= max of alive time of refresh token
 			sameSite: 'lax', // csrf
 			domain: __prod__ ? '.bookzeta.netlify.app' : undefined,
