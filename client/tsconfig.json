@@ -20,6 +20,6 @@
     "baseUrl": "./",
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src", "**/*.ts", "**/*.tsx", "vite.config.ts"],
-  "exclude": ["__mocks__", "__test__", "cypress", "node_module"]
+  "include": ["./src", "vite.config.ts"],
+  "exclude": ["__mocks__", "__test__"]
 }
