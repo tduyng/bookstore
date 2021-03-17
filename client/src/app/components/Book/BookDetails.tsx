@@ -121,7 +121,7 @@ export const BookDetail = () => {
     return () => abortController.abort();
   }, [id, dispatch, foundBook, setFoundBook]);
 
-  if (!foundBook) {
+  const bookNotFound = () => {
     return (
       <div className="book-detail__wrapper">
         <div className="book-detail">
@@ -135,6 +135,10 @@ export const BookDetail = () => {
         </div>
       </div>
     );
+  };
+
+  if (status === 'success' && !foundBook) {
+    bookNotFound();
   }
 
   return (
