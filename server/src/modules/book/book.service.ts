@@ -55,17 +55,15 @@ export class BookService {
 		const count = await this.bookModel.countDocuments({
 			$text: { $search: `\"${q}\"` },
 		});
-		let books: Book[];
-		if (!pagination) {
-			books = await this.bookModel.find({ $text: { $search: `\"${q}\"` } }).lean();
-		} else {
-			const { limit, page } = pagination;
-			books = await this.bookModel
-				.find({ $text: { $search: `\"${q}\"` } })
-				.skip((page - 1) * limit)
-				.limit(limit)
-				.lean();
-		}
+		const limit = pagination?.limit || 25;
+		const page = pagination?.page || 1;
+
+		const books: Book[] = await this.bookModel
+			.find({ $text: { $search: `\"${q}\"` } })
+			.skip((page - 1) * limit)
+			.limit(limit)
+			.lean();
+
 		return { count, books };
 	}
 }

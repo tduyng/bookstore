@@ -96,15 +96,6 @@ describe('BookService', () => {
 	});
 
 	describe('queryBooks', () => {
-		it('Should return array books without pagination', async () => {
-			bookModel.countDocuments.mockReturnValue(2);
-			bookModel.find.mockImplementationOnce(() => ({
-				lean: jest.fn().mockReturnValue(manyBooks),
-			}));
-			const result = await bookService.queryBooks('some-text');
-			expect(result).toEqual({ count: 2, books: manyBooks });
-		});
-
 		it('Should return array books with pagination', async () => {
 			bookModel.countDocuments.mockReturnValue(1);
 			bookModel.find.mockImplementationOnce(() => ({
