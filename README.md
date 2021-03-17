@@ -141,6 +141,9 @@ Some issues when deploy in production with heroku & netlify.
 
     That's it. I still have a lot of things to do for make this project more  closer as an real application but I will try it when I have time to work on them  xD.
 
+## Fast screencast
+
+[![Screen cast](https://media.giphy.com/media/pSOySnzqtQA2CH0Vc1/giphy.gif)](https://www.youtube.com/watch?v=bAreBxxrDac)
 
 
 
@@ -149,10 +152,3 @@ Some issues when deploy in production with heroku & netlify.
 <img src="docs/img/home.png"/>
 </div>
 
-## Fast screencast
-
-<div align="center"></div>
-
-[![Screen cast](https://share.gifyoutube.com/4QgOm1.gif)](https://www.youtube.com/watch?v=bAreBxxrDac)
-
-</div>
